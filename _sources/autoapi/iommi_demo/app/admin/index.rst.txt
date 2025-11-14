@@ -1,0 +1,6 @@
+iommi_demo.app.admin
+====================
+
+.. py:module:: iommi_demo.app.admin
+
+

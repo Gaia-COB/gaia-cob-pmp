@@ -1,0 +1,18 @@
+iommi_demo.core
+===============
+
+.. py:module:: iommi_demo.core
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/iommi_demo/core/asgi/index
+   /autoapi/iommi_demo/core/settings/index
+   /autoapi/iommi_demo/core/urls/index
+   /autoapi/iommi_demo/core/wsgi/index
+
+

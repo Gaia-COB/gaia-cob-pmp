@@ -1,0 +1,70 @@
+iommi_demo.app.management.commands.makestaff
+============================================
+
+.. py:module:: iommi_demo.app.management.commands.makestaff
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   iommi_demo.app.management.commands.makestaff.RE_EMAIL
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   iommi_demo.app.management.commands.makestaff.Command
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   iommi_demo.app.management.commands.makestaff.email_type
+
+
+Module Contents
+---------------
+
+.. py:data:: RE_EMAIL
+
+.. py:function:: email_type(value: str) -> str
+
+   Checks a string is an email addresses.
+
+   :param value: The string to check.
+   :raises ArgumentTypeError: If it's not a valid email address.
+   :return: The string, if it's correct.
+
+
+.. py:class:: Command(stdout=None, stderr=None, no_color=False, force_color=False)
+
+   Bases: :py:obj:`django.core.management.base.BaseCommand`
+
+
+   Management command.
+
+
+   .. py:attribute:: help
+      :value: 'Registers a given email as staff for the site.'
+
+
+
+   .. py:method:: add_arguments(parser)
+
+      Entry point for subclassed commands to add custom arguments.
+
+
+
+   .. py:method:: handle(*args, **options)
+
+      The actual logic of the command. Subclasses must implement
+      this method.
+
+
+

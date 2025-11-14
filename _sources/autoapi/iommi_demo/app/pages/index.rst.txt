@@ -1,0 +1,96 @@
+iommi_demo.app.pages
+====================
+
+.. py:module:: iommi_demo.app.pages
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   iommi_demo.app.pages.IndexPage
+   iommi_demo.app.pages.RankingPage
+   iommi_demo.app.pages.HelpPage
+   iommi_demo.app.pages.PrivacyPage
+
+
+Module Contents
+---------------
+
+.. py:class:: IndexPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   Simple index page.
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: p
+
+
+.. py:class:: RankingPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   Ranking of cat owners by number of cats
+
+
+   .. py:attribute:: h1
+
+
+   .. py:attribute:: p
+
+
+   .. py:attribute:: table
+
+
+   .. py:attribute:: plotly
+
+
+   .. py:class:: Meta
+
+      .. py:method:: extra_evaluated__plotly(params: dict[str, Any], **_) -> str
+         :staticmethod:
+
+
+         Loads data from the database, and renders it into a plot.
+
+         :param params: The page parameters, including the load function it's for.
+         :return: A div containing the rendered plot (or an empty string if no plot is needed).
+
+
+
+
+.. py:class:: HelpPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   Simple help page.
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: paragraph
+
+
+.. py:class:: PrivacyPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   Simple privacy page.
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: paragraph
+
+

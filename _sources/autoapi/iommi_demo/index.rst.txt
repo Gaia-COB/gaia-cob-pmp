@@ -1,0 +1,32 @@
+iommi_demo
+==========
+
+.. py:module:: iommi_demo
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/iommi_demo/app/index
+   /autoapi/iommi_demo/core/index
+   /autoapi/iommi_demo/manage/index
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   iommi_demo.__version__
+
+
+Package Contents
+----------------
+
+.. py:data:: __version__
+   :value: '0.1.0'
+
+

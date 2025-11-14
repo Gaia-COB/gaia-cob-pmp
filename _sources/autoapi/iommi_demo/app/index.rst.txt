@@ -1,0 +1,25 @@
+iommi_demo.app
+==============
+
+.. py:module:: iommi_demo.app
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/iommi_demo/app/adapter/index
+   /autoapi/iommi_demo/app/admin/index
+   /autoapi/iommi_demo/app/apps/index
+   /autoapi/iommi_demo/app/iommi_admin/index
+   /autoapi/iommi_demo/app/main_menu/index
+   /autoapi/iommi_demo/app/management/index
+   /autoapi/iommi_demo/app/models/index
+   /autoapi/iommi_demo/app/pages/index
+   /autoapi/iommi_demo/app/rules/index
+   /autoapi/iommi_demo/app/tests/index
+   /autoapi/iommi_demo/app/views/index
+
+

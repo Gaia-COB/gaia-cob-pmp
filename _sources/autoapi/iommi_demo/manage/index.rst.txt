@@ -1,0 +1,19 @@
+iommi_demo.manage
+=================
+
+.. py:module:: iommi_demo.manage
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   iommi_demo.manage.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+

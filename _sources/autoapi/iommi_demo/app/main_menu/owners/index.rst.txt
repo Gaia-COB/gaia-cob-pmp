@@ -1,0 +1,25 @@
+iommi_demo.app.main_menu.owners
+===============================
+
+.. py:module:: iommi_demo.app.main_menu.owners
+
+.. autoapi-nested-parse::
+
+   Submenu for items relating to cat-owners.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   iommi_demo.app.main_menu.owners.owners_submenu
+
+
+Module Contents
+---------------
+
+.. py:data:: owners_submenu
+   :type:  iommi.main_menu.M
+

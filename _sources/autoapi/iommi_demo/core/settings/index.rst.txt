@@ -1,0 +1,269 @@
+iommi_demo.core.settings
+========================
+
+.. py:module:: iommi_demo.core.settings
+
+.. autoapi-nested-parse::
+
+   Django settings for example project.
+
+   For more information on this file, see
+   https://docs.djangoproject.com/en/1.7/topics/settings/
+
+   For the full list of settings and their values, see
+   https://docs.djangoproject.com/en/1.7/ref/settings/
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   iommi_demo.core.settings.config
+   iommi_demo.core.settings.PROJECT_DIR
+   iommi_demo.core.settings.BASE_DIR
+   iommi_demo.core.settings.SECRET_KEY
+   iommi_demo.core.settings.SECRET_KEY
+   iommi_demo.core.settings.DEBUG
+   iommi_demo.core.settings.TEMPLATE_DEBUG
+   iommi_demo.core.settings.TEMPLATES
+   iommi_demo.core.settings.ALLOWED_HOSTS
+   iommi_demo.core.settings.INSTALLED_APPS
+   iommi_demo.core.settings.MIDDLEWARE
+   iommi_demo.core.settings.ROOT_URLCONF
+   iommi_demo.core.settings.WSGI_APPLICATION
+   iommi_demo.core.settings.DEFAULT_AUTO_FIELD
+   iommi_demo.core.settings.DATABASE_PATH
+   iommi_demo.core.settings.DATABASES
+   iommi_demo.core.settings.LOCALE_PATHS
+   iommi_demo.core.settings.TIME_ZONE
+   iommi_demo.core.settings.USE_I18N
+   iommi_demo.core.settings.USE_TZ
+   iommi_demo.core.settings.SITE_ID
+   iommi_demo.core.settings.LOGGING
+   iommi_demo.core.settings.MEDIA_ROOT
+   iommi_demo.core.settings.MEDIA_URL
+   iommi_demo.core.settings.STATIC_ROOT
+   iommi_demo.core.settings.STATIC_URL
+   iommi_demo.core.settings.STATICFILES_FINDERS
+   iommi_demo.core.settings.IOMMI_DEBUG
+   iommi_demo.core.settings.IOMMI_DEFAULT_STYLE
+   iommi_demo.core.settings.IOMMI_MAIN_MENU
+   iommi_demo.core.settings.AUTHENTICATION_BACKENDS
+   iommi_demo.core.settings.SOCIALACCOUNT_ONLY
+   iommi_demo.core.settings.SOCIALACCOUNT_ADAPTER
+   iommi_demo.core.settings.SOCIALACCOUNT_PROVIDERS
+   iommi_demo.core.settings.SOCIALACCOUNT_FORMS
+   iommi_demo.core.settings.ACCOUNT_LOGIN_METHODS
+   iommi_demo.core.settings.ACCOUNT_SIGNUP_FIELDS
+   iommi_demo.core.settings.ACCOUNT_EMAIL_VERIFICATION
+   iommi_demo.core.settings.ACCOUNT_UNIQUE_EMAIL
+   iommi_demo.core.settings.ACCOUNT_USER_MODEL_USERNAME_FIELD
+   iommi_demo.core.settings.ACCOUNT_LOGOUT_ON_GET
+   iommi_demo.core.settings.LOGIN_REDIRECT_URL
+   iommi_demo.core.settings.CORS_ALLOW_CREDENTIALS
+   iommi_demo.core.settings.CORS_ALLOW_PRIVATE_NETWORK
+   iommi_demo.core.settings.CORS_ALLOW_HEADERS
+   iommi_demo.core.settings.CORS_ALLOWED_ORIGINS
+   iommi_demo.core.settings.SECURE_REFERRER_POLICY
+
+
+Module Contents
+---------------
+
+.. py:data:: config
+   :type:  decouple.AutoConfig
+
+.. py:data:: PROJECT_DIR
+   :type:  pathlib.Path
+
+.. py:data:: BASE_DIR
+   :type:  pathlib.Path
+
+.. py:data:: SECRET_KEY
+   :type:  str
+
+.. py:data:: SECRET_KEY
+   :value: ''
+
+
+.. py:data:: DEBUG
+   :type:  bool
+
+.. py:data:: TEMPLATE_DEBUG
+
+.. py:data:: TEMPLATES
+   :type:  list[dict[str, Any]]
+
+.. py:data:: ALLOWED_HOSTS
+   :type:  list[str]
+   :value: ['localhost', '127.0.0.1']
+
+
+.. py:data:: INSTALLED_APPS
+   :type:  list[str]
+   :value: ['django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions',...
+
+
+.. py:data:: MIDDLEWARE
+   :type:  list[str]
+   :value: ['corsheaders.middleware.CorsMiddleware', 'iommi.live_edit.Middleware',...
+
+
+.. py:data:: ROOT_URLCONF
+   :type:  str
+   :value: 'core.urls'
+
+
+.. py:data:: WSGI_APPLICATION
+   :type:  str
+   :value: 'core.wsgi.application'
+
+
+.. py:data:: DEFAULT_AUTO_FIELD
+   :type:  str
+   :value: 'django.db.models.AutoField'
+
+
+.. py:data:: DATABASE_PATH
+   :type:  pathlib.Path
+
+.. py:data:: DATABASES
+   :type:  dict[str, dict[str, str]]
+
+.. py:data:: LOCALE_PATHS
+   :type:  list[pathlib.Path]
+
+.. py:data:: TIME_ZONE
+   :type:  str
+   :value: 'UTC'
+
+
+.. py:data:: USE_I18N
+   :type:  bool
+   :value: True
+
+
+.. py:data:: USE_TZ
+   :type:  bool
+   :value: True
+
+
+.. py:data:: SITE_ID
+   :type:  int
+   :value: 1
+
+
+.. py:data:: LOGGING
+   :type:  dict[str, Any]
+
+.. py:data:: MEDIA_ROOT
+   :type:  pathlib.Path
+
+.. py:data:: MEDIA_URL
+   :type:  str
+   :value: '/media/'
+
+
+.. py:data:: STATIC_ROOT
+   :type:  pathlib.Path
+
+.. py:data:: STATIC_URL
+   :type:  str
+   :value: '/static/'
+
+
+.. py:data:: STATICFILES_FINDERS
+   :type:  list[str]
+   :value: ['django.contrib.staticfiles.finders.FileSystemFinder',...
+
+
+.. py:data:: IOMMI_DEBUG
+   :type:  bool
+
+.. py:data:: IOMMI_DEFAULT_STYLE
+   :type:  iommi.style.Style
+
+.. py:data:: IOMMI_MAIN_MENU
+   :type:  str
+   :value: 'app.main_menu.main_menu'
+
+
+.. py:data:: AUTHENTICATION_BACKENDS
+   :type:  list[str]
+   :value: ['rules.permissions.ObjectPermissionBackend',...
+
+
+.. py:data:: SOCIALACCOUNT_ONLY
+   :type:  bool
+   :value: True
+
+
+.. py:data:: SOCIALACCOUNT_ADAPTER
+   :type:  str
+   :value: 'app.adapter.UsernameAdapter'
+
+
+.. py:data:: SOCIALACCOUNT_PROVIDERS
+   :type:  dict[str, Any]
+
+.. py:data:: SOCIALACCOUNT_FORMS
+
+.. py:data:: ACCOUNT_LOGIN_METHODS
+   :type:  set[str]
+
+.. py:data:: ACCOUNT_SIGNUP_FIELDS
+   :type:  list[str]
+   :value: ['email*', 'password1*', 'password2*']
+
+
+.. py:data:: ACCOUNT_EMAIL_VERIFICATION
+   :type:  str
+   :value: 'none'
+
+
+.. py:data:: ACCOUNT_UNIQUE_EMAIL
+   :type:  bool
+   :value: True
+
+
+.. py:data:: ACCOUNT_USER_MODEL_USERNAME_FIELD
+   :value: None
+
+
+.. py:data:: ACCOUNT_LOGOUT_ON_GET
+   :type:  bool
+   :value: True
+
+
+.. py:data:: LOGIN_REDIRECT_URL
+   :type:  str
+   :value: '/'
+
+
+.. py:data:: CORS_ALLOW_CREDENTIALS
+   :type:  bool
+   :value: True
+
+
+.. py:data:: CORS_ALLOW_PRIVATE_NETWORK
+   :type:  bool
+   :value: True
+
+
+.. py:data:: CORS_ALLOW_HEADERS
+   :type:  list[str]
+   :value: ['*']
+
+
+.. py:data:: CORS_ALLOWED_ORIGINS
+   :type:  list[str]
+   :value: ['https://localhost', 'http://localhost', 'https://localhost:8000', 'http://localhost:8000']
+
+
+.. py:data:: SECURE_REFERRER_POLICY
+   :type:  str
+   :value: 'no-referrer-when-downgrade'
+
+

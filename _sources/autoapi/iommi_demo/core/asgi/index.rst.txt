@@ -1,0 +1,19 @@
+iommi_demo.core.asgi
+====================
+
+.. py:module:: iommi_demo.core.asgi
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   iommi_demo.core.asgi.application
+
+
+Module Contents
+---------------
+
+.. py:data:: application
+
