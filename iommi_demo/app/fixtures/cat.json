@@ -1,0 +1,38 @@
+[
+  {
+    "model": "app.Cat",
+    "pk": 1,
+    "fields": {
+      "name": "Tiddles",
+      "age": 5,
+      "owner": 1
+    }
+  },
+  {
+    "model": "app.Cat",
+    "pk": 2,
+    "fields": {
+      "name": "Mr Whiskers",
+      "age": 2,
+      "owner": 1
+    }
+  },
+  {
+    "model": "app.Cat",
+    "pk": 3,
+    "fields": {
+      "name": "Fluffy",
+      "age": 10,
+      "owner": 2
+    }
+  },
+  {
+    "model": "app.Cat",
+    "pk": 4,
+    "fields": {
+      "name": "Garfield",
+      "age": 80,
+      "owner": 3
+    }
+  }
+]

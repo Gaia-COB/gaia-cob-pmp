@@ -1,0 +1,16 @@
+{% extends "iommi/main_menu/menu.html" %}
+
+{% block before_ul %}
+    {% include "app/main_menu/icon.html" %}
+{% endblock before_ul %}
+
+{% block bottom %}
+    {# Creates the log-in popup #}
+    {% if not user.is_authenticated %}
+        <script src="//accounts.google.com/gsi/client" async></script>
+        <div id="g_id_onload"
+             data-client_id="{{ GOOGLE_OAUTH2_CLIENT_ID }}"
+             data-login_uri="{% url 'google_login_by_token' %}">
+        </div>
+    {% endif %}
+{% endblock bottom %}

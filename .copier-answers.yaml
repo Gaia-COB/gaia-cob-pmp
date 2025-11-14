@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier
+_commit: 5af64c5
+_src_path: https://github.com/python-project-templates/base.git
+add_docs: true
+add_extension: python
+add_wiki: true
+email: mangham@gmail.com
+github: smangham
+project_description: Demo project for the Iommi web framework
+project_name: iommi-demo
+python_version_primary: '3.11'
+team: Sam Mangham
