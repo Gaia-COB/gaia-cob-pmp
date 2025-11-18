@@ -600,6 +600,84 @@ wheels = [
 ]
 
 [[package]]
+name = "gaia-cob-pmp"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "dash-bootstrap-templates" },
+    { name = "django" },
+    { name = "django-allauth", extra = ["saml", "socialaccount"] },
+    { name = "django-auditlog" },
+    { name = "django-cors-headers" },
+    { name = "importlib" },
+    { name = "iommi" },
+    { name = "pandas" },
+    { name = "pandas-stubs" },
+    { name = "plotly" },
+    { name = "pyparsing" },
+    { name = "python-decouple" },
+    { name = "requests" },
+    { name = "rules" },
+    { name = "setuptools" },
+]
+
+[package.optional-dependencies]
+develop = [
+    { name = "build" },
+    { name = "bump-my-version" },
+    { name = "check-manifest" },
+    { name = "codespell" },
+    { name = "django-fastdev" },
+    { name = "django-pycharm-breakpoint" },
+    { name = "hatchling" },
+    { name = "mdformat" },
+    { name = "mdformat-tables" },
+    { name = "parso" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "ruff" },
+    { name = "twine" },
+    { name = "uv" },
+    { name = "wheel" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "build", marker = "extra == 'develop'" },
+    { name = "bump-my-version", marker = "extra == 'develop'" },
+    { name = "check-manifest", marker = "extra == 'develop'" },
+    { name = "codespell", marker = "extra == 'develop'", specifier = ">=2.4,<2.5" },
+    { name = "dash-bootstrap-templates", specifier = ">=2.1.0" },
+    { name = "django", specifier = ">=5.2.1" },
+    { name = "django-allauth", extras = ["saml", "socialaccount"], specifier = ">=65.12.1" },
+    { name = "django-auditlog", specifier = ">=3.3.0" },
+    { name = "django-cors-headers", specifier = ">=4.9.0" },
+    { name = "django-fastdev", marker = "extra == 'develop'" },
+    { name = "django-pycharm-breakpoint", marker = "extra == 'develop'" },
+    { name = "hatchling", marker = "extra == 'develop'" },
+    { name = "importlib", specifier = ">=1.0.4" },
+    { name = "iommi", specifier = ">=7.13.0" },
+    { name = "mdformat", marker = "extra == 'develop'", specifier = ">=0.7.22,<1.1" },
+    { name = "mdformat-tables", marker = "extra == 'develop'", specifier = ">=1" },
+    { name = "pandas", specifier = ">=2.3.3" },
+    { name = "pandas-stubs", specifier = "==2.3.2.250926" },
+    { name = "parso", marker = "extra == 'develop'", specifier = ">=0.8.5" },
+    { name = "plotly", specifier = ">=6.4.0" },
+    { name = "pyparsing", specifier = ">=3.2.3" },
+    { name = "pytest", marker = "extra == 'develop'" },
+    { name = "pytest-cov", marker = "extra == 'develop'" },
+    { name = "python-decouple", specifier = ">=3.8" },
+    { name = "requests", specifier = ">=2.32.5" },
+    { name = "ruff", marker = "extra == 'develop'", specifier = ">=0.9,<0.15" },
+    { name = "rules", specifier = ">=3.5" },
+    { name = "setuptools", specifier = ">=80.9.0" },
+    { name = "twine", marker = "extra == 'develop'" },
+    { name = "uv", marker = "extra == 'develop'" },
+    { name = "wheel", marker = "extra == 'develop'" },
+]
+provides-extras = ["develop"]
+
+[[package]]
 name = "h11"
 version = "0.16.0"
 source = { registry = "https://pypi.org/simple" }
@@ -711,84 +789,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/07/4e/d4112c0b25709e964
 wheels = [
     { url = "https://files.pythonhosted.org/packages/6a/b2/b83e5fcdc0acaaa59de2a8724ad4d659deb665ccbcef9f6574fa261d3658/iommi-7.20.0-py2.py3-none-any.whl", hash = "sha256:18125ebe9691766dbc5659ee8e2dccf9b62829b3deb175f475dd4446f21694c6", size = 365479, upload-time = "2025-11-14T09:13:09.882Z" },
 ]
-
-[[package]]
-name = "iommi-demo"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "dash-bootstrap-templates" },
-    { name = "django" },
-    { name = "django-allauth", extra = ["saml", "socialaccount"] },
-    { name = "django-auditlog" },
-    { name = "django-cors-headers" },
-    { name = "importlib" },
-    { name = "iommi" },
-    { name = "pandas" },
-    { name = "pandas-stubs" },
-    { name = "plotly" },
-    { name = "pyparsing" },
-    { name = "python-decouple" },
-    { name = "requests" },
-    { name = "rules" },
-    { name = "setuptools" },
-]
-
-[package.optional-dependencies]
-develop = [
-    { name = "build" },
-    { name = "bump-my-version" },
-    { name = "check-manifest" },
-    { name = "codespell" },
-    { name = "django-fastdev" },
-    { name = "django-pycharm-breakpoint" },
-    { name = "hatchling" },
-    { name = "mdformat" },
-    { name = "mdformat-tables" },
-    { name = "parso" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "ruff" },
-    { name = "twine" },
-    { name = "uv" },
-    { name = "wheel" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "build", marker = "extra == 'develop'" },
-    { name = "bump-my-version", marker = "extra == 'develop'" },
-    { name = "check-manifest", marker = "extra == 'develop'" },
-    { name = "codespell", marker = "extra == 'develop'", specifier = ">=2.4,<2.5" },
-    { name = "dash-bootstrap-templates", specifier = ">=2.1.0" },
-    { name = "django", specifier = ">=5.2.1" },
-    { name = "django-allauth", extras = ["saml", "socialaccount"], specifier = ">=65.12.1" },
-    { name = "django-auditlog", specifier = ">=3.3.0" },
-    { name = "django-cors-headers", specifier = ">=4.9.0" },
-    { name = "django-fastdev", marker = "extra == 'develop'" },
-    { name = "django-pycharm-breakpoint", marker = "extra == 'develop'" },
-    { name = "hatchling", marker = "extra == 'develop'" },
-    { name = "importlib", specifier = ">=1.0.4" },
-    { name = "iommi", specifier = ">=7.13.0" },
-    { name = "mdformat", marker = "extra == 'develop'", specifier = ">=0.7.22,<1.1" },
-    { name = "mdformat-tables", marker = "extra == 'develop'", specifier = ">=1" },
-    { name = "pandas", specifier = ">=2.3.3" },
-    { name = "pandas-stubs", specifier = "==2.3.2.250926" },
-    { name = "parso", marker = "extra == 'develop'", specifier = ">=0.8.5" },
-    { name = "plotly", specifier = ">=6.4.0" },
-    { name = "pyparsing", specifier = ">=3.2.3" },
-    { name = "pytest", marker = "extra == 'develop'" },
-    { name = "pytest-cov", marker = "extra == 'develop'" },
-    { name = "python-decouple", specifier = ">=3.8" },
-    { name = "requests", specifier = ">=2.32.5" },
-    { name = "ruff", marker = "extra == 'develop'", specifier = ">=0.9,<0.15" },
-    { name = "rules", specifier = ">=3.5" },
-    { name = "setuptools", specifier = ">=80.9.0" },
-    { name = "twine", marker = "extra == 'develop'" },
-    { name = "uv", marker = "extra == 'develop'" },
-    { name = "wheel", marker = "extra == 'develop'" },
-]
-provides-extras = ["develop"]
 
 [[package]]
 name = "isodate"

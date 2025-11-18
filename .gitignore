@@ -226,16 +226,16 @@ js/node_modules
 js/test-results
 js/playwright-report
 js/*.tgz
-iommi_demo/extension
+gaia_cob_pmp/extension
 
 # Jupyter
 .ipynb_checkpoints
 .autoversion
 Untitled*.ipynb
-!iommi_demo/extension/iommi_demo.json
-!iommi_demo/extension/install.json
-iommi_demo/nbextension
-iommi_demo/labextension
+!gaia_cob_pmp/extension/gaia_cob_pmp.json
+!gaia_cob_pmp/extension/install.json
+gaia_cob_pmp/nbextension
+gaia_cob_pmp/labextension
 
 # Mac
 .DS_Store
@@ -248,3 +248,6 @@ target
 
 # Databases
 *.sqlite3
+
+# Migration files: Force add when you need to!
+*/migrations/0*.py

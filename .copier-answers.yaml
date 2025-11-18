@@ -5,8 +5,8 @@ add_docs: true
 add_extension: python
 add_wiki: true
 email: mangham@gmail.com
-github: smangham
-project_description: Demo project for the Iommi web framework
-project_name: iommi-demo
+github: Gaia-COB
+project_description: Proposal management platform for Gaia Compact Object Binaries.
+project_name: gaia-cob-pmp
 python_version_primary: '3.11'
 team: Sam Mangham

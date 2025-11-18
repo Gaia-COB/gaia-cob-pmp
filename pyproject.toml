@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend="hatchling.build"
 
 [project]
-name = "iommi-demo"
+name = "gaia-cob-pmp"
 authors = [{name = "Sam Mangham", email = "mangham@gmail.com"}]
-description = "Demo project for the Iommi web framework"
+description = "Project management platform for Gaia Compact Binary observations."
 readme = "README.md"
 license = { text = "Apache-2.0" }
 version = "0.1.0"
@@ -65,11 +65,11 @@ develop = [
 ]
 
 [project.scripts]
-djmanage = "iommi_demo.manage:main"
+djmanage = "gaia_cob_pmp.manage:main"
 
 [project.urls]
-Repository = "https://github.com/smangham/iommi-demo"
-Homepage = "https://github.com/smangham/iommi-demo"
+Repository = "https://github.com/smangham/gaia-cob-pmp"
+Homepage = "https://github.com/smangham/gaia-cob-pmp"
 
 [tool.bumpversion]
 current_version = "0.1.0"
@@ -78,7 +78,7 @@ tag = true
 commit_args = "-s"
 
 [[tool.bumpversion.files]]
-filename = "iommi_demo/__init__.py"
+filename = "gaia_cob_pmp/__init__.py"
 search = '__version__ = "{current_version}"'
 replace = '__version__ = "{new_version}"'
 
@@ -87,17 +87,10 @@ filename = "pyproject.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
-[tool.check-manifest]
-ignore = [
-    ".copier-answers.yaml",
-    "Makefile",
-    "docs/**/*",
-]
-
 [tool.coverage.run]
 branch = true
 omit = [
-    "iommi_demo/tests/integration/",
+    "gaia_cob_pmp/tests/integration/",
 ]
 [tool.coverage.report]
 exclude_also = [
@@ -115,16 +108,16 @@ artifacts = []
 src = "/"
 
 [tool.hatch.build.targets.sdist]
-packages = ["iommi_demo"]
+packages = ["gaia_cob_pmp"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["iommi_demo"]
+packages = ["gaia_cob_pmp"]
 
 [tool.hatch.build.targets.wheel.shared-data]
 
 [tool.pytest.ini_options]
 addopts = ["-vvv", "--junitxml=junit.xml"]
-testpaths = "iommi_demo/tests"
+testpaths = "gaia_cob_pmp/tests"
 
 [tool.ruff]
 line-length = 150
@@ -135,14 +128,14 @@ extend-select = ["I"]
 [tool.ruff.lint.isort]
 combine-as-imports = true
 default-section = "third-party"
-known-first-party = ["iommi_demo", "app"]
+known-first-party = ["gaia_cob_pmp", "app"]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401", "F403"]
 
 [tool.yardang]
-title = "iommi-demo"
+title = "Gaia COB Proposal Management Platform"
 root = "README.md"
 pages = []
 use-autoapi = true

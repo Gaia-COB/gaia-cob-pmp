@@ -70,11 +70,3 @@ jobs:
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-
-    - name: Make dist
-      run: make dist
-
-    - uses: actions/upload-artifact@v5
-      with:
-        name: dist-${{matrix.os}}
-        path: dist

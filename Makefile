@@ -23,16 +23,16 @@ install:  ## install library
 .PHONY: lint-py lint-docs fix-py fix-docs lint lints fix format
 
 lint-py:  ## lint python with ruff
-	python -m ruff check iommi_demo
-	python -m ruff format --check iommi_demo
+	python -m ruff check gaia_cob_pmp
+	python -m ruff format --check gaia_cob_pmp
 
 lint-docs:  ## lint docs with mdformat and codespell
 	python -m mdformat --check README.md docs/wiki/
 	python -m codespell_lib README.md docs/wiki/
 
 fix-py:  ## autoformat python code with ruff
-	python -m ruff check --fix iommi_demo
-	python -m ruff format iommi_demo
+	python -m ruff check --fix gaia_cob_pmp
+	python -m ruff format gaia_cob_pmp
 
 fix-docs:  ## autoformat docs with mdformat and codespell
 	python -m mdformat README.md docs/wiki/
@@ -43,29 +43,16 @@ lints: lint
 fix: fix-py fix-docs  ## run all autoformatters
 format: fix
 
-################
-# Other Checks #
-################
-.PHONY: check-manifest checks check
-
-check-manifest:  ## check python sdist manifest with check-manifest
-	check-manifest -v
-
-checks: check-manifest
-
-# Alias
-check: checks
-
 #########
 # TESTS #
 #########
 .PHONY: test coverage tests
 
 test:  ## run python tests
-	python -m pytest -v iommi_demo/tests
+	python -m pytest -v gaia_cob_pmp/tests
 
 coverage:  ## run tests and collect test coverage
-	python -m pytest -v iommi_demo/tests --cov=iommi_demo --cov-report term-missing --cov-report xml
+	python -m pytest -v gaia_cob_pmp/tests --cov=gaia_cob_pmp --cov-report term-missing --cov-report xml
 
 # Alias
 tests: test
@@ -86,21 +73,6 @@ minor:  ## bump a minor version
 
 major:  ## bump a major version
 	@bump-my-version bump major
-
-########
-# DIST #
-########
-.PHONY: dist dist-build dist-sdist dist-local-wheel publish
-
-dist-build:  # build python dists
-	python -m build -w -s
-
-dist-check:  ## run python dist checker with twine
-	python -m twine check dist/*
-
-dist: clean dist-build dist-check  ## build all dists
-
-publish: dist  ## publish python assets
 
 #########
 # CLEAN #
@@ -129,14 +101,15 @@ print-%:
 # PROJECT-SPECIFIC #
 ####################
 migrate:
-	-rm iommi_demo/app/migrations/0*.py
 	djmanage makemigrations
 	djmanage migrate
 
 setup:
-	-rm iommi_demo/db.sqlite3
+	-rm gaia_cob_pmp/db.sqlite3
+	-rm gaia_cob_pmp/app/migrations/0*.py
+	djmanage makemigrations
 	djmanage migrate
-	djmanage loaddata iommi_demo/app/fixtures/*.json
+	djmanage loaddata gaia_cob_pmp/app/fixtures/*.json
 
 server:
 	djmanage runserver
