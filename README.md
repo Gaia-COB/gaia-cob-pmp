@@ -196,6 +196,10 @@ These are defined for each model in the model files, after the model itself.
 They fit pretty well into Iommi's structure, so it's easy to check when setting up a URL or whatever
 if you're allowed to view/edit/whatever the object.
 
+## Documentation
+
+Developer documentation for the site [can be found here](docs/dev/index.md).
+
 ## Overview
 
 > [!NOTE]

@@ -11,8 +11,8 @@ from iommi import LAST, Column, Form, Header, Page, Table, html
 from iommi.admin import Admin
 from iommi.main_menu import EXTERNAL, M, MainMenu
 
-from app.main_menu.researcher import researcher_submenu
 from app.forms.researcher import ResearcherForm
+from app.main_menu.researcher import researcher_submenu
 from app.main_menu.source import source_submenu
 from app.pages import IndexPage, PrivacyPage
 

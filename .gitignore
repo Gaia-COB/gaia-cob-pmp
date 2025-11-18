@@ -250,4 +250,4 @@ target
 *.sqlite3
 
 # Migration files: Force add when you need to!
-*/migrations/0*.py
+*/*/migrations/0*.py
