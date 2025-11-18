@@ -1,0 +1,6 @@
+gaia_cob_pmp.app.views
+======================
+
+.. py:module:: gaia_cob_pmp.app.views
+
+

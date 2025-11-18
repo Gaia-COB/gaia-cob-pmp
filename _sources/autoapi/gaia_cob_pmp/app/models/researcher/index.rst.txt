@@ -1,0 +1,82 @@
+gaia_cob_pmp.app.models.researcher
+==================================
+
+.. py:module:: gaia_cob_pmp.app.models.researcher
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.researcher.User
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.researcher.Researcher
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.researcher.validate_orcid_format
+   gaia_cob_pmp.app.models.researcher.is_researcher
+
+
+Module Contents
+---------------
+
+.. py:function:: validate_orcid_format(value: str)
+
+   Validates an input ORCID to make sure it fits the format.
+
+   :param value: The text entered for the ORCID.
+   :raises ValidationError: If not formatted correctly.
+
+
+.. py:class:: Researcher(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Researcher class that extends user class
+
+
+   .. py:attribute:: user
+
+
+   .. py:attribute:: affiliations
+
+
+   .. py:attribute:: orcid
+
+
+   .. py:method:: get_absolute_url() -> str
+
+      Gets the absolute url for the researcher.
+
+
+
+   .. py:method:: __str__() -> str
+
+
+   .. py:method:: __repr__() -> str
+
+
+.. py:data:: User
+
+.. py:function:: is_researcher(user: User, researcher: Researcher) -> bool
+
+   Does this user account correspond to this researcher?
+
+   :param user: User to check.
+   :param researcher: The researcher to check.
+   :return: True if the user is this Researcher, or false otherwise.
+
+

@@ -1,0 +1,38 @@
+gaia_cob_pmp.app.main_menu
+==========================
+
+.. py:module:: gaia_cob_pmp.app.main_menu
+
+.. autoapi-nested-parse::
+
+   Main menu that describes the site views and URL structure,
+   as well as controlling access to the views.
+
+   Components can (and should) be broken out into smaller parts in other files.
+   Putting all the content directly here is just for demo purposes!
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/gaia_cob_pmp/app/main_menu/researcher/index
+   /autoapi/gaia_cob_pmp/app/main_menu/source/index
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.main_menu.main_menu
+
+
+Package Contents
+----------------
+
+.. py:data:: main_menu
+

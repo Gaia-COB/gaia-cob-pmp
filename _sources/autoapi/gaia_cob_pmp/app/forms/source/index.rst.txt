@@ -1,0 +1,52 @@
+gaia_cob_pmp.app.forms.source
+=============================
+
+.. py:module:: gaia_cob_pmp.app.forms.source
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.forms.source.SourceForm
+   gaia_cob_pmp.app.forms.source.SourceGaiaInfoForm
+
+
+Module Contents
+---------------
+
+.. py:class:: SourceForm(**kwargs)
+
+   Bases: :py:obj:`iommi.Form`
+
+
+   Handles the common setup for source-based forms.
+
+
+   .. py:class:: Meta
+
+      .. py:attribute:: auto__model
+
+
+      .. py:attribute:: fields
+
+
+
+.. py:class:: SourceGaiaInfoForm(**kwargs)
+
+   Bases: :py:obj:`iommi.Form`
+
+
+   Handles the common setup for source Gaia info-based forms.
+
+
+   .. py:class:: Meta
+
+      .. py:attribute:: auto__model
+
+
+      .. py:attribute:: fields
+
+
+

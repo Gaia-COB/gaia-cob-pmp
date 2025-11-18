@@ -1,0 +1,59 @@
+gaia_cob_pmp.app.models.source
+==============================
+
+.. py:module:: gaia_cob_pmp.app.models.source
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.source.Source
+
+
+Module Contents
+---------------
+
+.. py:class:: Source(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Root model for an astrophysical source.
+
+
+   .. py:attribute:: is_active
+
+
+   .. py:attribute:: name
+
+
+   .. py:attribute:: other_names
+
+
+   .. py:attribute:: ra
+
+
+   .. py:attribute:: dec
+
+
+   .. py:method:: aladin_link(survey: str = 'P/DSS2/color', fov: float = 0.2) -> str
+
+      Gets the link to the source on Aladin
+
+      :param survey: Selection of survey image.
+      :param fov: Initial field of view.
+      :returns: The link to a view of the source's sky location.
+
+
+
+   .. py:method:: get_absolute_url() -> str
+
+
+   .. py:method:: __str__() -> str
+
+
+   .. py:method:: __repr__() -> str
+
+

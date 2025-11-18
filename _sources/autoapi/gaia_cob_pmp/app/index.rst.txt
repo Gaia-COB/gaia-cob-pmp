@@ -1,0 +1,27 @@
+gaia_cob_pmp.app
+================
+
+.. py:module:: gaia_cob_pmp.app
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/gaia_cob_pmp/app/adapter/index
+   /autoapi/gaia_cob_pmp/app/admin/index
+   /autoapi/gaia_cob_pmp/app/apps/index
+   /autoapi/gaia_cob_pmp/app/context_processors/index
+   /autoapi/gaia_cob_pmp/app/forms/index
+   /autoapi/gaia_cob_pmp/app/iommi_admin/index
+   /autoapi/gaia_cob_pmp/app/main_menu/index
+   /autoapi/gaia_cob_pmp/app/management/index
+   /autoapi/gaia_cob_pmp/app/models/index
+   /autoapi/gaia_cob_pmp/app/pages/index
+   /autoapi/gaia_cob_pmp/app/tables/index
+   /autoapi/gaia_cob_pmp/app/tests/index
+   /autoapi/gaia_cob_pmp/app/views/index
+
+

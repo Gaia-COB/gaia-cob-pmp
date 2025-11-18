@@ -1,0 +1,31 @@
+gaia_cob_pmp.app.forms.researcher
+=================================
+
+.. py:module:: gaia_cob_pmp.app.forms.researcher
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.forms.researcher.ResearcherForm
+
+
+Module Contents
+---------------
+
+.. py:class:: ResearcherForm(**kwargs)
+
+   Bases: :py:obj:`iommi.Form`
+
+
+   Handles the common setup for researcher-based forms.
+
+
+   .. py:class:: Meta
+
+      .. py:attribute:: auto__model
+
+
+

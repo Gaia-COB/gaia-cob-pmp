@@ -1,0 +1,15 @@
+gaia_cob_pmp.app.management
+===========================
+
+.. py:module:: gaia_cob_pmp.app.management
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/gaia_cob_pmp/app/management/commands/index
+
+

@@ -1,0 +1,34 @@
+gaia_cob_pmp.app.iommi_admin
+============================
+
+.. py:module:: gaia_cob_pmp.app.iommi_admin
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.iommi_admin.Meta
+
+
+Module Contents
+---------------
+
+.. py:class:: Meta
+
+   .. py:attribute:: apps__app_source__include
+      :value: True
+
+
+
+   .. py:attribute:: apps__app_sourcegaiainfo__include
+      :value: True
+
+
+
+   .. py:attribute:: apps__app_researcher__include
+      :value: True
+
+
+

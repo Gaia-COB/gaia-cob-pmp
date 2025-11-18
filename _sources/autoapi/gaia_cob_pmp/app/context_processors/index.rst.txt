@@ -1,0 +1,25 @@
+gaia_cob_pmp.app.context_processors
+===================================
+
+.. py:module:: gaia_cob_pmp.app.context_processors
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.context_processors.google_oauth2_client_id
+
+
+Module Contents
+---------------
+
+.. py:function:: google_oauth2_client_id(request: django.http.HttpRequest) -> dict[str, str]
+
+   Adds the OAuth app client ID to the context, for the popup on the core template.
+
+   :param request: The current request.
+   :return: A dict with the client ID in, for template rendering.
+
+

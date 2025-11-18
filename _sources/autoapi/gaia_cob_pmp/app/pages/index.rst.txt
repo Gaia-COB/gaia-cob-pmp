@@ -1,0 +1,56 @@
+gaia_cob_pmp.app.pages
+======================
+
+.. py:module:: gaia_cob_pmp.app.pages
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/gaia_cob_pmp/app/pages/source/index
+   /autoapi/gaia_cob_pmp/app/pages/sourcegaiainfo/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.pages.IndexPage
+   gaia_cob_pmp.app.pages.PrivacyPage
+
+
+Package Contents
+----------------
+
+.. py:class:: IndexPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   Simple index page.
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: p
+
+
+.. py:class:: PrivacyPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   Simple privacy page.
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: paragraph
+
+

@@ -1,0 +1,25 @@
+gaia_cob_pmp.app.main_menu.researcher
+=====================================
+
+.. py:module:: gaia_cob_pmp.app.main_menu.researcher
+
+.. autoapi-nested-parse::
+
+   Submenu for items relating to researchers
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.main_menu.researcher.researcher_submenu
+
+
+Module Contents
+---------------
+
+.. py:data:: researcher_submenu
+   :type:  iommi.main_menu.M
+

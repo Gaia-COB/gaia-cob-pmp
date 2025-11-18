@@ -1,0 +1,6 @@
+gaia_cob_pmp.app.pages.sourcegaiainfo
+=====================================
+
+.. py:module:: gaia_cob_pmp.app.pages.sourcegaiainfo
+
+

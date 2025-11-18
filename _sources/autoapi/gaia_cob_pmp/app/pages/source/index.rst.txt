@@ -1,0 +1,36 @@
+gaia_cob_pmp.app.pages.source
+=============================
+
+.. py:module:: gaia_cob_pmp.app.pages.source
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.pages.source.SourceViewPage
+
+
+Module Contents
+---------------
+
+.. py:class:: SourceViewPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   The basic view for a source.
+
+   Needs to include all the plots too!
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: detail
+
+
+   .. py:attribute:: gaia_info
+
+

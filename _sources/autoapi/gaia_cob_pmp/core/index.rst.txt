@@ -1,0 +1,18 @@
+gaia_cob_pmp.core
+=================
+
+.. py:module:: gaia_cob_pmp.core
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/gaia_cob_pmp/core/asgi/index
+   /autoapi/gaia_cob_pmp/core/settings/index
+   /autoapi/gaia_cob_pmp/core/urls/index
+   /autoapi/gaia_cob_pmp/core/wsgi/index
+
+

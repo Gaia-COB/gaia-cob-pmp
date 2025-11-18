@@ -1,0 +1,84 @@
+gaia_cob_pmp.app.models.source_gaia_info
+========================================
+
+.. py:module:: gaia_cob_pmp.app.models.source_gaia_info
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.source_gaia_info.SourceGaiaInfo
+
+
+Module Contents
+---------------
+
+.. py:class:: SourceGaiaInfo(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Additional details from Gaia for the source.
+
+   Implemented as separate model to allow for either new telescopes
+   to be added later, or this data to vary over time.
+
+
+   .. py:attribute:: source
+
+
+   .. py:attribute:: is_active
+
+
+   .. py:attribute:: parallax
+
+
+   .. py:attribute:: parallax_error
+
+
+   .. py:attribute:: pmra
+
+
+   .. py:attribute:: pmra_error
+
+
+   .. py:attribute:: pmdec
+
+
+   .. py:attribute:: pmdec_error
+
+
+   .. py:attribute:: phot_g_mean_mag
+
+
+   .. py:attribute:: bp_rp
+
+
+   .. py:attribute:: radial_velocity
+
+
+   .. py:attribute:: radial_velocity_error
+
+
+   .. py:attribute:: astrometric_excess_noise
+
+
+   .. py:attribute:: astrometric_excess_noise_sig
+
+
+   .. py:method:: __str__() -> str
+
+
+   .. py:method:: __repr__() -> str
+
+
+   .. py:class:: Meta
+
+      .. py:attribute:: verbose_name
+         :value: 'Gaia Info'
+
+
+
+

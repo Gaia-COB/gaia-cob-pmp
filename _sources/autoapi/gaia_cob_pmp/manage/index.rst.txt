@@ -1,0 +1,19 @@
+gaia_cob_pmp.manage
+===================
+
+.. py:module:: gaia_cob_pmp.manage
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.manage.main
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+

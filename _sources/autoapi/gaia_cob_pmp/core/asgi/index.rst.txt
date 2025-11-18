@@ -1,0 +1,19 @@
+gaia_cob_pmp.core.asgi
+======================
+
+.. py:module:: gaia_cob_pmp.core.asgi
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.core.asgi.application
+
+
+Module Contents
+---------------
+
+.. py:data:: application
+

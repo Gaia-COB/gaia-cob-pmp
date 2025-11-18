@@ -1,6 +1,0 @@
-iommi_demo.app.views
-====================
-
-.. py:module:: iommi_demo.app.views
-
-

@@ -1,0 +1,25 @@
+gaia_cob_pmp.app.main_menu.source
+=================================
+
+.. py:module:: gaia_cob_pmp.app.main_menu.source
+
+.. autoapi-nested-parse::
+
+   Submenu for items relating to sources.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.main_menu.source.source_submenu
+
+
+Module Contents
+---------------
+
+.. py:data:: source_submenu
+   :type:  iommi.main_menu.M
+

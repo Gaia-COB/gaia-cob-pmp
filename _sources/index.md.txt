@@ -9,16 +9,13 @@ hidden: true
 
 ```
 
-from operator import truediv
-
-# iommi-demo
+# Gaia Compact Object Binaries: Proposal Management Platform
 
 Demo project for the Iommi web framework
 
 [![Build Status](https://github.com/smangham/iommi-demo/actions/workflows/build.yaml/badge.svg?branch=main&event=push)](https://github.com/smangham/iommi-demo/actions/workflows/build.yaml)
 [![codecov](https://codecov.io/gh/smangham/iommi-demo/branch/main/graph/badge.svg)](https://codecov.io/gh/smangham/iommi-demo)
 [![License](https://img.shields.io/github/license/smangham/iommi-demo)](https://github.com/smangham/iommi-demo)
-[![PyPI](https://img.shields.io/pypi/v/iommi-demo.svg)](https://pypi.python.org/pypi/iommi-demo)
 
 ## Prerequisites
 
@@ -37,13 +34,13 @@ pipx install uv
 Clone the repo to your computer:
 
 ```bash
-git clone git@github.com:smangham/iommi-demo
+git clone git@github.com:Gaia-COB/gaia-cob-pmp
 ```
 
 Then enter the directory, and copy the template environment file `.env.example`:
 
 ```bash
-cd iommi-demo
+cd gaia-cob-pmp
 cp .env.example .env
 ```
 
@@ -53,8 +50,7 @@ Then set up the database and load the demo data:
 ```bash
 uv venv
 make develop
-make migrations
-make fixtures
+make setup
 ```
 
 You can now run the server with:
@@ -206,7 +202,7 @@ See `app.apps.AppConfig` and `app.main_menu -> cats.items.detail`.
 ## Rules
 
 The app has object-level permissions, applied using [django-rules](https://github.com/dfunckt/django-rules).
-You can define the rules in `rules.py`, and create permissions based off of them.
+These are defined for each model in the model files, after the model itself.
 
 They fit pretty well into Iommi's structure, so it's easy to check when setting up a URL or whatever
 if you're allowed to view/edit/whatever the object.
