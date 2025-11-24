@@ -49,6 +49,7 @@ Then set up the database and load the demo data:
 
 ```bash
 uv venv
+source .venv/bin/activate
 make develop
 make setup
 ```
