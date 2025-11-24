@@ -136,6 +136,8 @@ section-order = ["future", "standard-library", "third-party", "first-party", "lo
 
 [tool.yardang]
 title = "Gaia COB Proposal Management Platform"
-root = "README.md"
-pages = []
+root = "docs/src/index.md"
+pages = [
+    "docs/src/developer.md"
+]
 use-autoapi = true

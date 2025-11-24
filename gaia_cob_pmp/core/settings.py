@@ -69,6 +69,7 @@ INSTALLED_APPS: list[str] = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
+    "django.contrib.humanize",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.admin",
@@ -173,6 +174,19 @@ STATICFILES_FINDERS: list[str] = [
 ]
 
 ################################################################################
+# django: Set the classes for the messages.
+################################################################################
+from django.contrib import messages  # noqa: E402
+
+MESSAGE_TAGS = {
+    messages.DEBUG: "alert-info",
+    messages.INFO: "alert-info",
+    messages.SUCCESS: "alert-success",
+    messages.WARNING: "alert-warning",
+    messages.ERROR: "alert-danger",
+}
+
+################################################################################
 # django-iommi: Set the default style, and the main menu location.
 ################################################################################
 # Django convention sprinkles imports through the file, so we skip 'import out of place' format warnings.
@@ -183,7 +197,12 @@ from iommi.style_bootstrap5 import bootstrap5, select2_enhanced_forms  # noqa: E
 from iommi.style_font_awesome_6 import font_awesome_6  # noqa: E402
 
 IOMMI_DEBUG: bool = config("DEBUG", False)
-IOMMI_DEFAULT_STYLE: Style = Style(bootstrap5, select2_enhanced_forms, font_awesome_6)
+IOMMI_DEFAULT_STYLE: Style = Style(
+    bootstrap5,
+    select2_enhanced_forms,
+    font_awesome_6,
+    base_template="app/iommi_base.html",
+)
 IOMMI_MAIN_MENU: str = "app.main_menu.main_menu"
 
 ################################################################################
@@ -204,7 +223,8 @@ SOCIALACCOUNT_ADAPTER: str = "app.adapter.UsernameAdapter"
 SOCIALACCOUNT_PROVIDERS: dict[str, Any] = {
     "google": {
         "APP": {"client_id": config("GOOGLE_OAUTH2_CLIENT_ID"), "secret": config("GOOGLE_OAUTH2_SECRET")},
-        "SCOPE": ["profile", "email", "first_name", "last_name"],
+        "SCOPE": ["profile", "email"],
+        "OAUTH_PKCE_ENABLED": True,
     }
 }
 # Needed to avoid a bug with django-fastdev
@@ -234,6 +254,8 @@ CORS_ALLOWED_ORIGINS: list[str] = [
     "http://localhost",
     "https://localhost:8000",
     "http://localhost:8000",
+    "https://accounts.google.com",
+    "http://accounts.google.com",
 ]
 
 SECURE_REFERRER_POLICY: str = "no-referrer-when-downgrade"  # Or CORS blocks javascript by passing unnecessary details

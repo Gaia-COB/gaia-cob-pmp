@@ -27,16 +27,16 @@ lint-py:  ## lint python with ruff
 	python -m ruff format --check gaia_cob_pmp
 
 lint-docs:  ## lint docs with mdformat and codespell
-	python -m mdformat --check README.md docs/wiki/
-	python -m codespell_lib README.md docs/wiki/
+	python -m mdformat --check README.md
+	python -m codespell_lib README.md
 
 fix-py:  ## autoformat python code with ruff
 	python -m ruff check --fix gaia_cob_pmp
 	python -m ruff format gaia_cob_pmp
 
 fix-docs:  ## autoformat docs with mdformat and codespell
-	python -m mdformat README.md docs/wiki/
-	python -m codespell_lib --write README.md docs/wiki/
+	python -m mdformat README.md
+	python -m codespell_lib --write README.md
 
 lint: lint-py lint-docs  ## run all linters
 lints: lint
@@ -100,16 +100,16 @@ print-%:
 ####################
 # PROJECT-SPECIFIC #
 ####################
-migrate:
+migrate:  ## Create and apply any new DB migrations and
 	djmanage makemigrations
 	djmanage migrate
 
-setup:
+setup:  ## Purge the existing DB and migrations, and create and apply new ones, then re-import the fixtures.
 	-rm gaia_cob_pmp/db.sqlite3
 	-rm gaia_cob_pmp/app/migrations/0*.py
 	djmanage makemigrations
 	djmanage migrate
 	djmanage loaddata gaia_cob_pmp/app/fixtures/*.json
 
-server:
+server:  ## Run the server
 	djmanage runserver

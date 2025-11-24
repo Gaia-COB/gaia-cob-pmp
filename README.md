@@ -199,7 +199,7 @@ if you're allowed to view/edit/whatever the object.
 
 ## Documentation
 
-Developer documentation for the site [can be found here](docs/dev/index.md).
+Developer documentation for the site [can be found here](docs/src/index.md).
 
 ## Overview
 
