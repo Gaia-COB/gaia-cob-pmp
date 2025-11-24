@@ -9,7 +9,7 @@ from app.tables.researcher import ResearcherTable
 
 researcher_submenu: M = M(
     icon="users",
-    include=lambda user, **_: user.is_active,
+    include=lambda user, **_: user.is_authenticated and user.is_active,
     view=ResearcherTable(auto__exclude=["orcid"]),
     items=dict(
         view=M(

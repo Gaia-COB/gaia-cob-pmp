@@ -44,7 +44,7 @@ main_menu = MainMenu(
         ),
         profile=M(
             icon="user",
-            include=lambda user, **_: user.is_active,
+            include=lambda user, **_: user.is_authenticated and user.is_active,
             url=lambda user, **_: user.researcher.get_absolute_url(),
             view=ResearcherForm(instance=lambda user, **_: user.researcher).as_view(),
         ),

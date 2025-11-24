@@ -11,7 +11,7 @@ from app.tables.source import SourceTable
 
 source_submenu: M = M(
     icon="sun",
-    include=lambda user, **_: user.is_active,
+    include=lambda user, **_: user.is_authenticated and user.is_active,
     view=SourceTable().as_view(),
     items=dict(
         add=M(
