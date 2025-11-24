@@ -1,0 +1,31 @@
+gaia_cob_pmp.app.main_menu.account
+==================================
+
+.. py:module:: gaia_cob_pmp.app.main_menu.account
+
+.. autoapi-nested-parse::
+
+   Provides an interface to the AllAuth views.
+   They are:
+    - accounts/
+       - login
+       - logout
+       - inactive (handled automatically)
+       - 3rdparty (handles the 3rd party account connection/disconnection)
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.main_menu.account.account_submenu
+
+
+Module Contents
+---------------
+
+.. py:data:: account_submenu
+   :type:  iommi.main_menu.M
+

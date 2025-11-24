@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="API Reference" href="autoapi/index.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Developer Documentation" href="docs/src/developer.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
         <title>Gaia COB Proposal Management Platform v0.1.0</title>
@@ -197,6 +197,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/src/developer.html">Developer Documentation</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="autoapi/index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="autoapi/test_all/index.html">test_all</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="autoapi/gaia_cob_pmp/index.html">gaia_cob_pmp</a><input aria-label="Toggle navigation of gaia_cob_pmp" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -212,6 +213,7 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="autoapi/gaia_cob_pmp/app/iommi_admin/index.html">gaia_cob_pmp.app.iommi_admin</a></li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="autoapi/gaia_cob_pmp/app/main_menu/index.html">gaia_cob_pmp.app.main_menu</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.main_menu" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="autoapi/gaia_cob_pmp/app/main_menu/account/index.html">gaia_cob_pmp.app.main_menu.account</a></li>
 <li class="toctree-l5"><a class="reference internal" href="autoapi/gaia_cob_pmp/app/main_menu/researcher/index.html">gaia_cob_pmp.app.main_menu.researcher</a></li>
 <li class="toctree-l5"><a class="reference internal" href="autoapi/gaia_cob_pmp/app/main_menu/source/index.html">gaia_cob_pmp.app.main_menu.source</a></li>
 </ul>
@@ -295,184 +297,9 @@
         <article role="main" id="furo-main-content">
           <div class="toctree-wrapper compound">
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="gaia-compact-object-binaries-proposal-management-platform">
-<h1>Gaia Compact Object Binaries: Proposal Management Platform<a class="headerlink" href="#gaia-compact-object-binaries-proposal-management-platform" title="Link to this heading">¶</a></h1>
-<p>Demo project for the Iommi web framework</p>
-<p><a class="reference external" href="https://github.com/smangham/iommi-demo/actions/workflows/build.yaml"><img alt="Build Status" src="https://github.com/smangham/iommi-demo/actions/workflows/build.yaml/badge.svg?branch=main&amp;event=push" /></a>
-<a class="reference external" href="https://codecov.io/gh/smangham/iommi-demo"><img alt="codecov" src="https://codecov.io/gh/smangham/iommi-demo/branch/main/graph/badge.svg" /></a>
-<a class="reference external" href="https://github.com/smangham/iommi-demo"><img alt="License" src="https://img.shields.io/github/license/smangham/iommi-demo" /></a></p>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
-<p>You need <a class="reference external" href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>,
-the Python package/version/virtual environment manager.
-If you don’t already have it, recommend installing it using <code class="docutils literal notranslate"><span class="pre">pipx</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipx<span class="w"> </span>install<span class="w"> </span>uv
-</pre></div>
-</div>
-<p>(<code class="docutils literal notranslate"><span class="pre">pipx</span></code> installs packages as tools in their own virtual environment, <a class="reference external" href="https://pipx.pypa.io/latest/installation/">link if you don’t already have it.</a>)</p>
-</section>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
-<p>Clone the repo to your computer:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:Gaia-COB/gaia-cob-pmp
-</pre></div>
-</div>
-<p>Then enter the directory, and copy the template environment file <code class="docutils literal notranslate"><span class="pre">.env.example</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>gaia-cob-pmp
-cp<span class="w"> </span>.env.example<span class="w"> </span>.env
-</pre></div>
-</div>
-<p>Initialise the virtual environment and install the development prerequisites into it.
-Then set up the database and load the demo data:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>venv
-<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-make<span class="w"> </span>develop
-make<span class="w"> </span>setup
-</pre></div>
-</div>
-<p>You can now run the server with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>server
-</pre></div>
-</div>
-<p>Go to <code class="docutils literal notranslate"><span class="pre">http://localhost:8000</span></code>, and look around.</p>
-<p>In order to sign in, you’ll need to register the app with Google’s OAuth. Follow the process in the <a class="reference external" href="https://docs.allauth.org/en/latest/socialaccount/providers/google.html">AllAuth docs</a>:</p>
-<ol class="arabic simple">
-<li><p>Create a new Google OAuth client.</p></li>
-<li><p>Add the <strong>client ID</strong> and <strong>secret</strong> to your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p></li>
-<li><p>Add <code class="docutils literal notranslate"><span class="pre">http://localhost</span></code> and <code class="docutils literal notranslate"><span class="pre">http://localhost:8000</span></code> to the OAuth client as authorised JavaScript origins and redirect URIs.</p></li>
-<li><p>Restart the server.</p></li>
-</ol>
-<p>Once you’ve signed in, you can register your account as a superuser:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>djmanage<span class="w"> </span>makestaff<span class="w"> </span>your_email@gmail.com<span class="w"> </span>--superuser
-</pre></div>
-</div>
-<p>(This is just a shortcut to <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span></code> from the correct directory)</p>
-<p>Now you have access to the admin interface, and can manually view and edit things.</p>
-</section>
-<section id="development">
-<h2>Development<a class="headerlink" href="#development" title="Link to this heading">¶</a></h2>
-<p>The template I’ve used has linting/code style fixing built in. Check out <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>;
-<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">fix-py</span></code> will run the <code class="docutils literal notranslate"><span class="pre">ruff</span></code> code formatter over your code.
-Run it before committing and fix/flag as ignored anything it can’t fix itself.</p>
-</section>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
-<p>This uses Iommi, a very powerful and flexible framework for building websites in Python.
-<a class="reference external" href="https://docs.iommi.rocks/">The documentation is here</a>, but it can be a bit hard to get your head around.
-<a class="reference external" href="https://docs.iommi.rocks/cookbook.html">The cookbook pages</a> are a good thing to refer to.</p>
-<p>Examples are good as well, so I’ll just outline a few key concepts to understand the code:</p>
-<section id="two-ways-of-doing-anything">
-<h3>Two Ways of Doing Anything<a class="headerlink" href="#two-ways-of-doing-anything" title="Link to this heading">¶</a></h3>
-<p>There’s basically two ways of doing anything - <strong>procedural</strong> and <strong>declarative</strong>.
-Example - building a form to edit a specific instance of a model, <strong>procedurally</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">view</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span>
-    <span class="n">auto__model</span><span class="o">=</span><span class="n">MyDjangoModel</span><span class="p">,</span>
-    <span class="n">instance</span><span class="o">=</span><span class="k">lambda</span> <span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">my_django_model</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>and <strong>declaratively</strong>, where the <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Meta</span></code> is basically just what you’d give as arguments:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
-    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">auto__model</span><span class="o">=</span><span class="n">MyDjangoModel</span>
-        <span class="n">instance</span><span class="o">=</span><span class="k">lambda</span> <span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">my_django_model</span>
-        
-<span class="n">view</span> <span class="o">=</span> <span class="n">MyForm</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>In this example, the stuff in <code class="docutils literal notranslate"><span class="pre">app.main_menu.py</span></code> is mostly <strong>procedural</strong>,
-and there’s an example of a more complicated view in <code class="docutils literal notranslate"><span class="pre">app.pages.py</span></code> (that gets included into <code class="docutils literal notranslate"><span class="pre">main_menu</span></code>).</p>
-</section>
-<section id="refinables">
-<h3>Refinables<a class="headerlink" href="#refinables" title="Link to this heading">¶</a></h3>
-<p>Everything is built out of ‘refinables’. For example, <code class="docutils literal notranslate"><span class="pre">Form</span></code> has some settings for automatically generating it from a model.
-Example - Building a form to edit <em>only</em> the name and height of `MyDjangoModel:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Form</span><span class="p">(</span>
-    <span class="n">auto</span><span class="o">=</span><span class="nb">dict</span><span class="p">{</span>
-        <span class="n">model</span><span class="o">=</span><span class="n">MyDjangoModel</span>
-        <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>But you can also skip providing the dict of options with just double underscores:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Form</span><span class="p">(</span>
-    <span class="n">auto__model</span><span class="o">=</span><span class="n">MyDjangoModel</span><span class="p">,</span>
-    <span class="n">auto__include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">]</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>Anything not specified will have its default value.</p>
-</section>
-<section id="function-arguments">
-<h3>Function Arguments<a class="headerlink" href="#function-arguments" title="Link to this heading">¶</a></h3>
-<p>A lot of arguments can be provided as functions that evaluate at runtime.
-Example - Building a form that’s only editable if you’re staff:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Form</span><span class="p">(</span>
-    <span class="n">editable</span><span class="o">=</span><span class="k">lambda</span> <span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">is_staff</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
-    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">editable</span><span class="o">=</span><span class="k">lambda</span> <span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">is_staff</span>
-</pre></div>
-</div>
-<p>If you need the functions to be more complicated, then in the <strong>procedural</strong> frame you can declare them elsewhere.
-Example - Making a form editable only by Steve. Needs to make sure the user is signed in, so they <em>have</em> a name to check.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">staff_and_steve</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span>
-    <span class="k">else</span> <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_staff</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">first_name</span> <span class="o">==</span> <span class="s1">&#39;Steve&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">True</span> 
-    <span class="k">return</span> <span class="kc">False</span>
-
-<span class="n">view</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span>
-    <span class="n">editable</span><span class="o">=</span><span class="k">lambda</span> <span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">:</span> <span class="n">staff_and_steve</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>Or declaratively:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
-    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
-        <span class="nd">@staticmethod</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">editable</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>
-            <span class="k">else</span> <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_staff</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">first_name</span> <span class="o">==</span> <span class="s1">&#39;Steve&#39;</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">True</span> 
-            <span class="k">return</span> <span class="kc">False</span>
-
-<span class="n">view</span> <span class="o">=</span> <span class="n">MyForm</span><span class="p">()</span>
-</pre></div>
-</div>
-</section>
-<section id="function-argument-parameters">
-<h3>Function Argument Parameters<a class="headerlink" href="#function-argument-parameters" title="Link to this heading">¶</a></h3>
-<p>The functions are passed a set of parameters. The values available vary, but it’s generally <code class="docutils literal notranslate"><span class="pre">request</span></code>,
-<code class="docutils literal notranslate"><span class="pre">params</span></code> (which contains any view parameters), <code class="docutils literal notranslate"><span class="pre">user</span></code> (a shortcut to <code class="docutils literal notranslate"><span class="pre">request.user</span></code>) and any you’ve specified using
-<strong>path decoding</strong> (where you register a model, and then paths containing it put it in the context).
-See <code class="docutils literal notranslate"><span class="pre">app.apps.AppConfig</span></code> and <code class="docutils literal notranslate"><span class="pre">app.main_menu</span> <span class="pre">-&gt;</span> <span class="pre">cats.items.detail</span></code>.</p>
-</section>
-</section>
-<section id="rules">
-<h2>Rules<a class="headerlink" href="#rules" title="Link to this heading">¶</a></h2>
-<p>The app has object-level permissions, applied using <a class="reference external" href="https://github.com/dfunckt/django-rules">django-rules</a>.
-These are defined for each model in the model files, after the model itself.</p>
-<p>They fit pretty well into Iommi’s structure, so it’s easy to check when setting up a URL or whatever
-if you’re allowed to view/edit/whatever the object.</p>
-</section>
-<section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h2>
-<p>Developer documentation for the site <a class="reference internal" href="#docs/dev/index.md"><span class="xref myst">can be found here</span></a>.</p>
-</section>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This library was generated using <a class="reference external" href="https://copier.readthedocs.io/en/stable/">copier</a> from the <a class="reference external" href="https://github.com/python-project-templates/base">Base Python Project Template repository</a>.</p>
-</div>
-</section>
+<section class="tex2jax_ignore mathjax_ignore" id="gaia-cob-proposal-management-platform">
+<h1>Gaia COB: Proposal Management Platform<a class="headerlink" href="#gaia-cob-proposal-management-platform" title="Link to this heading">¶</a></h1>
+<p>FILL IN</p>
 </section>
 
         </article>
@@ -480,12 +307,12 @@ if you’re allowed to view/edit/whatever the object.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="autoapi/index.html">
+          <a class="next-page" href="docs/src/developer.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">API Reference</div>
+                <div class="title">Developer Documentation</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>

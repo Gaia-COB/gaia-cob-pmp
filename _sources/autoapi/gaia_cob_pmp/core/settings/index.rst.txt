@@ -47,6 +47,7 @@ Attributes
    gaia_cob_pmp.core.settings.STATIC_ROOT
    gaia_cob_pmp.core.settings.STATIC_URL
    gaia_cob_pmp.core.settings.STATICFILES_FINDERS
+   gaia_cob_pmp.core.settings.MESSAGE_TAGS
    gaia_cob_pmp.core.settings.IOMMI_DEBUG
    gaia_cob_pmp.core.settings.IOMMI_DEFAULT_STYLE
    gaia_cob_pmp.core.settings.IOMMI_MAIN_MENU
@@ -179,6 +180,8 @@ Module Contents
    :value: ['django.contrib.staticfiles.finders.FileSystemFinder',...
 
 
+.. py:data:: MESSAGE_TAGS
+
 .. py:data:: IOMMI_DEBUG
    :type:  bool
 
@@ -259,7 +262,7 @@ Module Contents
 
 .. py:data:: CORS_ALLOWED_ORIGINS
    :type:  list[str]
-   :value: ['https://localhost', 'http://localhost', 'https://localhost:8000', 'http://localhost:8000']
+   :value: ['https://localhost', 'http://localhost', 'https://localhost:8000', 'http://localhost:8000',...
 
 
 .. py:data:: SECURE_REFERRER_POLICY

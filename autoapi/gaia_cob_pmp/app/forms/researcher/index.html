@@ -197,6 +197,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../docs/src/developer.html">Developer Documentation</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../../../../index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../../test_all/index.html">test_all</a></li>
 <li class="toctree-l2 current has-children"><a class="reference internal" href="../../../index.html">gaia_cob_pmp</a><input aria-label="Toggle navigation of gaia_cob_pmp" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
@@ -212,6 +213,7 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../../iommi_admin/index.html">gaia_cob_pmp.app.iommi_admin</a></li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="../../main_menu/index.html">gaia_cob_pmp.app.main_menu</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.main_menu" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../main_menu/account/index.html">gaia_cob_pmp.app.main_menu.account</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../main_menu/researcher/index.html">gaia_cob_pmp.app.main_menu.researcher</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../main_menu/source/index.html">gaia_cob_pmp.app.main_menu.source</a></li>
 </ul>
@@ -295,6 +297,18 @@
         <article role="main" id="furo-main-content">
           <section id="module-gaia_cob_pmp.app.forms.researcher">
 <span id="gaia-cob-pmp-app-forms-researcher"></span><h1>gaia_cob_pmp.app.forms.researcher<a class="headerlink" href="#module-gaia_cob_pmp.app.forms.researcher" title="Link to this heading">¶</a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.User" title="gaia_cob_pmp.app.forms.researcher.User"><code class="xref py py-obj docutils literal notranslate"><span class="pre">User</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -303,12 +317,23 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ResearcherForm" title="gaia_cob_pmp.app.forms.researcher.ResearcherForm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResearcherForm</span></code></a></p></td>
 <td><p>Handles the common setup for researcher-based forms.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm" title="gaia_cob_pmp.app.forms.researcher.ProfileForm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProfileForm</span></code></a></p></td>
+<td><p>Handles displaying both user details and researcher details.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm" title="gaia_cob_pmp.app.forms.researcher.ProfileChangeForm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProfileChangeForm</span></code></a></p></td>
+<td><p>Handles editing both user details and researcher details.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 </section>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.User">
+<span class="sig-prename descclassname"><span class="pre">gaia_cob_pmp.app.forms.researcher.</span></span><span class="sig-name descname"><span class="pre">User</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.User" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ResearcherForm">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gaia_cob_pmp.app.forms.researcher.</span></span><span class="sig-name descname"><span class="pre">ResearcherForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ResearcherForm" title="Link to this definition">¶</a></dt>
@@ -320,6 +345,67 @@
 <dd><dl class="py attribute">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ResearcherForm.Meta.auto__model">
 <span class="sig-name descname"><span class="pre">auto__model</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ResearcherForm.Meta.auto__model" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileForm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gaia_cob_pmp.app.forms.researcher.</span></span><span class="sig-name descname"><span class="pre">ProfileForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">iommi.Form</span></code></p>
+<p>Handles displaying both user details and researcher details.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileForm.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm.user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileForm.researcher">
+<span class="sig-name descname"><span class="pre">researcher</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm.researcher" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileForm.Meta">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm.Meta" title="Link to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileForm.Meta.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Researcher</span> <span class="pre">Profile'</span></em><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm.Meta.title" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileChangeForm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gaia_cob_pmp.app.forms.researcher.</span></span><span class="sig-name descname"><span class="pre">ProfileChangeForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">iommi.Form</span></code></p>
+<p>Handles editing both user details and researcher details.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.user" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.researcher">
+<span class="sig-name descname"><span class="pre">researcher</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.researcher" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.Meta">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.Meta" title="Link to this definition">¶</a></dt>
+<dd><p>Lets you nest edits to both the user and researcher model in one form.
+<a class="reference external" href="https://docs.iommi.rocks/cookbook_forms.html#how-do-i-nest-multiple-forms">https://docs.iommi.rocks/cookbook_forms.html#how-do-i-nest-multiple-forms</a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.Meta.actions__submit__post_handler">
+<span class="sig-name descname"><span class="pre">actions__submit__post_handler</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.Meta.actions__submit__post_handler" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.Meta.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Change</span> <span class="pre">Profile'</span></em><a class="headerlink" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.Meta.title" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -385,11 +471,32 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">gaia_cob_pmp.app.forms.researcher</a><ul>
+<li><a class="reference internal" href="#attributes">Attributes</a></li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ResearcherForm"><code class="docutils literal notranslate"><span class="pre">ResearcherForm</span></code></a><ul>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ResearcherForm.Meta"><code class="docutils literal notranslate"><span class="pre">ResearcherForm.Meta</span></code></a><ul>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ResearcherForm.Meta.auto__model"><code class="docutils literal notranslate"><span class="pre">ResearcherForm.Meta.auto__model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm"><code class="docutils literal notranslate"><span class="pre">ProfileForm</span></code></a><ul>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm.user"><code class="docutils literal notranslate"><span class="pre">ProfileForm.user</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm.researcher"><code class="docutils literal notranslate"><span class="pre">ProfileForm.researcher</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm.Meta"><code class="docutils literal notranslate"><span class="pre">ProfileForm.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileForm.Meta.title"><code class="docutils literal notranslate"><span class="pre">ProfileForm.Meta.title</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm"><code class="docutils literal notranslate"><span class="pre">ProfileChangeForm</span></code></a><ul>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.user"><code class="docutils literal notranslate"><span class="pre">ProfileChangeForm.user</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.researcher"><code class="docutils literal notranslate"><span class="pre">ProfileChangeForm.researcher</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.Meta"><code class="docutils literal notranslate"><span class="pre">ProfileChangeForm.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.Meta.actions__submit__post_handler"><code class="docutils literal notranslate"><span class="pre">ProfileChangeForm.Meta.actions__submit__post_handler</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.researcher.ProfileChangeForm.Meta.title"><code class="docutils literal notranslate"><span class="pre">ProfileChangeForm.Meta.title</span></code></a></li>
 </ul>
 </li>
 </ul>
