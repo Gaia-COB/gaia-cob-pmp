@@ -16,7 +16,9 @@ def validate_orcid_format(value: str):
         # 0000-0000-0000-0000
 
         if value[4] != "-" or value[9] != "-" or value[14] != "-":
-            raise ValidationError("ORCID must be in the format 0000-0000-1234-5678. Did you forget the dashes?")
+            raise ValidationError(
+                "ORCID must be in the format 0000-0000-1234-5678. Did you forget the dashes?"
+            )
 
         int(value[:4]) and int(value[5:9]) and int(value[10:14]) and int(value[15:])
 
@@ -30,7 +32,11 @@ class Researcher(Model):
     """
 
     user = OneToOneField(get_user_model(), primary_key=True, on_delete=CASCADE)
-    affiliations = TextField(null=False, blank=False, help_text="Primary affiliation or list of affiliations suitable for including in BibTex.")
+    affiliations = TextField(
+        null=False,
+        blank=False,
+        help_text="Primary affiliation or list of affiliations suitable for including in BibTex.",
+    )
     orcid = CharField(
         max_length=32,
         null=False,

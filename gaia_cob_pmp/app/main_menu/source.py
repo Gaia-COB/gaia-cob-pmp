@@ -40,7 +40,8 @@ source_submenu: M = M(
                 add_gaiainfo=M(
                     display_name=lambda source, **_: f"Add {source} Gaia info",
                     icon="plus",
-                    include=lambda user, source, **_: not hasattr(source, "gaiainfo") and user.has_perm("app.add_sourcegaiainfo"),
+                    include=lambda user, source, **_: not hasattr(source, "gaiainfo")
+                    and user.has_perm("app.add_sourcegaiainfo"),
                     view=SourceGaiaInfoForm.create(
                         fields__source=Field.non_rendered(initial=lambda source, **_: source),
                     ),
@@ -57,8 +58,12 @@ source_submenu: M = M(
                 change_gaiainfo=M(
                     display_name=lambda user, source, **_: f"Change {source} Gaia info",
                     icon="pen-ruler",
-                    include=lambda user, source, **_: hasattr(source, "gaiainfo") and user.has_perm("app.change_sourcegaiainfo"),
-                    view=SourceGaiaInfoForm.edit(auto__exclude=["is_active", "source"], instance=lambda source, **_: source.gaiainfo),
+                    include=lambda user, source, **_: hasattr(source, "gaiainfo")
+                    and user.has_perm("app.change_sourcegaiainfo"),
+                    view=SourceGaiaInfoForm.edit(
+                        auto__exclude=["is_active", "source"],
+                        instance=lambda source, **_: source.gaiainfo,
+                    ),
                 ),
                 delete=M(
                     display_name=lambda source, **_: f"Delete {source}",

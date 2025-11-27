@@ -14,36 +14,72 @@ class SourceGaiaInfo(Model):
     """
 
     source = OneToOneField(Source, on_delete=CASCADE, primary_key=True, related_name="gaiainfo")
-    is_active = BooleanField(default=True, help_text="Entries require approval by site staff before they are visible.")
+    is_valid = BooleanField(
+        default=False, help_text="Entries require approval by site staff before they are visible."
+    )
 
-    parallax = FloatField(help_text="Parallax in mas")
+    parallax = FloatField(null=True, blank=True, help_text="Parallax in mas")
 
-    parallax_error = FloatField(validators=[MinValueValidator(0.0)], help_text="Parallax error in mas")
+    parallax_error = FloatField(
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0.0)],
+        help_text="Parallax error in mas.",
+    )
 
-    pmra = FloatField(null=True, blank=True, verbose_name="PM RA", help_text="Proper motion in RA in mas/yr")
+    pmra = FloatField(
+        null=True, blank=True, verbose_name="PM RA", help_text="Proper motion in RA in mas/yr"
+    )
 
     pmra_error = FloatField(
-        null=True, blank=True, validators=[MinValueValidator(0.0)], verbose_name="PM RA error", help_text="Proper motion in RA error in mas/yr"
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0.0)],
+        verbose_name="PM RA error",
+        help_text="Proper motion in RA error in mas/yr.",
     )
 
-    pmdec = FloatField(null=True, blank=True, verbose_name="PM Dec", help_text="Proper motion in Dec in mas/yr")
+    pmdec = FloatField(
+        null=True, blank=True, verbose_name="PM Dec", help_text="Proper motion in Dec in mas/yr"
+    )
 
     pmdec_error = FloatField(
-        null=True, blank=True, validators=[MinValueValidator(0.0)], verbose_name="PM Dec error", help_text="Proper motion in Dec error in mas/yr"
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0.0)],
+        verbose_name="PM Dec error",
+        help_text="Proper motion in Dec error in mas/yr.",
     )
 
-    phot_g_mean_mag = FloatField(null=True, blank=True, verbose_name="G-band mean mag", help_text="G-band mean magnitude")
+    phot_g_mean_mag = FloatField(
+        null=True, blank=True, verbose_name="G-band mean mag", help_text="G-band mean magnitude"
+    )
 
     bp_rp = FloatField(null=True, blank=True, verbose_name="BP-RP", help_text="BP-RP color")
 
-    radial_velocity = FloatField(null=True, blank=True, help_text="Gaia RVS radial velocity in km/s")
+    radial_velocity = FloatField(
+        null=True, blank=True, help_text="Gaia RVS radial velocity in km/s."
+    )
 
-    radial_velocity_error = FloatField(null=True, blank=True, validators=[MinValueValidator(0.0)], help_text="Gaia RVS radial velocity error in km/s")
+    radial_velocity_error = FloatField(
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0.0)],
+        help_text="Gaia RVS radial velocity error in km/s.",
+    )
 
-    astrometric_excess_noise = FloatField(null=True, blank=True, validators=[MinValueValidator(0.0)], help_text="Astrometric excess noise in mas")
+    astrometric_excess_noise = FloatField(
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0.0)],
+        help_text="Astrometric excess noise in mas.",
+    )
 
     astrometric_excess_noise_sig = FloatField(
-        null=True, blank=True, validators=[MinValueValidator(0.0)], help_text="Significance of the astrometric excess noise"
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0.0)],
+        help_text="Significance of the astrometric excess noise.",
     )
 
     def __str__(self) -> str:
@@ -59,6 +95,6 @@ class SourceGaiaInfo(Model):
 # Rules for database interactions with this source
 # Conditions are tested on the user wanting to make the change
 add_perm("app.add_sourcegaiainfo", is_active)
-add_perm("app.change_sourcegaiainfo", is_active)
+add_perm("app.change_sourcegaiainfo", is_staff)
 add_perm("app.delete_sourcegaiainfo", is_staff)
 add_perm("app.view_sourcegaiainfo", is_active)
