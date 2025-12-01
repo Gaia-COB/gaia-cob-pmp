@@ -17,6 +17,31 @@ Module Contents
 
 .. py:class:: Meta
 
+   .. py:attribute:: apps__app_dataset__include
+      :value: True
+
+
+
+   .. py:attribute:: apps__app_instrument__include
+      :value: True
+
+
+
+   .. py:attribute:: apps__app_observation__include
+      :value: True
+
+
+
+   .. py:attribute:: apps__app_project__include
+      :value: True
+
+
+
+   .. py:attribute:: apps__app_proposal__include
+      :value: True
+
+
+
    .. py:attribute:: apps__app_source__include
       :value: True
 
@@ -28,6 +53,16 @@ Module Contents
 
 
    .. py:attribute:: apps__app_researcher__include
+      :value: True
+
+
+
+   .. py:attribute:: apps__app_fluxunit__include
+      :value: True
+
+
+
+   .. py:attribute:: apps__app_wavelengthunit__include
       :value: True
 
 

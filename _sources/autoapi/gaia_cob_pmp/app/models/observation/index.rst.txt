@@ -1,0 +1,73 @@
+gaia_cob_pmp.app.models.observation
+===================================
+
+.. py:module:: gaia_cob_pmp.app.models.observation
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.observation.User
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.observation.Observation
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.observation.is_linked_project_member
+
+
+Module Contents
+---------------
+
+.. py:class:: Observation(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Model for an observation instance.
+
+
+   .. py:attribute:: source
+
+
+   .. py:attribute:: proposal
+
+
+   .. py:attribute:: is_valid
+
+
+   .. py:attribute:: date
+
+
+   .. py:attribute:: radial_velocity
+
+
+   .. py:attribute:: comment
+
+
+   .. py:method:: data_status() -> str
+
+
+.. py:data:: User
+
+.. py:function:: is_linked_project_member(user: User, observation: Observation) -> bool
+
+   Does this user account correspond to a researcher who is a member of the project linked to this observation?
+
+   :param user: User to check.
+   :param observation: The Observation to check.
+   :return: True if the user is a Researcher who is a member of this observation's linked project, else False.
+
+

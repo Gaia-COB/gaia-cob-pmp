@@ -23,7 +23,7 @@ Module Contents
    Root model for an astrophysical source.
 
 
-   .. py:attribute:: is_active
+   .. py:attribute:: is_valid
 
 
    .. py:attribute:: name

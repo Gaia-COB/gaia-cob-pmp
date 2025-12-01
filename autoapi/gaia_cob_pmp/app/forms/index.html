@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../../../genindex.html"><link rel="search" title="Search" href="../../../../search.html"><link rel="next" title="gaia_cob_pmp.app.forms.researcher" href="researcher/index.html"><link rel="prev" title="gaia_cob_pmp.app.context_processors" href="../context_processors/index.html">
+<link rel="index" title="Index" href="../../../../genindex.html"><link rel="search" title="Search" href="../../../../search.html"><link rel="next" title="gaia_cob_pmp.app.forms.instrument" href="instrument/index.html"><link rel="prev" title="gaia_cob_pmp.app.context_processors" href="../context_processors/index.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
         <title>gaia_cob_pmp.app.forms - Gaia COB Proposal Management Platform v0.1.0</title>
@@ -199,7 +199,9 @@
   <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../docs/src/developer.html">Developer Documentation</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../../../index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../flux/index.html">flux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../test_all/index.html">test_all</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../wavelength/index.html">wavelength</a></li>
 <li class="toctree-l2 current has-children"><a class="reference internal" href="../../index.html">gaia_cob_pmp</a><input aria-label="Toggle navigation of gaia_cob_pmp" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l3 current has-children"><a class="reference internal" href="../index.html">gaia_cob_pmp.app</a><input aria-label="Toggle navigation of gaia_cob_pmp.app" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../adapter/index.html">gaia_cob_pmp.app.adapter</a></li>
@@ -207,6 +209,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../apps/index.html">gaia_cob_pmp.app.apps</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../context_processors/index.html">gaia_cob_pmp.app.context_processors</a></li>
 <li class="toctree-l4 current has-children current-page"><a class="current reference internal" href="#">gaia_cob_pmp.app.forms</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.forms" checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="instrument/index.html">gaia_cob_pmp.app.forms.instrument</a></li>
 <li class="toctree-l5"><a class="reference internal" href="researcher/index.html">gaia_cob_pmp.app.forms.researcher</a></li>
 <li class="toctree-l5"><a class="reference internal" href="source/index.html">gaia_cob_pmp.app.forms.source</a></li>
 </ul>
@@ -214,6 +217,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../iommi_admin/index.html">gaia_cob_pmp.app.iommi_admin</a></li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="../main_menu/index.html">gaia_cob_pmp.app.main_menu</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.main_menu" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l5"><a class="reference internal" href="../main_menu/account/index.html">gaia_cob_pmp.app.main_menu.account</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../main_menu/instrument/index.html">gaia_cob_pmp.app.main_menu.instrument</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../main_menu/researcher/index.html">gaia_cob_pmp.app.main_menu.researcher</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../main_menu/source/index.html">gaia_cob_pmp.app.main_menu.source</a></li>
 </ul>
@@ -226,17 +230,24 @@
 </ul>
 </li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="../models/index.html">gaia_cob_pmp.app.models</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.models" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../models/dataset/index.html">gaia_cob_pmp.app.models.dataset</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../models/instrument/index.html">gaia_cob_pmp.app.models.instrument</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../models/observation/index.html">gaia_cob_pmp.app.models.observation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../models/project/index.html">gaia_cob_pmp.app.models.project</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../models/proposal/index.html">gaia_cob_pmp.app.models.proposal</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../models/researcher/index.html">gaia_cob_pmp.app.models.researcher</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../models/source/index.html">gaia_cob_pmp.app.models.source</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../models/source_gaia_info/index.html">gaia_cob_pmp.app.models.source_gaia_info</a></li>
 </ul>
 </li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="../pages/index.html">gaia_cob_pmp.app.pages</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.pages" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../pages/instrument/index.html">gaia_cob_pmp.app.pages.instrument</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../pages/source/index.html">gaia_cob_pmp.app.pages.source</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../pages/sourcegaiainfo/index.html">gaia_cob_pmp.app.pages.sourcegaiainfo</a></li>
 </ul>
 </li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="../tables/index.html">gaia_cob_pmp.app.tables</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.tables" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../tables/instrument/index.html">gaia_cob_pmp.app.tables.instrument</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../tables/researcher/index.html">gaia_cob_pmp.app.tables.researcher</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../tables/source/index.html">gaia_cob_pmp.app.tables.source</a></li>
 </ul>
@@ -301,6 +312,7 @@
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="instrument/index.html">gaia_cob_pmp.app.forms.instrument</a></li>
 <li class="toctree-l1"><a class="reference internal" href="researcher/index.html">gaia_cob_pmp.app.forms.researcher</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/index.html">gaia_cob_pmp.app.forms.source</a></li>
 </ul>
@@ -313,12 +325,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="researcher/index.html">
+          <a class="next-page" href="instrument/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">gaia_cob_pmp.app.forms.researcher</div>
+                <div class="title">gaia_cob_pmp.app.forms.instrument</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>

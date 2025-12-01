@@ -1,0 +1,87 @@
+gaia_cob_pmp.app.models.proposal
+================================
+
+.. py:module:: gaia_cob_pmp.app.models.proposal
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.proposal.User
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.proposal.Proposal
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.proposal.is_linked_project_member
+
+
+Module Contents
+---------------
+
+.. py:class:: Proposal(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Model for an instrument proposal.
+
+
+   .. py:class:: Status(*args, **kwds)
+
+      Bases: :py:obj:`django.db.models.TextChoices`
+
+
+      The allowed entries for the Status field.
+
+      Initialize self.  See help(type(self)) for accurate signature.
+
+
+      .. py:attribute:: PLANNED
+
+
+      .. py:attribute:: SUBMITTED
+
+
+      .. py:attribute:: ACCEPTED
+
+
+      .. py:attribute:: REJECTED
+
+
+
+   .. py:attribute:: status
+
+
+   .. py:attribute:: description
+
+
+   .. py:attribute:: instrument
+
+
+   .. py:attribute:: project
+
+
+.. py:data:: User
+
+.. py:function:: is_linked_project_member(user: User, proposal: Proposal) -> bool
+
+   Does this user account correspond to a researcher who is a member of the project linked to this proposal?
+
+   :param user: User to check.
+   :param proposal: The Proposal to check.
+   :return: True if the user is a Researcher who is a member of this proposal's linked project, else False.
+
+

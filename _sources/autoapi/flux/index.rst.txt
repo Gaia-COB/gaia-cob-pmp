@@ -1,0 +1,31 @@
+flux
+====
+
+.. py:module:: flux
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   flux.FluxUnit
+
+
+Module Contents
+---------------
+
+.. py:class:: FluxUnit(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Model to define units of flux.
+
+
+   .. py:attribute:: name
+
+
+   .. py:attribute:: astropy
+
+

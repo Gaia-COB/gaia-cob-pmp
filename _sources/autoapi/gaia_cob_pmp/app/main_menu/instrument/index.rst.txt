@@ -1,0 +1,25 @@
+gaia_cob_pmp.app.main_menu.instrument
+=====================================
+
+.. py:module:: gaia_cob_pmp.app.main_menu.instrument
+
+.. autoapi-nested-parse::
+
+   Submenu for items relating to instruments.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.main_menu.instrument.instrument_submenu
+
+
+Module Contents
+---------------
+
+.. py:data:: instrument_submenu
+   :type:  iommi.main_menu.M
+

@@ -1,0 +1,33 @@
+gaia_cob_pmp.app.pages.instrument
+=================================
+
+.. py:module:: gaia_cob_pmp.app.pages.instrument
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.pages.instrument.InstrumentViewPage
+
+
+Module Contents
+---------------
+
+.. py:class:: InstrumentViewPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   The basic view for an instrument.
+
+   Needs to include all the plots too!
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: detail
+
+

@@ -1,0 +1,31 @@
+gaia_cob_pmp.app.forms.instrument
+=================================
+
+.. py:module:: gaia_cob_pmp.app.forms.instrument
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.forms.instrument.InstrumentForm
+
+
+Module Contents
+---------------
+
+.. py:class:: InstrumentForm(**kwargs)
+
+   Bases: :py:obj:`iommi.Form`
+
+
+   Handles the common setup for instrument-based forms.
+
+
+   .. py:class:: Meta
+
+      .. py:attribute:: auto__model
+
+
+

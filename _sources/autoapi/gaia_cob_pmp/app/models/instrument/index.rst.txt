@@ -1,0 +1,72 @@
+gaia_cob_pmp.app.models.instrument
+==================================
+
+.. py:module:: gaia_cob_pmp.app.models.instrument
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.instrument.Instrument
+
+
+Module Contents
+---------------
+
+.. py:class:: Instrument(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Model for an instrument (e.g. telescope).
+
+
+   .. py:class:: Type(*args, **kwds)
+
+      Bases: :py:obj:`django.db.models.TextChoices`
+
+
+      The allowed entries for the Type field.
+
+      Initialize self.  See help(type(self)) for accurate signature.
+
+
+      .. py:attribute:: ECHELLE
+
+
+      .. py:attribute:: LONG_SLIT
+
+
+      .. py:attribute:: FIBRE
+
+
+      .. py:attribute:: IMAGING
+
+
+
+   .. py:attribute:: name
+
+
+   .. py:attribute:: type
+
+
+   .. py:attribute:: spectral_resolution
+
+
+   .. py:attribute:: observatory
+
+
+   .. py:attribute:: is_valid
+
+
+   .. py:method:: get_absolute_url() -> str
+
+
+   .. py:method:: __str__() -> str
+
+
+   .. py:method:: __repr__() -> str
+
+

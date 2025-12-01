@@ -1,0 +1,76 @@
+gaia_cob_pmp.app.models.project
+===============================
+
+.. py:module:: gaia_cob_pmp.app.models.project
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.project.User
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.project.Project
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.project.is_project_member
+
+
+Module Contents
+---------------
+
+.. py:class:: Project(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Model for a research project.
+
+
+   .. py:attribute:: project_name
+
+
+   .. py:attribute:: description
+
+
+   .. py:attribute:: bibtex
+
+
+   .. py:attribute:: principle_investigator
+
+
+   .. py:attribute:: members
+
+
+   .. py:attribute:: is_valid
+
+
+   .. py:method:: __str__() -> str
+
+
+   .. py:method:: __repr__() -> str
+
+
+.. py:data:: User
+
+.. py:function:: is_project_member(user: User, project: Project) -> bool
+
+   Does this user account correspond to a researcher who is a member of this project?
+
+   :param user: User to check.
+   :param project: The Project to check.
+   :return: True if the user is a Researcher who is a member of this project, else False.
+
+

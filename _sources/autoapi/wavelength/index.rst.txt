@@ -1,0 +1,31 @@
+wavelength
+==========
+
+.. py:module:: wavelength
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   wavelength.WavelengthUnit
+
+
+Module Contents
+---------------
+
+.. py:class:: WavelengthUnit(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Model to define units of wavelength.
+
+
+   .. py:attribute:: name
+
+
+   .. py:attribute:: astropy
+
+

@@ -10,6 +10,7 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
+   /autoapi/gaia_cob_pmp/app/pages/instrument/index
    /autoapi/gaia_cob_pmp/app/pages/source/index
    /autoapi/gaia_cob_pmp/app/pages/sourcegaiainfo/index
 

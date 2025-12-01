@@ -29,7 +29,7 @@ Module Contents
    .. py:attribute:: source
 
 
-   .. py:attribute:: is_active
+   .. py:attribute:: is_valid
 
 
    .. py:attribute:: parallax

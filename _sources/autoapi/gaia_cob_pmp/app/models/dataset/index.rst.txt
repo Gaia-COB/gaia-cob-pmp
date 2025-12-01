@@ -1,0 +1,88 @@
+gaia_cob_pmp.app.models.dataset
+===============================
+
+.. py:module:: gaia_cob_pmp.app.models.dataset
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.dataset.User
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.dataset.DataSet
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.dataset.is_linked_project_member
+
+
+Module Contents
+---------------
+
+.. py:class:: DataSet(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Details for the Dataset returned from an Observation.
+
+
+   .. py:attribute:: source
+
+
+   .. py:attribute:: flux_col
+
+
+   .. py:attribute:: flux_err_col
+
+
+   .. py:attribute:: wavelength_col
+
+
+   .. py:attribute:: doi
+
+
+   .. py:attribute:: arxiv_url
+
+
+   .. py:attribute:: ads_url
+
+
+   .. py:attribute:: bibtex
+
+
+   .. py:attribute:: comment
+
+
+   .. py:attribute:: is_valid
+
+
+   .. py:attribute:: flux_units
+
+
+   .. py:attribute:: wavelength_units
+
+
+.. py:data:: User
+
+.. py:function:: is_linked_project_member(user: User, dataset: DataSet) -> bool
+
+   Does this user account correspond to a researcher who is a member of the project linked to this dataset?
+
+   :param user: User to check.
+   :param proposal: The Proposal to check.
+   :return: True if the user is a Researcher who is a member of this proposal's linked project, else False.
+
+
