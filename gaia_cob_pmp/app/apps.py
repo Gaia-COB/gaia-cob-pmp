@@ -17,9 +17,9 @@ class MainAppConfig(AppConfig):
         logger.info("Main app is ready.")
 
         from app.models import (
+            Instrument,
             Researcher,
             Source,
-            Instrument,
         )
 
         # Iommi path decoding and settings for model searches
