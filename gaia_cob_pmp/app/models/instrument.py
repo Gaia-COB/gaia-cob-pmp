@@ -46,6 +46,9 @@ class Instrument(Model):
         default=False, help_text="Entries require approval by site staff before they are visible."
     )
 
+    def get_absolute_url(self) -> str:
+        return f"/instrument/{self.pk}/"
+
     def __str__(self) -> str:
         return self.name
 

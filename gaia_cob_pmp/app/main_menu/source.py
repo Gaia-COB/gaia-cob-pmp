@@ -19,8 +19,8 @@ source_submenu: M = M(
             include=lambda user, **_: user.has_perm("app.add_source"),
             view=SourceForm.create(
                 fields=dict(
-                    is_active=dict(
-                        # We could exclude this (with `auto__exclude=['is_active']`) but we don't to show the users.
+                    is_valid=dict(
+                        # We could exclude this (with `auto__exclude=['is_valid']`) but we don't to show the users.
                         after=LAST,
                         initial=lambda user, **_: user.is_staff,
                         editable=False,
@@ -51,7 +51,7 @@ source_submenu: M = M(
                     include=lambda user, source, **_: user.has_perm("app.change_source", source),
                     view=SourceForm.edit(
                         title=lambda source, **_: f"Change {source}",
-                        auto__exclude=["is_active"],
+                        auto__exclude=["is_valid"],
                         instance=lambda source, **_: source,
                     ),
                 ),
@@ -61,7 +61,7 @@ source_submenu: M = M(
                     include=lambda user, source, **_: hasattr(source, "gaiainfo")
                     and user.has_perm("app.change_sourcegaiainfo"),
                     view=SourceGaiaInfoForm.edit(
-                        auto__exclude=["is_active", "source"],
+                        auto__exclude=["is_valid", "source"],
                         instance=lambda source, **_: source.gaiainfo,
                     ),
                 ),

@@ -19,6 +19,7 @@ class MainAppConfig(AppConfig):
         from app.models import (
             Researcher,
             Source,
+            Instrument,
         )
 
         # Iommi path decoding and settings for model searches
@@ -26,6 +27,11 @@ class MainAppConfig(AppConfig):
             model=Source, search_fields=["name", "other_names"], allow_non_unique=True
         )
         register_path_decoding(source=Source)
+
+        register_search_fields(
+            model=Instrument, search_fields=["name", "observatory"], allow_non_unique=True
+        )
+        register_path_decoding(instrument=Instrument)
 
         register_search_fields(
             model=Researcher, search_fields=["user", "affiliations"], allow_non_unique=True

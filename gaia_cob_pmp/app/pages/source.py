@@ -17,7 +17,7 @@ class SourceViewPage(Page):
         editable=False,
     )
     gaia_info = SourceGaiaInfoForm(
-        auto__exclude=["is_active", "source"],
+        auto__exclude=["is_valid", "source"],
         include=lambda source, **_: hasattr(
             source, "gaiainfo"
         ),  # Skip this block if we don't have Gaia info
