@@ -33,4 +33,4 @@ class SourceTable(Table):
             ),
         )
         query__advanced__include = False  # We don't want the advanced filter
-        rows = Source.objects.filter(is_active=True)
+        rows = Source.objects.filter(is_valid=True)

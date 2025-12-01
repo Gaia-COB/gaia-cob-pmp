@@ -19,10 +19,12 @@ class Proposal(Model):
     """
     Model for an instrument proposal.
     """
+
     class Status(TextChoices):
         """
         The allowed entries for the Status field.
         """
+
         PLANNED = "p", _("Planned")
         SUBMITTED = "s", _("Submitted")
         ACCEPTED = "a", _("Accepted")
@@ -32,30 +34,28 @@ class Proposal(Model):
         max_length=1,
         choices=Status,
         default=Status.PLANNED,
-        verbose_name='Project Status',
-        help_text='The status of the proposal.'
+        verbose_name="Project Status",
+        help_text="The status of the proposal.",
     )
 
     description = TextField(
         null=False,
         blank=False,
-        verbose_name='Proposal Description',
-        help_text='A description of the proposal.'
+        verbose_name="Proposal Description",
+        help_text="A description of the proposal.",
     )
 
     instrument = ForeignKey(
-        Instrument,
-        on_delete=RESTRICT,
-        help_text='The instrument used for the proposal.'
-        )
+        Instrument, on_delete=RESTRICT, help_text="The instrument used for the proposal."
+    )
 
     project = ForeignKey(
-        Project,
-        on_delete=CASCADE,
-        help_text='The project to which the proposal is affiliated.'
-        )
+        Project, on_delete=CASCADE, help_text="The project to which the proposal is affiliated."
+    )
+
 
 User = get_user_model()
+
 
 @predicate
 def is_linked_project_member(user: User, proposal: Proposal) -> bool:
@@ -66,11 +66,16 @@ def is_linked_project_member(user: User, proposal: Proposal) -> bool:
     :param proposal: The Proposal to check.
     :return: True if the user is a Researcher who is a member of this proposal's linked project, else False.
     """
-    return user and (user.researcher == proposal.project.principle_investigator) or (user.researcher in proposal.project.members.all())
+    return (
+        user
+        and (user.researcher == proposal.project.principle_investigator)
+        or (user.researcher in proposal.project.members.all())
+    )
+
 
 # Rules for database interactions with this source
 # Conditions are tested on the user wanting to make the change
-add_perm("app.add_project", is_active)
-add_perm("app.change_project", is_linked_project_member | is_staff)
-add_perm("app.delete_project", is_staff)
-add_perm("app.view_project", is_active)
+add_perm("app.add_proposal", is_active)
+add_perm("app.change_proposal", is_linked_project_member | is_staff)
+add_perm("app.delete_proposal", is_staff)
+add_perm("app.view_proposal", is_active)

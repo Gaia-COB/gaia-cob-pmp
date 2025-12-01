@@ -8,47 +8,42 @@ class Instrument(Model):
     """
     Model for an instrument (e.g. telescope).
     """
+
     class Type(TextChoices):
         """
         The allowed entries for the Type field.
         """
+
         ECHELLE = "e", _("Echelle")
         LONG_SLIT = "ls", _("Long-Slit")
         FIBRE = "f", _("Fibre")
         IMAGING = "i", _("Imagine")
 
     name = CharField(
-        max_length=128,
-        null=False, 
-        blank=False,
-        help_text='The name of the instrument.'
+        max_length=128, null=False, blank=False, help_text="The name of the instrument."
     )
 
     type = CharField(
-        max_length=2,
-        choices=Type,
-        default=Type.ECHELLE,
-        help_text='The instrument type.'
+        max_length=2, choices=Type, default=Type.ECHELLE, help_text="The instrument type."
     )
 
     spectral_resolution = FloatField(
         null=True,
         blank=True,
-        verbose_name='Spectral Resolution',
-        help_text='The spectral resolution (Δλ/λ) of the instrument.',
-        validators=[MinValueValidator(0.0)]
+        verbose_name="Spectral Resolution",
+        help_text="The spectral resolution (Δλ/λ) of the instrument.",
+        validators=[MinValueValidator(0.0)],
     )
 
     observatory = CharField(
         null=False,
         blank=False,
         max_length=255,
-        help_text='The observatory to which the instrument belongs.',
+        help_text="The observatory to which the instrument belongs.",
     )
 
     is_valid = BooleanField(
-        default=False,
-        help_text="Entries require approval by site staff before they are visible."
+        default=False, help_text="Entries require approval by site staff before they are visible."
     )
 
     def __str__(self) -> str:
@@ -56,6 +51,7 @@ class Instrument(Model):
 
     def __repr__(self) -> str:
         return str(self)
+
 
 # Rules for database interactions with this source
 # Conditions are tested on the user wanting to make the change

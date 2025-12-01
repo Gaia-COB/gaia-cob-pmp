@@ -38,21 +38,20 @@ class Project(Model):
     principle_investigator = ForeignKey(
         Researcher,
         on_delete=RESTRICT,
-        verbose_name='Principle Investigator',
-        help_text='The PI associated with the project.',
-        related_name='project_piship'
+        verbose_name="Principle Investigator",
+        help_text="The PI associated with the project.",
+        related_name="project_piship",
     )
 
     members = ManyToManyField(
         Researcher,
-        verbose_name='Project Members',
-        related_name='project_membership',
-        help_text='The researchers who are members of the project (and will have access to all associated datasets by default).'
+        verbose_name="Project Members",
+        related_name="project_membership",
+        help_text="The researchers who are members of the project (and will have access to all associated datasets by default).",
     )
 
     is_valid = BooleanField(
-        default=False,
-        help_text="Entries require approval by site staff before they are visible."
+        default=False, help_text="Entries require approval by site staff before they are visible."
     )
 
     def __str__(self) -> str:
@@ -61,7 +60,9 @@ class Project(Model):
     def __repr__(self) -> str:
         return str(self)
 
+
 User = get_user_model()
+
 
 @predicate
 def is_project_member(user: User, project: Project) -> bool:
@@ -72,7 +73,12 @@ def is_project_member(user: User, project: Project) -> bool:
     :param project: The Project to check.
     :return: True if the user is a Researcher who is a member of this project, else False.
     """
-    return user and (user.researcher == project.principle_investigator) or (user.researcher in project.members.all())
+    return (
+        user
+        and (user.researcher == project.principle_investigator)
+        or (user.researcher in project.members.all())
+    )
+
 
 # Rules for database interactions with this source
 # Conditions are tested on the user wanting to make the change
@@ -80,11 +86,3 @@ add_perm("app.add_project", is_active)
 add_perm("app.change_project", is_project_member | is_staff)
 add_perm("app.delete_project", is_staff)
 add_perm("app.view_project", is_active)
-
-
-
-
-
-
-
-

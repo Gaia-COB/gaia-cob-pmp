@@ -1,12 +1,14 @@
 from django.db.models import CharField, Model
 
+
 class WavelengthUnit(Model):
     """
     Model to define units of wavelength.
     """
+
     name = CharField(
         max_length=32,
-        null=False, 
+        null=False,
         blank=False,
     )
 
