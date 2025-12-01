@@ -12,7 +12,7 @@ class SourceViewPage(Page):
 
     header = Header(lambda source, **_: source)
     detail = SourceForm(
-        auto__exclude=["is_active"],
+        auto__exclude=["is_valid"],
         instance=lambda source, **_: source,
         editable=False,
     )
