@@ -222,7 +222,10 @@ SOCIALACCOUNT_ONLY: bool = True
 SOCIALACCOUNT_ADAPTER: str = "app.adapter.UsernameAdapter"
 SOCIALACCOUNT_PROVIDERS: dict[str, Any] = {
     "google": {
-        "APP": {"client_id": config("GOOGLE_OAUTH2_CLIENT_ID"), "secret": config("GOOGLE_OAUTH2_SECRET")},
+        "APP": {
+            "client_id": config("GOOGLE_OAUTH2_CLIENT_ID"),
+            "secret": config("GOOGLE_OAUTH2_SECRET"),
+        },
         "SCOPE": ["profile", "email"],
         "OAUTH_PKCE_ENABLED": True,
     }
@@ -258,4 +261,6 @@ CORS_ALLOWED_ORIGINS: list[str] = [
     "http://accounts.google.com",
 ]
 
-SECURE_REFERRER_POLICY: str = "no-referrer-when-downgrade"  # Or CORS blocks javascript by passing unnecessary details
+SECURE_REFERRER_POLICY: str = (
+    "no-referrer-when-downgrade"  # Or CORS blocks javascript by passing unnecessary details
+)

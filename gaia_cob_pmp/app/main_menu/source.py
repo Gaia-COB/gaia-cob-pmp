@@ -19,8 +19,8 @@ source_submenu: M = M(
             include=lambda user, **_: user.has_perm("app.add_source"),
             view=SourceForm.create(
                 fields=dict(
-                    is_active=dict(
-                        # We could exclude this (with `auto__exclude=['is_active']`) but we don't to show the users.
+                    is_valid=dict(
+                        # We could exclude this (with `auto__exclude=['is_valid']`) but we don't to show the users.
                         after=LAST,
                         initial=lambda user, **_: user.is_staff,
                         editable=False,
@@ -40,7 +40,8 @@ source_submenu: M = M(
                 add_gaiainfo=M(
                     display_name=lambda source, **_: f"Add {source} Gaia info",
                     icon="plus",
-                    include=lambda user, source, **_: not hasattr(source, "gaiainfo") and user.has_perm("app.add_sourcegaiainfo"),
+                    include=lambda user, source, **_: not hasattr(source, "gaiainfo")
+                    and user.has_perm("app.add_sourcegaiainfo"),
                     view=SourceGaiaInfoForm.create(
                         fields__source=Field.non_rendered(initial=lambda source, **_: source),
                     ),
@@ -50,15 +51,19 @@ source_submenu: M = M(
                     include=lambda user, source, **_: user.has_perm("app.change_source", source),
                     view=SourceForm.edit(
                         title=lambda source, **_: f"Change {source}",
-                        auto__exclude=["is_active"],
+                        auto__exclude=["is_valid"],
                         instance=lambda source, **_: source,
                     ),
                 ),
                 change_gaiainfo=M(
                     display_name=lambda user, source, **_: f"Change {source} Gaia info",
                     icon="pen-ruler",
-                    include=lambda user, source, **_: hasattr(source, "gaiainfo") and user.has_perm("app.change_sourcegaiainfo"),
-                    view=SourceGaiaInfoForm.edit(auto__exclude=["is_active", "source"], instance=lambda source, **_: source.gaiainfo),
+                    include=lambda user, source, **_: hasattr(source, "gaiainfo")
+                    and user.has_perm("app.change_sourcegaiainfo"),
+                    view=SourceGaiaInfoForm.edit(
+                        auto__exclude=["is_valid", "source"],
+                        instance=lambda source, **_: source.gaiainfo,
+                    ),
                 ),
                 delete=M(
                     display_name=lambda source, **_: f"Delete {source}",

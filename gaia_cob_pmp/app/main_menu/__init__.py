@@ -10,6 +10,7 @@ from iommi.admin import Admin
 from iommi.main_menu import EXTERNAL, M, MainMenu
 
 from app.main_menu.account import account_submenu
+from app.main_menu.instrument import instrument_submenu
 from app.main_menu.researcher import researcher_submenu
 from app.main_menu.source import source_submenu
 from app.pages import IndexPage, PrivacyPage
@@ -22,6 +23,7 @@ main_menu = MainMenu(
             view=IndexPage().as_view(),
         ),
         source=source_submenu,
+        instrument=instrument_submenu,
         researcher=researcher_submenu,
         # ---------------- This just adds a bar into the menu ----------------
         separator_1=M(

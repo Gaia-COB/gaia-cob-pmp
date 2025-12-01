@@ -27,7 +27,9 @@ researcher_submenu: M = M(
             items=dict(
                 change=M(
                     icon="pencil",
-                    include=lambda user, researcher, **_: user.has_perm("app.change_researcher", researcher),
+                    include=lambda user, researcher, **_: user.has_perm(
+                        "app.change_researcher", researcher
+                    ),
                     view=ResearcherForm.edit(
                         auto__exclude=["user"],
                         title=lambda researcher, **_: f"Change {researcher}",

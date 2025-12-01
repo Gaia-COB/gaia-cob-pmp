@@ -1,11 +1,11 @@
 from iommi import Table
 
-from app.models import Source
+from app.models.instrument import Instrument
 
 
-class SourceTable(Table):
+class InstrumentTable(Table):
     """
-    Class to represent a table of sources.
+    Class to represent a table of instruments.
     """
 
     class Meta:
@@ -14,8 +14,8 @@ class SourceTable(Table):
         """
 
         auto = dict(
-            model=Source,
-            include=["name", "other_names"],
+            model=Instrument,
+            include=["name", "observatory", "type"],
         )
         columns = dict(
             name=dict(
@@ -25,12 +25,18 @@ class SourceTable(Table):
                     freetext=True,
                 ),
             ),
-            other_names=dict(
+            observatory=dict(
                 filter=dict(
                     include=True,
                     freetext=True,
                 ),
             ),
+            type=dict(
+                filter=dict(
+                    include=False,
+                    freetext=False,
+                ),
+            ),
         )
         query__advanced__include = False  # We don't want the advanced filter
-        rows = Source.objects.filter(is_valid=True)
+        rows = Instrument.objects.filter(is_valid=True)

@@ -58,9 +58,15 @@ class Command(BaseCommand):
             user.save()
 
             if user.is_superuser:
-                self.stdout.write(self.style.SUCCESS(f"Registered user with email '{options['email']}' as superuser"))
+                self.stdout.write(
+                    self.style.SUCCESS(
+                        f"Registered user with email '{options['email']}' as superuser"
+                    )
+                )
             else:
-                self.stdout.write(self.style.SUCCESS(f"Registered user with email '{options['email']}' as staff"))
+                self.stdout.write(
+                    self.style.SUCCESS(f"Registered user with email '{options['email']}' as staff")
+                )
 
         except get_user_model().DoesNotExist:
             raise CommandError(f"No user found with email '{options['email']}'")

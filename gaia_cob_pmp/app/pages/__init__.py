@@ -27,29 +27,29 @@ class IndexPage(Page):
 
 # class RankingPage(Page):
 #     """
-#     Ranking of cat owners by number of cats
+#     Ranking of bird owners by number of birds
 #
 #     NOT USED: This is just left in so you can see how to add plotly plots through Iommi extras
 #     """
 #
-#     h1 = html.h1("Most Cats Awards")
-#     p = html.p("This award is sponsored by the RSPCA")
+#     h1 = html.h1("Most Birds Awards")
+#     p = html.p("This award is sponsored by the RSPB")
 #
 #     table = Table(
-#         auto=dict(model=Owner, include=["name", "cat_set"]),
+#         auto=dict(model=Owner, include=["name", "bird_set"]),
 #         columns=dict(
 #             name__sortable=False,
-#             cat_set=dict(
+#             bird_set=dict(
 #                 render_column=False,  # We can still use the data from this column for searches, sorting e.t.c.
-#                 # For simple things like this, you can instead do cat_set__render_column=False
+#                 # For simple things like this, you can instead do bird_set__render_column=False
 #             ),
-#             cat_count=Column(
-#                 cell__value=lambda row, **_: row.cat_set.count(),
+#             bird_count=Column(
+#                 cell__value=lambda row, **_: row.bird_set.count(),
 #                 auto_rowspan=True,
 #                 sortable=False,
 #             ),
 #         ),
-#         default_sort_order="cat_count",
+#         default_sort_order="bird_count",
 #     )
 #     plotly = Template("{{ page.extra_evaluated.plotly | safe }}")
 #
@@ -63,14 +63,14 @@ class IndexPage(Page):
 #             :return: A div containing the rendered plot (or an empty string if no plot is needed).
 #             """
 #             load_figure_template("bootstrap_dark")
-#             queryset: QuerySet[Owner] = Owner.objects.annotate(cat_count=Count("cat_set"))
-#             df: DataFrame = DataFrame(list(queryset.values("cat_count")))
+#             queryset: QuerySet[Owner] = Owner.objects.annotate(bird_count=Count("bird_set"))
+#             df: DataFrame = DataFrame(list(queryset.values("bird_count")))
 #
 #             figure: Figure = Figure(
-#                 data=[Histogram(x=df["cat_count"])],
+#                 data=[Histogram(x=df["bird_count"])],
 #                 layout=Layout(
 #                     template="bootstrap_dark",
-#                     xaxis=XAxis(title="Number of cats"),
+#                     xaxis=XAxis(title="Number of birds"),
 #                     yaxis=YAxis(title="Number of owners"),
 #                 ),
 #             )
@@ -91,7 +91,9 @@ class PrivacyPage(Page):
                 "ICO Template here",
                 attrs__href="https://ico.org.uk/for-organisations/advice-for-small-organisations/privacy-notices-and-cookies/create-your-own-privacy-notice/privacy-notice-generator-for-customers-or-suppliers/",
             ),
-            note=html.p("Realistically, the best way to add this is to put it in a template file and include that."),
+            note=html.p(
+                "Realistically, the best way to add this is to put it in a template file and include that."
+            ),
         )
     )
     # Add at the top: `from django.template.base import Fragment`
