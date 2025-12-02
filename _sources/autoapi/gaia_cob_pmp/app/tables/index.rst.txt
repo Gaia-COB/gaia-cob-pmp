@@ -11,6 +11,7 @@ Submodules
    :maxdepth: 1
 
    /autoapi/gaia_cob_pmp/app/tables/instrument/index
+   /autoapi/gaia_cob_pmp/app/tables/project/index
    /autoapi/gaia_cob_pmp/app/tables/researcher/index
    /autoapi/gaia_cob_pmp/app/tables/source/index
 

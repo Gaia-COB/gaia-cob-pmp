@@ -1,0 +1,31 @@
+gaia_cob_pmp.app.forms.project
+==============================
+
+.. py:module:: gaia_cob_pmp.app.forms.project
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.forms.project.ProjectForm
+
+
+Module Contents
+---------------
+
+.. py:class:: ProjectForm(**kwargs)
+
+   Bases: :py:obj:`iommi.Form`
+
+
+   Handles the common setup for project-based forms.
+
+
+   .. py:class:: Meta
+
+      .. py:attribute:: auto__model
+
+
+

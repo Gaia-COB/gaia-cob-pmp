@@ -39,7 +39,7 @@ Module Contents
    Model for a research project.
 
 
-   .. py:attribute:: project_name
+   .. py:attribute:: name
 
 
    .. py:attribute:: description
@@ -48,13 +48,16 @@ Module Contents
    .. py:attribute:: bibtex
 
 
-   .. py:attribute:: principle_investigator
+   .. py:attribute:: principal_investigator
 
 
    .. py:attribute:: members
 
 
    .. py:attribute:: is_valid
+
+
+   .. py:method:: get_absolute_url() -> str
 
 
    .. py:method:: __str__() -> str

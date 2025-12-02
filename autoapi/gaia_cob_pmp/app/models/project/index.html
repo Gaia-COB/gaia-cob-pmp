@@ -210,6 +210,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../context_processors/index.html">gaia_cob_pmp.app.context_processors</a></li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="../../forms/index.html">gaia_cob_pmp.app.forms</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.forms" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l5"><a class="reference internal" href="../../forms/instrument/index.html">gaia_cob_pmp.app.forms.instrument</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../forms/project/index.html">gaia_cob_pmp.app.forms.project</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../forms/researcher/index.html">gaia_cob_pmp.app.forms.researcher</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../forms/source/index.html">gaia_cob_pmp.app.forms.source</a></li>
 </ul>
@@ -218,6 +219,7 @@
 <li class="toctree-l4 has-children"><a class="reference internal" href="../../main_menu/index.html">gaia_cob_pmp.app.main_menu</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.main_menu" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l5"><a class="reference internal" href="../../main_menu/account/index.html">gaia_cob_pmp.app.main_menu.account</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../main_menu/instrument/index.html">gaia_cob_pmp.app.main_menu.instrument</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../main_menu/project/index.html">gaia_cob_pmp.app.main_menu.project</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../main_menu/researcher/index.html">gaia_cob_pmp.app.main_menu.researcher</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../main_menu/source/index.html">gaia_cob_pmp.app.main_menu.source</a></li>
 </ul>
@@ -242,12 +244,14 @@
 </li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="../../pages/index.html">gaia_cob_pmp.app.pages</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.pages" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l5"><a class="reference internal" href="../../pages/instrument/index.html">gaia_cob_pmp.app.pages.instrument</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../pages/project/index.html">gaia_cob_pmp.app.pages.project</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../pages/source/index.html">gaia_cob_pmp.app.pages.source</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../pages/sourcegaiainfo/index.html">gaia_cob_pmp.app.pages.sourcegaiainfo</a></li>
 </ul>
 </li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="../../tables/index.html">gaia_cob_pmp.app.tables</a><input aria-label="Toggle navigation of gaia_cob_pmp.app.tables" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l5"><a class="reference internal" href="../../tables/instrument/index.html">gaia_cob_pmp.app.tables.instrument</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../tables/project/index.html">gaia_cob_pmp.app.tables.project</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../tables/researcher/index.html">gaia_cob_pmp.app.tables.researcher</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../tables/source/index.html">gaia_cob_pmp.app.tables.source</a></li>
 </ul>
@@ -352,8 +356,8 @@
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">django.db.models.Model</span></code></p>
 <p>Model for a research project.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.project.Project.project_name">
-<span class="sig-name descname"><span class="pre">project_name</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.project.Project.project_name" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.project.Project.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.project.Project.name" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -367,8 +371,8 @@
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.project.Project.principle_investigator">
-<span class="sig-name descname"><span class="pre">principle_investigator</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.project.Project.principle_investigator" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.project.Project.principal_investigator">
+<span class="sig-name descname"><span class="pre">principal_investigator</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.project.Project.principal_investigator" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -379,6 +383,11 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.models.project.Project.is_valid">
 <span class="sig-name descname"><span class="pre">is_valid</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.project.Project.is_valid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.project.Project.get_absolute_url">
+<span class="sig-name descname"><span class="pre">get_absolute_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.project.Project.get_absolute_url" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -479,12 +488,13 @@
 <li><a class="reference internal" href="#functions">Functions</a></li>
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project"><code class="docutils literal notranslate"><span class="pre">Project</span></code></a><ul>
-<li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.project_name"><code class="docutils literal notranslate"><span class="pre">Project.project_name</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.name"><code class="docutils literal notranslate"><span class="pre">Project.name</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.description"><code class="docutils literal notranslate"><span class="pre">Project.description</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.bibtex"><code class="docutils literal notranslate"><span class="pre">Project.bibtex</span></code></a></li>
-<li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.principle_investigator"><code class="docutils literal notranslate"><span class="pre">Project.principle_investigator</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.principal_investigator"><code class="docutils literal notranslate"><span class="pre">Project.principal_investigator</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.members"><code class="docutils literal notranslate"><span class="pre">Project.members</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.is_valid"><code class="docutils literal notranslate"><span class="pre">Project.is_valid</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.get_absolute_url"><code class="docutils literal notranslate"><span class="pre">Project.get_absolute_url()</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.__str__"><code class="docutils literal notranslate"><span class="pre">Project.__str__()</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.project.Project.__repr__"><code class="docutils literal notranslate"><span class="pre">Project.__repr__()</span></code></a></li>
 </ul>

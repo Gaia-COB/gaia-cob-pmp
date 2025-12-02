@@ -8,9 +8,6 @@ gaia_cob_pmp.app.main_menu
    Main menu that describes the site views and URL structure,
    as well as controlling access to the views.
 
-   Components can (and should) be broken out into smaller parts in other files.
-   Putting all the content directly here is just for demo purposes!
-
 
 
 Submodules
@@ -21,6 +18,7 @@ Submodules
 
    /autoapi/gaia_cob_pmp/app/main_menu/account/index
    /autoapi/gaia_cob_pmp/app/main_menu/instrument/index
+   /autoapi/gaia_cob_pmp/app/main_menu/project/index
    /autoapi/gaia_cob_pmp/app/main_menu/researcher/index
    /autoapi/gaia_cob_pmp/app/main_menu/source/index
 

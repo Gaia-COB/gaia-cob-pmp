@@ -1,0 +1,54 @@
+gaia_cob_pmp.app.tables.project
+===============================
+
+.. py:module:: gaia_cob_pmp.app.tables.project
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.tables.project.ProjectTable
+
+
+Module Contents
+---------------
+
+.. py:class:: ProjectTable(**kwargs)
+
+   Bases: :py:obj:`iommi.Table`
+
+
+   Class to represent a table of projects.
+
+   :param rows: a list or QuerySet of objects
+   :param columns: (use this only when not using the declarative style) a list of Column objects
+   :param attrs: dict of strings to string/callable of HTML attributes to apply to the table
+   :param row__attrs: dict of strings to string/callable of HTML attributes to apply to the row. Callables are passed the row as argument.
+   :param row__template: name of template (or `Template` object) to use for rendering the row
+   :param bulk_filter: filters to apply to the `QuerySet` before performing the bulk operation
+   :param bulk_exclude: exclude filters to apply to the `QuerySet` before performing the bulk operation
+   :param sortable: set this to `False` to turn off sorting for all columns
+
+
+   .. py:class:: Meta
+
+      This is stuff that you could otherwise pass as arguments to the constructor
+
+
+      .. py:attribute:: auto
+
+
+      .. py:attribute:: columns
+
+
+      .. py:attribute:: query__advanced__include
+         :value: False
+
+
+
+      .. py:attribute:: rows
+
+
+
