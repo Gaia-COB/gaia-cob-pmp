@@ -118,7 +118,7 @@ def is_linked_project_member(user: User, dataset: DataSet) -> bool:
     """
     return (
         user
-        and (user.researcher == dataset.proposal.project.principle_investigator)
+        and (user.researcher == dataset.proposal.project.principal_investigator)
         or (user.researcher in dataset.proposal.project.members.all())
     )
 

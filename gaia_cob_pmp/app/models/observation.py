@@ -78,7 +78,7 @@ def is_linked_project_member(user: User, observation: Observation) -> bool:
     """
     return (
         user
-        and (user.researcher == observation.proposal.project.principle_investigator)
+        and (user.researcher == observation.proposal.project.principal_investigator)
         or (user.researcher in observation.proposal.project.members.all())
     )
 

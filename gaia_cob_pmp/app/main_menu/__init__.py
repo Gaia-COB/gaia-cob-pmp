@@ -1,9 +1,6 @@
 """
 Main menu that describes the site views and URL structure,
 as well as controlling access to the views.
-
-Components can (and should) be broken out into smaller parts in other files.
-Putting all the content directly here is just for demo purposes!
 """
 
 from iommi.admin import Admin
@@ -11,6 +8,7 @@ from iommi.main_menu import EXTERNAL, M, MainMenu
 
 from app.main_menu.account import account_submenu
 from app.main_menu.instrument import instrument_submenu
+from app.main_menu.project import project_submenu
 from app.main_menu.researcher import researcher_submenu
 from app.main_menu.source import source_submenu
 from app.pages import IndexPage, PrivacyPage
@@ -26,7 +24,10 @@ main_menu = MainMenu(
         instrument=instrument_submenu,
         researcher=researcher_submenu,
         # ---------------- This just adds a bar into the menu ----------------
-        separator_1=M(
+        separator_1=M(view=EXTERNAL, template="app/main_menu/spacer.html"),
+        project=project_submenu,
+        # ---------------- This just adds a bar into the menu ----------------
+        separator_2=M(
             include=lambda user, **_: user.is_authenticated,
             template="app/main_menu/spacer.html",
             view=EXTERNAL,
@@ -47,7 +48,7 @@ main_menu = MainMenu(
             view=Admin.all_models(),
         ),
         # ---------------- This just adds a bar into the menu ----------------
-        separator_2=M(view=EXTERNAL, template="app/main_menu/spacer.html"),
+        separator_3=M(view=EXTERNAL, template="app/main_menu/spacer.html"),
         help=M(
             icon="circle-info",
             url="https://Gaia-COB.github.io/gaia-cob-pmp/",

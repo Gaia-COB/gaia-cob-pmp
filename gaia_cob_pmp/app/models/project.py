@@ -18,7 +18,7 @@ class Project(Model):
     Model for a research project.
     """
 
-    project_name = CharField(
+    name = CharField(
         max_length=128,
         null=False,
         verbose_name="Project Name",
@@ -35,10 +35,10 @@ class Project(Model):
         help_text="The formatted Bibtex entry to use when citing this project.",
     )
 
-    principle_investigator = ForeignKey(
+    principal_investigator = ForeignKey(
         Researcher,
         on_delete=RESTRICT,
-        verbose_name="Principle Investigator",
+        verbose_name="Principal Investigator",
         help_text="The PI associated with the project.",
         related_name="project_piship",
     )
@@ -54,8 +54,11 @@ class Project(Model):
         default=False, help_text="Entries require approval by site staff before they are visible."
     )
 
+    def get_absolute_url(self) -> str:
+        return f"/project/{self.pk}/"
+
     def __str__(self) -> str:
-        return self.project_name
+        return self.name
 
     def __repr__(self) -> str:
         return str(self)
@@ -75,7 +78,7 @@ def is_project_member(user: User, project: Project) -> bool:
     """
     return (
         user
-        and (user.researcher == project.principle_investigator)
+        and (user.researcher == project.principal_investigator)
         or (user.researcher in project.members.all())
     )
 
