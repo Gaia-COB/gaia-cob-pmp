@@ -34,7 +34,7 @@ class Proposal(Model):
         max_length=1,
         choices=Status,
         default=Status.PLANNED,
-        verbose_name="Project Status",
+        verbose_name="Proposal Status",
         help_text="The status of the proposal.",
     )
 
@@ -52,6 +52,18 @@ class Proposal(Model):
     project = ForeignKey(
         Project, on_delete=CASCADE, help_text="The project to which the proposal is affiliated."
     )
+
+    def get_absolute_url(self) -> str:
+        return f"/project/{self.project.pk}/proposal/{self.pk}/"
+
+    def get_project_index(self) -> int:
+        return self.project.proposal_set.filter(pk__lt = self.pk).count() + 1
+
+    def __str__(self) -> str:
+        return f"Proposal {self.get_project_index()}"
+
+    def __repr__(self) -> str:
+        return f"{self.project}: Proposal {self.get_project_index()}"
 
 
 User = get_user_model()

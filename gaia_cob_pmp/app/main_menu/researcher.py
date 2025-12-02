@@ -34,6 +34,7 @@ researcher_submenu: M = M(
                         auto__exclude=["user"],
                         title=lambda researcher, **_: f"Change {researcher}",
                         instance=lambda researcher, **_: researcher,
+                        extra__redirect_to=lambda researcher, **_: researcher.get_absolute_url(),
                     ),
                 ),
             ),

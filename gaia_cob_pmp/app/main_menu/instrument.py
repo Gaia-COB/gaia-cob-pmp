@@ -42,6 +42,7 @@ instrument_submenu: M = M(
                         title=lambda instrument, **_: f"Change {instrument}",
                         auto__exclude=["is_valid"],
                         instance=lambda instrument, **_: instrument,
+                        extra__redirect_to=lambda instrument, **_: instrument.get_absolute_url(),
                     ),
                 ),
                 delete=M(

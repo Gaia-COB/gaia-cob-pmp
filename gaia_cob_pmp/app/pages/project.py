@@ -1,7 +1,7 @@
 from iommi import Header, Page
 
 from app.forms.project import ProjectForm
-
+from app.tables.proposal import ProposalTable
 
 class ProjectViewPage(Page):
     """
@@ -10,7 +10,10 @@ class ProjectViewPage(Page):
 
     header = Header(lambda project, **_: project)
     detail = ProjectForm(
-        auto__exclude=["is_valid"],
+        auto__exclude=["is_valid", "name"],
         instance=lambda project, **_: project,
         editable=False,
+    )
+    proposal_table = ProposalTable(
+        rows=lambda project, **_: project.proposal_set.all(),
     )

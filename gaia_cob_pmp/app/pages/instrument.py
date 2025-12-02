@@ -12,7 +12,7 @@ class InstrumentViewPage(Page):
 
     header = Header(lambda instrument, **_: instrument)
     detail = InstrumentForm(
-        auto__exclude=["is_valid"],
+        auto__exclude=["is_valid", "name"],
         instance=lambda instrument, **_: instrument,
         editable=False,
     )

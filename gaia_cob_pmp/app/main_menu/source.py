@@ -44,6 +44,7 @@ source_submenu: M = M(
                     and user.has_perm("app.add_sourcegaiainfo"),
                     view=SourceGaiaInfoForm.create(
                         fields__source=Field.non_rendered(initial=lambda source, **_: source),
+                        extra__redirect_to=lambda source, **_: source.get_absolute_url(),
                     ),
                 ),
                 change=M(
@@ -53,6 +54,7 @@ source_submenu: M = M(
                         title=lambda source, **_: f"Change {source}",
                         auto__exclude=["is_valid"],
                         instance=lambda source, **_: source,
+                        extra__redirect_to=lambda source, **_: source.get_absolute_url(),
                     ),
                 ),
                 change_gaiainfo=M(
@@ -63,6 +65,7 @@ source_submenu: M = M(
                     view=SourceGaiaInfoForm.edit(
                         auto__exclude=["is_valid", "source"],
                         instance=lambda source, **_: source.gaiainfo,
+                        extra__redirect_to=lambda source, **_: source.get_absolute_url(),
                     ),
                 ),
                 delete=M(
