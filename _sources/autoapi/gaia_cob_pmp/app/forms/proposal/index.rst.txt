@@ -1,0 +1,31 @@
+gaia_cob_pmp.app.forms.proposal
+===============================
+
+.. py:module:: gaia_cob_pmp.app.forms.proposal
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.forms.proposal.ProposalForm
+
+
+Module Contents
+---------------
+
+.. py:class:: ProposalForm(**kwargs)
+
+   Bases: :py:obj:`iommi.Form`
+
+
+   Handles the common setup for project-based forms.
+
+
+   .. py:class:: Meta
+
+      .. py:attribute:: auto__model
+
+
+

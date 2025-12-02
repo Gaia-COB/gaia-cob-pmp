@@ -74,6 +74,18 @@ Module Contents
    .. py:attribute:: project
 
 
+   .. py:method:: get_absolute_url() -> str
+
+
+   .. py:method:: get_project_index() -> int
+
+
+   .. py:method:: __str__() -> str
+
+
+   .. py:method:: __repr__() -> str
+
+
 .. py:data:: User
 
 .. py:function:: is_linked_project_member(user: User, proposal: Proposal) -> bool

@@ -1,0 +1,31 @@
+gaia_cob_pmp.app.pages.proposal
+===============================
+
+.. py:module:: gaia_cob_pmp.app.pages.proposal
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.pages.proposal.ProposalViewPage
+
+
+Module Contents
+---------------
+
+.. py:class:: ProposalViewPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   The basic view for a project.
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: detail
+
+

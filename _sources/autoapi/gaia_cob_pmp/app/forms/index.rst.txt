@@ -12,6 +12,7 @@ Submodules
 
    /autoapi/gaia_cob_pmp/app/forms/instrument/index
    /autoapi/gaia_cob_pmp/app/forms/project/index
+   /autoapi/gaia_cob_pmp/app/forms/proposal/index
    /autoapi/gaia_cob_pmp/app/forms/researcher/index
    /autoapi/gaia_cob_pmp/app/forms/source/index
 

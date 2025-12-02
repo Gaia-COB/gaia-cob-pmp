@@ -1,0 +1,24 @@
+gaia_cob_pmp.app.main_menu.proposal
+===================================
+
+.. py:module:: gaia_cob_pmp.app.main_menu.proposal
+
+.. autoapi-nested-parse::
+
+   Submenu for items relating to projects.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.main_menu.proposal.proposal_submenu
+
+
+Module Contents
+---------------
+
+.. py:data:: proposal_submenu
+
