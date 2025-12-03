@@ -27,7 +27,11 @@ class DataSet(Model):
         Observation, on_delete=CASCADE, primary_key=True, related_name="dataset"
     )
 
-    upload = FileField(upload_to='uploads/', verbose_name='Upload Dataset', help_text='Upload a .csv or .FITS formatted dataset for this observation.')
+    upload = FileField(
+        upload_to="uploads/",
+        verbose_name="Upload Dataset",
+        help_text="Upload a .csv or .FITS formatted dataset for this observation.",
+    )
 
     flux_col = CharField(
         max_length=32,

@@ -15,11 +15,11 @@ class ProposalTable(Table):
 
         auto = dict(
             model=Proposal,
-            include=['instrument', 'status'],
+            include=["instrument", "status"],
         )
         columns = dict(
             proposal=Column(
-                cell__value=lambda row, **_: f'Proposal {row.get_project_index()}',
+                cell__value=lambda row, **_: f"Proposal {row.get_project_index()}",
                 cell__url=lambda row, **_: row.get_absolute_url(),
                 after=-1,
             )

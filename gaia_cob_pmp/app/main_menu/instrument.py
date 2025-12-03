@@ -37,7 +37,9 @@ instrument_submenu: M = M(
             items=dict(
                 change=M(
                     icon="pencil",
-                    include=lambda user, instrument, **_: user.has_perm("app.change_instrument", instrument),
+                    include=lambda user, instrument, **_: user.has_perm(
+                        "app.change_instrument", instrument
+                    ),
                     view=InstrumentForm.edit(
                         title=lambda instrument, **_: f"Change {instrument}",
                         auto__exclude=["is_valid"],
@@ -48,7 +50,9 @@ instrument_submenu: M = M(
                 delete=M(
                     display_name=lambda instrument, **_: f"Delete {instrument}",
                     icon="trash",
-                    include=lambda user, instrument, **_: user.has_perm("app.delete_instrument", instrument),
+                    include=lambda user, instrument, **_: user.has_perm(
+                        "app.delete_instrument", instrument
+                    ),
                     view=InstrumentForm.delete(instance=lambda instrument, **_: instrument),
                 ),
             ),

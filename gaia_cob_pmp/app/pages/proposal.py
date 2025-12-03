@@ -11,7 +11,7 @@ class ProposalViewPage(Page):
 
     header = Header(lambda proposal, **_: proposal)
     detail = ProposalForm(
-        auto__exclude=['project'],
+        auto__exclude=["project"],
         instance=lambda proposal, **_: proposal,
         editable=False,
     )

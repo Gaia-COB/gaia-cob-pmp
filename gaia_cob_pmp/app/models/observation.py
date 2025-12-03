@@ -4,7 +4,6 @@ from django.db.models import (
     RESTRICT,
     BooleanField,
     DateTimeField,
-    FloatField,
     ForeignKey,
     Model,
     TextField,
@@ -50,7 +49,7 @@ class Observation(Model):
         return f"/project/{self.proposal.project.pk}/proposal/{self.proposal.pk}/obs/{self.pk}/"
 
     def get_data_status(self) -> str:
-        if not hasattr(self, 'dataset'):
+        if not hasattr(self, "dataset"):
             return "Missing"
         elif not self.dataset.radial_velocity:
             return "Acquired"

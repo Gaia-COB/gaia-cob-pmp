@@ -57,7 +57,7 @@ class Proposal(Model):
         return f"/project/{self.project.pk}/proposal/{self.pk}/"
 
     def get_project_index(self) -> int:
-        return self.project.proposal_set.filter(pk__lt = self.pk).count() + 1
+        return self.project.proposal_set.filter(pk__lt=self.pk).count() + 1
 
     def __str__(self) -> str:
         return f"Proposal {self.get_project_index()}"

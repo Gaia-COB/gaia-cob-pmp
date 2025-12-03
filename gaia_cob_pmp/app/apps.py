@@ -34,7 +34,9 @@ class MainAppConfig(AppConfig):
         register_path_decoding(observation=Observation)
 
         register_search_fields(
-            model=Project, search_fields=["name", "principal_investigator__user__username"], allow_non_unique=True
+            model=Project,
+            search_fields=["name", "principal_investigator__user__username"],
+            allow_non_unique=True,
         )
         register_path_decoding(project=Project)
 

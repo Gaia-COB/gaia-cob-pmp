@@ -15,7 +15,7 @@ class ObservationTable(Table):
 
         auto = dict(
             model=Observation,
-            include=['date', 'source'],
+            include=["date", "source"],
         )
         columns = dict(
             date=Column(
@@ -24,7 +24,7 @@ class ObservationTable(Table):
             status=Column(
                 cell__value=lambda row, **_: row.get_data_status(),
                 after=LAST,
-            )
+            ),
         )
         query__include = False  # We don't want a filter for these
         rows = Observation.objects.filter(is_valid=True)

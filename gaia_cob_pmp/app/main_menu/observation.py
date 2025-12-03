@@ -2,8 +2,8 @@
 Submenu for items relating to projects.
 """
 
-from iommi import Field, LAST, html
-from iommi.main_menu import M, EXTERNAL
+from iommi import LAST, Field
+from iommi.main_menu import EXTERNAL, M
 
 from app.forms.observation import DatasetForm, ObservationForm
 from app.pages.observation import ObservationViewPage
@@ -16,11 +16,11 @@ observation_submenu = M(
     url=lambda observation, **_: observation.get_absolute_url(),
     view=ObservationViewPage().as_view(),
     items=dict(
-
         add_dataset=M(
             display_name="Add Dataset",
             icon="plus",
-            include=lambda user, observation, **_: not hasattr(observation, "dataset") and user.has_perm("app.change_observation", observation),
+            include=lambda user, observation, **_: not hasattr(observation, "dataset")
+            and user.has_perm("app.change_observation", observation),
             view=DatasetForm.create(
                 fields=dict(
                     is_valid=dict(
@@ -29,21 +29,25 @@ observation_submenu = M(
                         editable=False,
                     )
                 ),
-                fields__observation=Field.non_rendered(initial=lambda observation, **_: observation),
+                fields__observation=Field.non_rendered(
+                    initial=lambda observation, **_: observation
+                ),
                 extra__redirect_to=lambda observation, **_: observation.get_absolute_url(),
             ),
         ),
         download_dataset=M(
-            display_name='Download Data',
+            display_name="Download Data",
             icon="download",
-            include=lambda user, observation, **_: hasattr(observation, "dataset") and user.has_perm("app.view_dataset", observation.dataset),
-            url='#',
+            include=lambda user, observation, **_: hasattr(observation, "dataset")
+            and user.has_perm("app.view_dataset", observation.dataset),
+            url="#",
             view=EXTERNAL,
         ),
         change_dataset=M(
             display_name="Change Dataset",
             icon="database",
-            include=lambda user, observation, **_: hasattr(observation, "dataset") and user.has_perm("app.change_observation", observation),
+            include=lambda user, observation, **_: hasattr(observation, "dataset")
+            and user.has_perm("app.change_observation", observation),
             view=DatasetForm.edit(
                 auto__exclude=["observation"],
                 title="Change Dataset",
@@ -54,19 +58,27 @@ observation_submenu = M(
         change_details=M(
             display_name="Change Details",
             icon="pencil",
-            include=lambda user, observation, **_: user.has_perm("app.change_observation", observation),
+            include=lambda user, observation, **_: user.has_perm(
+                "app.change_observation", observation
+            ),
             view=ObservationForm.edit(
                 extra__redirect_to=lambda observation, **_: observation.get_absolute_url(),
                 title=lambda **_: "Change Observation Details",
                 instance=lambda observation, **_: observation,
-                auto__exclude=['proposal', 'is_valid']
+                auto__exclude=["proposal", "is_valid"],
             ),
         ),
         delete=M(
             display_name=lambda **_: "Delete Observation",
             icon="trash",
-            include=lambda user, observation, **_: user.has_perm("app.delete_observation", observation),
-            view=ObservationForm.delete(instance=lambda observation, **_: observation, extra__redirect_to=lambda observation, **_: observation.proposal.get_absolute_url()),
+            include=lambda user, observation, **_: user.has_perm(
+                "app.delete_observation", observation
+            ),
+            view=ObservationForm.delete(
+                instance=lambda observation, **_: observation,
+                extra__redirect_to=lambda observation,
+                **_: observation.proposal.get_absolute_url(),
+            ),
         ),
     ),
 )

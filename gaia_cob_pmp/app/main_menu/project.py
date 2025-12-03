@@ -2,7 +2,6 @@
 Submenu for items relating to projects.
 """
 
-
 from iommi import LAST
 from iommi.main_menu import M
 
@@ -41,26 +40,31 @@ project_submenu: M = M(
             url=lambda project, **_: project.get_absolute_url(),
             view=ProjectViewPage().as_view(),
             items=dict(
-
                 change=M(
                     icon="pencil",
-                    include=lambda user, project, **_: user.has_perm("app.change_project", project),
+                    include=lambda user, project, **_: user.has_perm(
+                        "app.change_project", project
+                    ),
                     view=ProjectForm.edit(
-                        title=lambda project, **_: f"Change Project \"{project}\"",
+                        title=lambda project, **_: f'Change Project "{project}"',
                         auto__exclude=["is_valid"],
                         instance=lambda project, **_: project,
                         extra__redirect_to=lambda project, **_: project.get_absolute_url(),
                     ),
                 ),
                 delete=M(
-                    display_name=lambda project, **_: f"Delete Project \"{project}\"",
+                    display_name=lambda project, **_: f'Delete Project "{project}"',
                     icon="trash",
-                    include=lambda user, project, **_: user.has_perm("app.delete_project", project),
+                    include=lambda user, project, **_: user.has_perm(
+                        "app.delete_project", project
+                    ),
                     view=ProjectForm.delete(instance=lambda project, **_: project),
                 ),
                 add_proposal=M(
                     icon="plus",
-                    include=lambda user, project, **_: user.has_perm("app.change_project", project),
+                    include=lambda user, project, **_: user.has_perm(
+                        "app.change_project", project
+                    ),
                     view=ProposalForm.create(
                         fields=dict(
                             project=dict(
