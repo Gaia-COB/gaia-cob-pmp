@@ -251,3 +251,6 @@ target
 
 # Migration files: Force add when you need to!
 */*/migrations/0*.py
+
+# Uploaded file storage
+gaia_cob_pmp/media/

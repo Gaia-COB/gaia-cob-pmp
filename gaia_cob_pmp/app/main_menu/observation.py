@@ -2,7 +2,7 @@
 Submenu for items relating to projects.
 """
 
-from iommi import Field
+from iommi import Field, LAST
 from iommi.main_menu import M
 
 from app.forms.observation import DatasetForm, ObservationForm
@@ -22,27 +22,35 @@ observation_submenu = M(
             icon="plus",
             include=lambda user, observation, **_: not hasattr(observation, "dataset") and user.has_perm("app.change_observation", observation),
             view=DatasetForm.create(
+                fields=dict(
+                    is_valid=dict(
+                        after=LAST,
+                        initial=lambda user, **_: user.is_staff,
+                        editable=False,
+                    )
+                ),
                 fields__observation=Field.non_rendered(initial=lambda observation, **_: observation),
                 extra__redirect_to=lambda observation, **_: observation.get_absolute_url(),
             ),
         ),
         change_dataset=M(
             display_name="Change Dataset",
-            icon="pen-ruler",
+            icon="database",
             include=lambda user, observation, **_: hasattr(observation, "dataset") and user.has_perm("app.change_observation", observation),
             view=DatasetForm.edit(
                 auto__exclude=["observation"],
+                title="Change Dataset",
                 instance=lambda observation, **_: observation.dataset,
                 extra__redirect_to=lambda observation, **_: observation.get_absolute_url(),
             ),
         ),
-
-        change=M(
+        change_details=M(
+            display_name="Change Details",
             icon="pencil",
             include=lambda user, observation, **_: user.has_perm("app.change_observation", observation),
             view=ObservationForm.edit(
                 extra__redirect_to=lambda observation, **_: observation.get_absolute_url(),
-                title=lambda **_: "Change Observation",
+                title=lambda **_: "Change Observation Details",
                 instance=lambda observation, **_: observation,
                 auto__exclude=['proposal', 'is_valid']
             ),

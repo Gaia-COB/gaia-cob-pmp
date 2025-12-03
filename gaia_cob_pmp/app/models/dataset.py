@@ -4,6 +4,8 @@ from django.db.models import (
     RESTRICT,
     BooleanField,
     CharField,
+    FileField,
+    FloatField,
     ForeignKey,
     Model,
     OneToOneField,
@@ -25,6 +27,8 @@ class DataSet(Model):
         Observation, on_delete=CASCADE, primary_key=True, related_name="dataset"
     )
 
+    upload = FileField(upload_to='uploads/', verbose_name='Upload Dataset', help_text='Upload a .csv or .FITS formatted dataset for this observation.')
+
     flux_col = CharField(
         max_length=32,
         default="flux",
@@ -43,6 +47,13 @@ class DataSet(Model):
         help_text="The name of the flux error column in the dataset.",
     )
 
+    flux_units = ForeignKey(
+        FluxUnit,
+        on_delete=RESTRICT,
+        verbose_name="Flux Units",
+        help_text="The unit for the flux columns of the dataset.",
+    )
+
     wavelength_col = CharField(
         max_length=32,
         default="wavelength",
@@ -50,6 +61,20 @@ class DataSet(Model):
         blank=False,
         verbose_name="Wavelength Column",
         help_text="The name of the wavelength column in the dataset.",
+    )
+
+    wavelength_units = ForeignKey(
+        WavelengthUnit,
+        on_delete=RESTRICT,
+        verbose_name="Wavelength Units",
+        help_text="The unit for the wavelength column of the dataset.",
+    )
+
+    radial_velocity = FloatField(
+        verbose_name="Radial Velocity (km/s)",
+        help_text="The radial velocity of the source in km/s",
+        null=True,
+        blank=True,
     )
 
     doi = CharField(
@@ -87,20 +112,6 @@ class DataSet(Model):
 
     is_valid = BooleanField(
         default=False, help_text="Entries require approval by site staff before they are visible."
-    )
-
-    flux_units = ForeignKey(
-        FluxUnit,
-        on_delete=RESTRICT,
-        verbose_name="Flux Units",
-        help_text="The unit for the flux columns of the dataset.",
-    )
-
-    wavelength_units = ForeignKey(
-        WavelengthUnit,
-        on_delete=RESTRICT,
-        verbose_name="Wavelength Units",
-        help_text="The unit for the wavelength column of the dataset.",
     )
 
 

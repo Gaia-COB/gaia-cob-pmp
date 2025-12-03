@@ -39,13 +39,6 @@ class Observation(Model):
         blank=True,
     )
 
-    radial_velocity = FloatField(
-        verbose_name="Radial Velocity (km/s)",
-        help_text="The radial velocity of the source in km/s",
-        null=True,
-        blank=True,
-    )
-
     comment = TextField(
         blank=True,
         null=True,
