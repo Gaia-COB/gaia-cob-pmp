@@ -2,18 +2,15 @@
 Submenu for items relating to projects.
 """
 
-from django.contrib.auth import get_user_model
 
 from iommi import LAST
 from iommi.main_menu import M
 
 from app.forms.project import ProjectForm
 from app.forms.proposal import ProposalForm
-from app.pages.project import ProjectViewPage
-from app.pages.proposal import ProposalViewPage
-from app.tables.project import ProjectTable
-
 from app.main_menu.proposal import proposal_submenu
+from app.pages.project import ProjectViewPage
+from app.tables.project import ProjectTable
 
 project_submenu: M = M(
     icon="diagram-project",
@@ -52,6 +49,7 @@ project_submenu: M = M(
                         title=lambda project, **_: f"Change Project \"{project}\"",
                         auto__exclude=["is_valid"],
                         instance=lambda project, **_: project,
+                        extra__redirect_to=lambda project, **_: project.get_absolute_url(),
                     ),
                 ),
                 delete=M(
@@ -62,7 +60,7 @@ project_submenu: M = M(
                 ),
                 add_proposal=M(
                     icon="plus",
-                    include=lambda user, **_: user.has_perm("app.add_proposal"),
+                    include=lambda user, project, **_: user.has_perm("app.change_project", project),
                     view=ProposalForm.create(
                         fields=dict(
                             project=dict(

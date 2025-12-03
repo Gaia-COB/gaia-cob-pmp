@@ -17,3 +17,9 @@ class FluxUnit(Model):
         null=False,
         blank=False,
     )
+
+    def __str__(self) -> str:
+        return self.name
+
+    def __repr__(self) -> str:
+        return str(self)

@@ -19,7 +19,7 @@ class ProposalTable(Table):
         )
         columns = dict(
             proposal=Column(
-                cell__value=lambda row, **_: f'Proposal {row.pk}',
+                cell__value=lambda row, **_: f'Proposal {row.get_project_index()}',
                 cell__url=lambda row, **_: row.get_absolute_url(),
                 after=-1,
             )

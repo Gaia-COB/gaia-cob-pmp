@@ -53,8 +53,11 @@ class Observation(Model):
         help_text="Additional comment(s) on the observation",
     )
 
-    def data_status(self) -> str:
-        if not self.dataset:
+    def get_absolute_url(self) -> str:
+        return f"/project/{self.proposal.project.pk}/proposal/{self.proposal.pk}/obs/{self.pk}/"
+
+    def get_data_status(self) -> str:
+        if not hasattr(self, 'dataset'):
             return "Missing"
         elif not self.dataset.radial_velocity:
             return "Acquired"

@@ -3,6 +3,7 @@ from iommi import Header, Page
 from app.forms.project import ProjectForm
 from app.tables.proposal import ProposalTable
 
+
 class ProjectViewPage(Page):
     """
     The basic view for a project.

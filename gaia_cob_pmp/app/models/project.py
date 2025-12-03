@@ -31,6 +31,8 @@ class Project(Model):
     )
 
     bibtex = TextField(
+        null=True,
+        blank=True,
         verbose_name="BibTeX",
         help_text="The formatted Bibtex entry to use when citing this project.",
     )

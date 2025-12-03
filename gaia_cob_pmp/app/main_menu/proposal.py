@@ -2,16 +2,14 @@
 Submenu for items relating to projects.
 """
 
-from django.contrib.auth import get_user_model
 
 from iommi import LAST
 from iommi.main_menu import M
 
-from app.forms.project import ProjectForm
+from app.forms.observation import ObservationForm
 from app.forms.proposal import ProposalForm
-from app.pages.project import ProjectViewPage
+from app.main_menu.observation import observation_submenu
 from app.pages.proposal import ProposalViewPage
-from app.tables.project import ProjectTable
 
 proposal_submenu = M(
     display_name=lambda proposal, **_: proposal,
@@ -37,5 +35,23 @@ proposal_submenu = M(
             include=lambda user, proposal, **_: user.has_perm("app.delete_proposal", proposal),
             view=ProposalForm.delete(instance=lambda proposal, **_: proposal, extra__redirect_to=lambda proposal, **_: proposal.project.get_absolute_url()),
         ),
+        add_observation=M(
+            icon="plus",
+            include=lambda user, proposal, **_: user.has_perm("app.change_proposal", proposal),
+            view=ObservationForm.create(
+                fields=dict(
+                    proposal=dict(
+                        initial=lambda proposal, **_: proposal,
+                        editable=False,
+                    ),
+                    is_valid=dict(
+                        after=LAST,
+                        initial=lambda user, **_: user.is_staff,
+                        editable=False,
+                    ),
+                ),
+            ),
+        ),
+        view=observation_submenu,
     ),
 )

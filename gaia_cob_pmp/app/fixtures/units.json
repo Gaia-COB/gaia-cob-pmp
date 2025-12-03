@@ -1,0 +1,1 @@
+[{"model": "app.wavelengthunit", "pk": 1, "fields": {"name": "Angstroms", "astropy": "Angstrom"}},{"model": "app.fluxunit", "pk": 1, "fields": {"name": "Ergs", "astropy": "erg"}}]

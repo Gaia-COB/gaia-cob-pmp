@@ -18,9 +18,9 @@ class MainAppConfig(AppConfig):
 
         from app.models import (
             Instrument,
+            Observation,
             Project,
             Proposal,
-            Observation,
             Researcher,
             Source,
         )

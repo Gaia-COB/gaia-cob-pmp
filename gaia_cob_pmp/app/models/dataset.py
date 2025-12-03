@@ -21,7 +21,7 @@ class DataSet(Model):
     Details for the Dataset returned from an Observation.
     """
 
-    source = OneToOneField(
+    observation = OneToOneField(
         Observation, on_delete=CASCADE, primary_key=True, related_name="dataset"
     )
 
