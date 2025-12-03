@@ -1,0 +1,136 @@
+gaia_cob_pmp.app.forms.observation
+==================================
+
+.. py:module:: gaia_cob_pmp.app.forms.observation
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.forms.observation.DatasetForm
+   gaia_cob_pmp.app.forms.observation.ObservationForm
+
+
+Module Contents
+---------------
+
+.. py:class:: DatasetForm(**kwargs)
+
+   Bases: :py:obj:`iommi.Form`
+
+
+   Describe a Form. Example:
+
+   .. code-block:: python
+
+       class MyForm(Form):
+           a = Field()
+           b = Field.email()
+
+       form = MyForm().bind(request=request)
+
+   You can also create an instance of a form with this syntax if it's more convenient:
+
+   .. code-block:: python
+
+       form = Form(
+           fields=dict(
+               a=Field(),
+               b=Field.email(),
+           ),
+       ).bind(request=request)
+
+   In the common case the fields namespace will contain only instances of `Field`, but
+   iommi actually supports arbitrary `Part` objects. For example:
+
+   .. code-block:: python
+
+       form = Form(
+           fields=dict(
+               # Display a and b inside a box
+               box=html.div(
+                   attrs__class__box=True,
+                   children__a=Field(),
+                   children__b=Field.email(),
+               ),
+               # And c regularly
+               c=Field(),
+           )
+       )
+
+   So that writing the application logic (e.g. validation and post handlers) is independent
+   of minor changes to the layout, after bind the `fields` namespace of the form will contain
+   only instances of `Field` keyed by their `_name` independently of how deep they are in the
+   hierarchy. Given the above, an appropriate post_handler would be:
+
+   .. code-block:: python
+
+       def post_handler(form, **_):
+           if not form.is_valid():
+               return
+
+           print(form.fields.a.value, form.fields.b.value, form.fields.c.value)
+           # And not:
+           # print(form.fields.box.a.value, form.fields.box.b.value, form.fields.c.value)
+
+       # @test
+       assert post_handler(form=Struct(is_valid=lambda: False)) is None
+
+       post_handler(form.bind(request=req('post')))
+       # @end
+
+   Use of Form.layout:
+
+   .. code-block:: python
+       from django.contrib.auth import get_user_model
+       from django.utils.translation import gettext_lazy
+       from iommi._web_compat import Template
+
+       class UserForm(Form):
+           class Meta:
+               auto__model = get_user_model()
+               layout = Panel(dict(
+                   p_main=Panel.fieldset(dict(
+                       username=Panel.field(),
+                       p_fullname=Panel.row(dict(
+                           first_name=Panel.field(col__attrs__class__firstname=True),
+                           last_name=Panel.field(),
+                       )),
+                       # examples of custom html parts:
+                       p_foo=Panel.row(dict(
+                           p_bar=gettext_lazy('Some plain text'),
+                           p_baz=Template('{% load i18n %}<span>{% translate "Foobar!" %}</span>'),
+                       )),
+                       p_qux=Fragment(template='path/to/template.html'),
+                       p_quux=html.h3('Quux'),
+                       p_corge__template='path/to/another_template.html',
+                   )),
+                   p_permissions=Panel.fieldset(dict(
+                       # ...
+                   )),
+                   p_error=Panel.alert('Error!', level='error'),
+               ))
+
+
+   .. py:class:: Meta
+
+      .. py:attribute:: auto__model
+
+
+
+.. py:class:: ObservationForm(**kwargs)
+
+   Bases: :py:obj:`iommi.Form`
+
+
+   Handles the common setup for project-based forms.
+
+
+   .. py:class:: Meta
+
+      .. py:attribute:: auto__model
+
+
+

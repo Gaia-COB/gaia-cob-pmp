@@ -29,3 +29,6 @@ Module Contents
    .. py:attribute:: detail
 
 
+   .. py:attribute:: observation_table
+
+

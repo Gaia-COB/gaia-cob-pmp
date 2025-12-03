@@ -57,7 +57,10 @@ Module Contents
    .. py:attribute:: comment
 
 
-   .. py:method:: data_status() -> str
+   .. py:method:: get_absolute_url() -> str
+
+
+   .. py:method:: get_data_status() -> str
 
 
 .. py:data:: User

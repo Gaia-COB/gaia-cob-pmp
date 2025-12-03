@@ -39,7 +39,7 @@ Module Contents
    Details for the Dataset returned from an Observation.
 
 
-   .. py:attribute:: source
+   .. py:attribute:: observation
 
 
    .. py:attribute:: flux_col

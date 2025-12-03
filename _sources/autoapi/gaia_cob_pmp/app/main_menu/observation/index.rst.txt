@@ -1,0 +1,24 @@
+gaia_cob_pmp.app.main_menu.observation
+======================================
+
+.. py:module:: gaia_cob_pmp.app.main_menu.observation
+
+.. autoapi-nested-parse::
+
+   Submenu for items relating to projects.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.main_menu.observation.observation_submenu
+
+
+Module Contents
+---------------
+
+.. py:data:: observation_submenu
+

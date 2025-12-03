@@ -1,0 +1,34 @@
+gaia_cob_pmp.app.pages.observation
+==================================
+
+.. py:module:: gaia_cob_pmp.app.pages.observation
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.pages.observation.ObservationViewPage
+
+
+Module Contents
+---------------
+
+.. py:class:: ObservationViewPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   The basic view for a project.
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: detail
+
+
+   .. py:attribute:: dataset
+
+

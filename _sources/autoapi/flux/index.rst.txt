@@ -29,3 +29,9 @@ Module Contents
    .. py:attribute:: astropy
 
 
+   .. py:method:: __str__() -> str
+
+
+   .. py:method:: __repr__() -> str
+
+
