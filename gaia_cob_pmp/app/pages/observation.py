@@ -15,7 +15,7 @@ class ObservationViewPage(Page):
         editable=False,
     )
     dataset = DatasetForm(
-        auto__exclude=["observation"],
+        auto__exclude=["observation","upload"],
         include=lambda observation, **_: hasattr(
             observation, "dataset"
         ),  # Skip this block if there's no dataset uploaded

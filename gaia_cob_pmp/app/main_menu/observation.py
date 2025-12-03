@@ -2,8 +2,8 @@
 Submenu for items relating to projects.
 """
 
-from iommi import Field, LAST
-from iommi.main_menu import M
+from iommi import Field, LAST, html
+from iommi.main_menu import M, EXTERNAL
 
 from app.forms.observation import DatasetForm, ObservationForm
 from app.pages.observation import ObservationViewPage
@@ -32,6 +32,13 @@ observation_submenu = M(
                 fields__observation=Field.non_rendered(initial=lambda observation, **_: observation),
                 extra__redirect_to=lambda observation, **_: observation.get_absolute_url(),
             ),
+        ),
+        download_dataset=M(
+            display_name='Download Data',
+            icon="download",
+            include=lambda user, observation, **_: hasattr(observation, "dataset") and user.has_perm("app.view_dataset", observation.dataset),
+            url='#',
+            view=EXTERNAL,
         ),
         change_dataset=M(
             display_name="Change Dataset",
