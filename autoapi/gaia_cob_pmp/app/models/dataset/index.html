@@ -369,6 +369,11 @@
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.dataset.DataSet.upload">
+<span class="sig-name descname"><span class="pre">upload</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.dataset.DataSet.upload" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.models.dataset.DataSet.flux_col">
 <span class="sig-name descname"><span class="pre">flux_col</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.dataset.DataSet.flux_col" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -379,8 +384,23 @@
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.dataset.DataSet.flux_units">
+<span class="sig-name descname"><span class="pre">flux_units</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.dataset.DataSet.flux_units" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.models.dataset.DataSet.wavelength_col">
 <span class="sig-name descname"><span class="pre">wavelength_col</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.dataset.DataSet.wavelength_col" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.dataset.DataSet.wavelength_units">
+<span class="sig-name descname"><span class="pre">wavelength_units</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.dataset.DataSet.wavelength_units" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.dataset.DataSet.radial_velocity">
+<span class="sig-name descname"><span class="pre">radial_velocity</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.dataset.DataSet.radial_velocity" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -411,16 +431,6 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.models.dataset.DataSet.is_valid">
 <span class="sig-name descname"><span class="pre">is_valid</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.dataset.DataSet.is_valid" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.dataset.DataSet.flux_units">
-<span class="sig-name descname"><span class="pre">flux_units</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.dataset.DataSet.flux_units" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.dataset.DataSet.wavelength_units">
-<span class="sig-name descname"><span class="pre">wavelength_units</span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.dataset.DataSet.wavelength_units" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -512,17 +522,19 @@
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet"><code class="docutils literal notranslate"><span class="pre">DataSet</span></code></a><ul>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.observation"><code class="docutils literal notranslate"><span class="pre">DataSet.observation</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.upload"><code class="docutils literal notranslate"><span class="pre">DataSet.upload</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.flux_col"><code class="docutils literal notranslate"><span class="pre">DataSet.flux_col</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.flux_err_col"><code class="docutils literal notranslate"><span class="pre">DataSet.flux_err_col</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.flux_units"><code class="docutils literal notranslate"><span class="pre">DataSet.flux_units</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.wavelength_col"><code class="docutils literal notranslate"><span class="pre">DataSet.wavelength_col</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.wavelength_units"><code class="docutils literal notranslate"><span class="pre">DataSet.wavelength_units</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.radial_velocity"><code class="docutils literal notranslate"><span class="pre">DataSet.radial_velocity</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.doi"><code class="docutils literal notranslate"><span class="pre">DataSet.doi</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.arxiv_url"><code class="docutils literal notranslate"><span class="pre">DataSet.arxiv_url</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.ads_url"><code class="docutils literal notranslate"><span class="pre">DataSet.ads_url</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.bibtex"><code class="docutils literal notranslate"><span class="pre">DataSet.bibtex</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.comment"><code class="docutils literal notranslate"><span class="pre">DataSet.comment</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.is_valid"><code class="docutils literal notranslate"><span class="pre">DataSet.is_valid</span></code></a></li>
-<li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.flux_units"><code class="docutils literal notranslate"><span class="pre">DataSet.flux_units</span></code></a></li>
-<li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.DataSet.wavelength_units"><code class="docutils literal notranslate"><span class="pre">DataSet.wavelength_units</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.dataset.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a></li>

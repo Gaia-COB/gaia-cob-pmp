@@ -42,13 +42,25 @@ Module Contents
    .. py:attribute:: observation
 
 
+   .. py:attribute:: upload
+
+
    .. py:attribute:: flux_col
 
 
    .. py:attribute:: flux_err_col
 
 
+   .. py:attribute:: flux_units
+
+
    .. py:attribute:: wavelength_col
+
+
+   .. py:attribute:: wavelength_units
+
+
+   .. py:attribute:: radial_velocity
 
 
    .. py:attribute:: doi
@@ -67,12 +79,6 @@ Module Contents
 
 
    .. py:attribute:: is_valid
-
-
-   .. py:attribute:: flux_units
-
-
-   .. py:attribute:: wavelength_units
 
 
 .. py:data:: User

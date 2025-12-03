@@ -51,9 +51,6 @@ Module Contents
    .. py:attribute:: date
 
 
-   .. py:attribute:: radial_velocity
-
-
    .. py:attribute:: comment
 
 
