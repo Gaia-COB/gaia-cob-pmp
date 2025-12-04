@@ -1,0 +1,31 @@
+gaia_cob_pmp.app.pages.validation
+=================================
+
+.. py:module:: gaia_cob_pmp.app.pages.validation
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.pages.validation.ValidationViewPage
+
+
+Module Contents
+---------------
+
+.. py:class:: ValidationViewPage(**kwargs)
+
+   Bases: :py:obj:`iommi.Page`
+
+
+   Simple index page.
+
+
+   .. py:attribute:: header
+
+
+   .. py:attribute:: p
+
+

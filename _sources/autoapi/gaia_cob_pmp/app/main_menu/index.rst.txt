@@ -23,6 +23,7 @@ Submodules
    /autoapi/gaia_cob_pmp/app/main_menu/proposal/index
    /autoapi/gaia_cob_pmp/app/main_menu/researcher/index
    /autoapi/gaia_cob_pmp/app/main_menu/source/index
+   /autoapi/gaia_cob_pmp/app/main_menu/validation/index
 
 
 Attributes

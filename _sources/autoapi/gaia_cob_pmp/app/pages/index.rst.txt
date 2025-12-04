@@ -15,7 +15,7 @@ Submodules
    /autoapi/gaia_cob_pmp/app/pages/project/index
    /autoapi/gaia_cob_pmp/app/pages/proposal/index
    /autoapi/gaia_cob_pmp/app/pages/source/index
-   /autoapi/gaia_cob_pmp/app/pages/sourcegaiainfo/index
+   /autoapi/gaia_cob_pmp/app/pages/validation/index
 
 
 Classes

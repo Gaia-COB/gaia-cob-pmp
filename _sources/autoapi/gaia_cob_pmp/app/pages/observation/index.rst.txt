@@ -20,7 +20,7 @@ Module Contents
    Bases: :py:obj:`iommi.Page`
 
 
-   The basic view for a project.
+   The basic view for an observation.
 
 
    .. py:attribute:: header

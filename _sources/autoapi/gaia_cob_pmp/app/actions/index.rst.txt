@@ -1,0 +1,30 @@
+gaia_cob_pmp.app.actions
+========================
+
+.. py:module:: gaia_cob_pmp.app.actions
+
+.. autoapi-nested-parse::
+
+   A collection of custom actions to pass as pre/post-handlers to Iommi components
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.actions.validate_generic
+   gaia_cob_pmp.app.actions.validate_user_by_researcher
+   gaia_cob_pmp.app.actions.validate_dataset_by_observation
+
+
+Module Contents
+---------------
+
+.. py:function:: validate_generic(table, request, **_)
+
+.. py:function:: validate_user_by_researcher(table, request, **_)
+
+.. py:function:: validate_dataset_by_observation(table, request, **_)
+

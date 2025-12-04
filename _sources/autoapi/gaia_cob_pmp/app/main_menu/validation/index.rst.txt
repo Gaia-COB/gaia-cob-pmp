@@ -1,0 +1,25 @@
+gaia_cob_pmp.app.main_menu.validation
+=====================================
+
+.. py:module:: gaia_cob_pmp.app.main_menu.validation
+
+.. autoapi-nested-parse::
+
+   Submenu for items relating to sources.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.main_menu.validation.validation_submenu
+
+
+Module Contents
+---------------
+
+.. py:data:: validation_submenu
+   :type:  iommi.main_menu.M
+
