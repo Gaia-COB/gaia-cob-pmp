@@ -1,3 +1,4 @@
+import pandas as pd
 from django.contrib.auth import get_user_model
 from django.db.models import (
     CASCADE,
@@ -131,6 +132,31 @@ class DataSet(Model):
         if self.ads_url[:8] != "https://" and self.ads_url[:7] != "http://":
             return f"https://{self.ads_url}"
         return self.ads_url.replace("http://", "https://")
+
+    def get_df(self):
+        # Only works on CSVs for now
+        try:
+            ext = self.upload.name.split(".")[-1]
+            if ext == "csv":
+                df = pd.read_csv(self.upload.file)
+            else:
+                raise NotImplementedError("Unrecognised filetype")
+
+            df.rename(
+                {
+                    self.flux_col: "flux",
+                    self.flux_err_col: "flux_err",
+                    self.wavelength_col: "wavelength",
+                },
+                errors="raise",
+                inplace=True,
+            )
+
+            return df
+
+        # Could fail for any number of reasons
+        except Exception as e:
+            raise ValueError(e)
 
 
 User = get_user_model()
