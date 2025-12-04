@@ -1,0 +1,19 @@
+gaia_cob_pmp.app.urls
+=====================
+
+.. py:module:: gaia_cob_pmp.app.urls
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.urls.urlpatterns
+
+
+Module Contents
+---------------
+
+.. py:data:: urlpatterns
+

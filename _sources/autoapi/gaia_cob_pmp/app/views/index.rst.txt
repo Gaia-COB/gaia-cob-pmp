@@ -3,4 +3,25 @@ gaia_cob_pmp.app.views
 
 .. py:module:: gaia_cob_pmp.app.views
 
+.. autoapi-nested-parse::
+
+   Supplemental Django views
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.views.download_dataset_view
+
+
+Module Contents
+---------------
+
+.. py:function:: download_dataset_view(request, dataset_pk)
+
+   View to serve dataset files as downloads
+
 

@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../../../genindex.html"><link rel="search" title="Search" href="../../../../search.html"><link rel="next" title="gaia_cob_pmp.core" href="../../core/index.html"><link rel="prev" title="gaia_cob_pmp.app.tests" href="../tests/index.html">
+<link rel="index" title="Index" href="../../../../genindex.html"><link rel="search" title="Search" href="../../../../search.html"><link rel="next" title="gaia_cob_pmp.core" href="../../core/index.html"><link rel="prev" title="gaia_cob_pmp.app.urls" href="../urls/index.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
         <title>gaia_cob_pmp.app.views - Gaia COB Proposal Management Platform v0.1.0</title>
@@ -178,7 +178,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -265,6 +265,7 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../tests/index.html">gaia_cob_pmp.app.tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../urls/index.html">gaia_cob_pmp.app.urls</a></li>
 <li class="toctree-l4 current current-page"><a class="current reference internal" href="#">gaia_cob_pmp.app.views</a></li>
 </ul>
 </li>
@@ -313,13 +314,35 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
           <section id="module-gaia_cob_pmp.app.views">
 <span id="gaia-cob-pmp-app-views"></span><h1>gaia_cob_pmp.app.views<a class="headerlink" href="#module-gaia_cob_pmp.app.views" title="Link to this heading">¶</a></h1>
+<p>Supplemental Django views</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#gaia_cob_pmp.app.views.download_dataset_view" title="gaia_cob_pmp.app.views.download_dataset_view"><code class="xref py py-obj docutils literal notranslate"><span class="pre">download_dataset_view</span></code></a>(request, dataset_pk)</p></td>
+<td><p>View to serve dataset files as downloads</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.views.download_dataset_view">
+<span class="sig-prename descclassname"><span class="pre">gaia_cob_pmp.app.views.</span></span><span class="sig-name descname"><span class="pre">download_dataset_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_pk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gaia_cob_pmp.app.views.download_dataset_view" title="Link to this definition">¶</a></dt>
+<dd><p>View to serve dataset files as downloads</p>
+</dd></dl>
+
+</section>
 </section>
 
         </article>
@@ -336,14 +359,14 @@
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../tests/index.html">
+          <a class="prev-page" href="../urls/index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">gaia_cob_pmp.app.tests</div>
+                <div class="title">gaia_cob_pmp.app.urls</div>
                 
               </div>
             </a>
@@ -365,8 +388,31 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">gaia_cob_pmp.app.views</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.views.download_dataset_view"><code class="docutils literal notranslate"><span class="pre">download_dataset_view()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

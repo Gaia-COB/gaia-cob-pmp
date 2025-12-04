@@ -22,6 +22,7 @@ Submodules
    /autoapi/gaia_cob_pmp/app/pages/index
    /autoapi/gaia_cob_pmp/app/tables/index
    /autoapi/gaia_cob_pmp/app/tests/index
+   /autoapi/gaia_cob_pmp/app/urls/index
    /autoapi/gaia_cob_pmp/app/views/index
 
 
