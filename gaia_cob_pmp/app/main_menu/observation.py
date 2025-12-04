@@ -47,13 +47,37 @@ observation_submenu = M(
                 "download-dataset", args=[observation.dataset.pk]
             ),
         ),
+        bibtex=M(
+            display_name="BibTeX",
+            icon="book",
+            include=lambda observation, **_: hasattr(observation, "dataset")
+            and observation.dataset.bibtex,
+            view=EXTERNAL,
+            url=lambda observation, **_: reverse("bibtex", args=[observation.dataset.pk]),
+        ),
+        arxiv=M(
+            display_name="arXiV",
+            icon="x",
+            include=lambda observation, **_: hasattr(observation, "dataset")
+            and observation.dataset.arxiv_url,
+            view=EXTERNAL,
+            url=lambda observation, **_: observation.dataset.get_clean_arxiv_url(),
+        ),
+        ads=M(
+            display_name="ADS",
+            icon="magnifying-glass",
+            include=lambda observation, **_: hasattr(observation, "dataset")
+            and observation.dataset.ads_url,
+            view=EXTERNAL,
+            url=lambda observation, **_: observation.dataset.get_clean_ads_url(),
+        ),
         change_dataset=M(
             display_name="Change Dataset",
             icon="database",
             include=lambda user, observation, **_: hasattr(observation, "dataset")
             and user.has_perm("app.change_observation", observation),
             view=DatasetForm.edit(
-                auto__exclude=["observation"],
+                auto__exclude=["observation", "upload"],
                 title="Change Dataset",
                 instance=lambda observation, **_: observation.dataset,
                 extra__redirect_to=lambda observation, **_: observation.get_absolute_url(),
@@ -81,6 +105,7 @@ observation_submenu = M(
             view=ObservationForm.delete(
                 instance=lambda observation, **_: observation,
                 extra__redirect_to=lambda observation,
+                auto__exclude=["upload"],
                 **_: observation.proposal.get_absolute_url(),
             ),
         ),

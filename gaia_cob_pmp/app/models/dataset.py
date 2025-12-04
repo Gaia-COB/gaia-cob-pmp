@@ -118,6 +118,20 @@ class DataSet(Model):
         default=False, help_text="Entries require approval by site staff before they are visible."
     )
 
+    def get_clean_arxiv_url(self):
+        if not self.arxiv_url:
+            return "#"
+        if self.arxiv_url[:8] != "https://" and self.arxiv_url[:7] != "http://":
+            return f"https://{self.arxiv_url}"
+        return self.arxiv_url.replace("http://", "https://")
+
+    def get_clean_ads_url(self):
+        if not self.ads_url:
+            return "#"
+        if self.ads_url[:8] != "https://" and self.ads_url[:7] != "http://":
+            return f"https://{self.ads_url}"
+        return self.ads_url.replace("http://", "https://")
+
 
 User = get_user_model()
 

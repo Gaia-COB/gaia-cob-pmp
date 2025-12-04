@@ -8,8 +8,10 @@ from iommi.main_menu import M
 from app.forms.instrument import InstrumentForm
 from app.pages.instrument import InstrumentViewPage
 from app.tables.instrument import InstrumentTable
+from app.tables.proposal import ProposalTable
 
 instrument_submenu: M = M(
+    display_name="Instruments",
     icon="satellite",
     include=lambda user, **_: user.is_authenticated and user.is_active,
     view=InstrumentTable().as_view(),
@@ -35,8 +37,17 @@ instrument_submenu: M = M(
             url=lambda instrument, **_: instrument.get_absolute_url(),
             view=InstrumentViewPage().as_view(),
             items=dict(
+                list_proposals=M(
+                    display_name="List Proposals",
+                    icon="list",
+                    view=ProposalTable(
+                        rows=lambda instrument, **_: instrument.proposal_set.all(),
+                        title=lambda instrument, **_: f"{instrument} Proposals",
+                    ).as_view(),
+                ),
                 change=M(
                     icon="pencil",
+                    display_name="edit",
                     include=lambda user, instrument, **_: user.has_perm(
                         "app.change_instrument", instrument
                     ),
@@ -48,7 +59,6 @@ instrument_submenu: M = M(
                     ),
                 ),
                 delete=M(
-                    display_name=lambda instrument, **_: f"Delete {instrument}",
                     icon="trash",
                     include=lambda user, instrument, **_: user.has_perm(
                         "app.delete_instrument", instrument

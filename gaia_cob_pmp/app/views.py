@@ -1,10 +1,16 @@
 """Supplemental Django views"""
 
 from django.core.exceptions import PermissionDenied
-from django.http import FileResponse
+from django.http import FileResponse, HttpResponse
 from django.shortcuts import get_object_or_404
 
 from app.models.dataset import DataSet
+
+
+def bibtex_view(request, dataset_pk):
+    dataset = get_object_or_404(DataSet, pk=dataset_pk)
+
+    return HttpResponse(dataset.bibtex)
 
 
 def download_dataset_view(request, dataset_pk):

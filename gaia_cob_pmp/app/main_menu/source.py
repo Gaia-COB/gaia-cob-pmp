@@ -3,13 +3,14 @@ Submenu for items relating to sources.
 """
 
 from iommi import LAST, Field
-from iommi.main_menu import M
+from iommi.main_menu import EXTERNAL, M
 
 from app.forms.source import SourceForm, SourceGaiaInfoForm
 from app.pages.source import SourceViewPage
 from app.tables.source import SourceTable
 
 source_submenu: M = M(
+    display_name="Sources",
     icon="sun",
     include=lambda user, **_: user.is_authenticated and user.is_active,
     view=SourceTable().as_view(),
@@ -46,6 +47,12 @@ source_submenu: M = M(
                         fields__source=Field.non_rendered(initial=lambda source, **_: source),
                         extra__redirect_to=lambda source, **_: source.get_absolute_url(),
                     ),
+                ),
+                view_on_aladin=M(
+                    display_name="View on Aladin",
+                    icon="bullseye",
+                    view=EXTERNAL,
+                    url=lambda source, **_: source.aladin_link(),
                 ),
                 change=M(
                     icon="pencil",

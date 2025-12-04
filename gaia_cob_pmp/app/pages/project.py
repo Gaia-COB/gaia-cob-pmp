@@ -11,7 +11,7 @@ class ProjectViewPage(Page):
 
     header = Header(lambda project, **_: project)
     detail = ProjectForm(
-        auto__exclude=["is_valid", "name"],
+        auto__exclude=["is_valid", "name", "members"],
         instance=lambda project, **_: project,
         editable=False,
     )

@@ -2,16 +2,20 @@
 Submenu for items relating to projects.
 """
 
+from django.db.models import Q
 from iommi import LAST
 from iommi.main_menu import M
 
 from app.forms.project import ProjectForm
 from app.forms.proposal import ProposalForm
 from app.main_menu.proposal import proposal_submenu
+from app.models import Researcher
 from app.pages.project import ProjectViewPage
 from app.tables.project import ProjectTable
+from app.tables.researcher import ResearcherTable
 
 project_submenu: M = M(
+    display_name="Projects",
     icon="diagram-project",
     include=lambda user, **_: user.is_authenticated and user.is_active,
     view=ProjectTable().as_view(),
@@ -40,6 +44,15 @@ project_submenu: M = M(
             url=lambda project, **_: project.get_absolute_url(),
             view=ProjectViewPage().as_view(),
             items=dict(
+                list_members=M(
+                    icon="users",
+                    view=ResearcherTable(
+                        rows=lambda project, **_: Researcher.objects.filter(
+                            Q(pk__in=project.members.all())
+                            | Q(pk=project.principal_investigator.pk)
+                        )
+                    ).as_view(),
+                ),
                 change=M(
                     icon="pencil",
                     include=lambda user, project, **_: user.has_perm(
