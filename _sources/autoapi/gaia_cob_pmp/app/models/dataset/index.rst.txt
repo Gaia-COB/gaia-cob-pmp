@@ -81,6 +81,12 @@ Module Contents
    .. py:attribute:: is_valid
 
 
+   .. py:method:: get_clean_arxiv_url()
+
+
+   .. py:method:: get_clean_ads_url()
+
+
 .. py:data:: User
 
 .. py:function:: is_linked_project_member(user: User, dataset: DataSet) -> bool

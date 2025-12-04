@@ -14,11 +14,14 @@ Functions
 
 .. autoapisummary::
 
+   gaia_cob_pmp.app.views.bibtex_view
    gaia_cob_pmp.app.views.download_dataset_view
 
 
 Module Contents
 ---------------
+
+.. py:function:: bibtex_view(request, dataset_pk)
 
 .. py:function:: download_dataset_view(request, dataset_pk)
 
