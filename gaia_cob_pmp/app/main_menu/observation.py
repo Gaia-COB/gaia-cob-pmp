@@ -2,6 +2,7 @@
 Submenu for items relating to projects.
 """
 
+from django.urls import reverse
 from iommi import LAST, Field
 from iommi.main_menu import EXTERNAL, M
 
@@ -40,8 +41,11 @@ observation_submenu = M(
             icon="download",
             include=lambda user, observation, **_: hasattr(observation, "dataset")
             and user.has_perm("app.view_dataset", observation.dataset),
-            url="#",
+            # Slight hack to allow for usage of standard django URL/view config for downloads
             view=EXTERNAL,
+            url=lambda observation, **_: reverse(
+                "download-dataset", args=[observation.dataset.pk]
+            ),
         ),
         change_dataset=M(
             display_name="Change Dataset",
