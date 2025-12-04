@@ -87,6 +87,9 @@ Module Contents
    .. py:method:: get_clean_ads_url()
 
 
+   .. py:method:: get_df()
+
+
 .. py:data:: User
 
 .. py:function:: is_linked_project_member(user: User, dataset: DataSet) -> bool
