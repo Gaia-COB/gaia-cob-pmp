@@ -5,7 +5,7 @@ from app.forms.observation import DatasetForm, ObservationForm
 
 class ObservationViewPage(Page):
     """
-    The basic view for a project.
+    The basic view for an observation.
     """
 
     header = Header(
@@ -19,9 +19,10 @@ class ObservationViewPage(Page):
     )
     dataset = DatasetForm(
         auto__exclude=["observation", "upload", "arxiv_url", "ads_url", "bibtex"],
-        include=lambda observation, **_: hasattr(
-            observation, "dataset"
-        ),  # Skip this block if there's no dataset uploaded
+        include=lambda user, observation, **_: hasattr(observation, "dataset")
+        and (
+            observation.dataset.is_valid or user.is_staff
+        ),  # Skip this block if there's no dataset uploaded, or if its invalid (unless user is staff)
         instance=lambda observation, **_: observation.dataset,
         editable=False,
     )

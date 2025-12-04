@@ -51,6 +51,8 @@ class Observation(Model):
     def get_data_status(self) -> str:
         if not hasattr(self, "dataset"):
             return "Missing"
+        elif not self.dataset.is_valid:
+            return "Validating"
         elif not self.dataset.radial_velocity:
             return "Acquired"
         elif not self.dataset.arxiv_url and not self.dataset.ads_url:

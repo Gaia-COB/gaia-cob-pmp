@@ -11,6 +11,7 @@ from app.main_menu.instrument import instrument_submenu
 from app.main_menu.project import project_submenu
 from app.main_menu.researcher import researcher_submenu
 from app.main_menu.source import source_submenu
+from app.main_menu.validation import validation_submenu
 from app.pages import IndexPage, PrivacyPage
 
 main_menu = MainMenu(
@@ -40,6 +41,7 @@ main_menu = MainMenu(
             url="/accounts/login",
             view=EXTERNAL,
         ),
+        validation_queue=validation_submenu,
         iommi_admin=M(
             display_name="Admin",
             icon="screwdriver-wrench",
