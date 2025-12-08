@@ -1,5 +1,5 @@
 from django.core.validators import MinValueValidator
-from django.db.models import CASCADE, BooleanField, FloatField, Model, OneToOneField
+from django.db.models import CASCADE, BooleanField, FloatField, IntegerField, Model, OneToOneField
 from rules import add_perm, is_active, is_staff
 
 from app.models.source import Source
@@ -16,6 +16,11 @@ class SourceGaiaInfo(Model):
     source = OneToOneField(Source, on_delete=CASCADE, primary_key=True, related_name="gaiainfo")
     is_valid = BooleanField(
         default=False, help_text="Entries require approval by site staff before they are visible."
+    )
+    gaia_id = IntegerField(
+        validators=[MinValueValidator(0.0)],
+        verbose_name="Gaia ID",
+        help_text="The Gaia Source ID of the object.",
     )
 
     parallax = FloatField(null=True, blank=True, help_text="Parallax in mas")

@@ -1,6 +1,9 @@
 from iommi import Header, Page
+from iommi._web_compat import Template
+from plotly.offline import plot
 
 from app.forms.source import SourceForm, SourceGaiaInfoForm
+from app.plots.vpec_vs_gamma import get_vvg_plot
 
 
 class SourceViewPage(Page):
@@ -24,5 +27,18 @@ class SourceViewPage(Page):
         instance=lambda source, **_: source.gaiainfo,
         editable=False,
     )
+    plotly = Template("{{ page.extra_evaluated.vvg_plot | safe }}")
 
-    # Include plots as well
+    class Meta:
+        @staticmethod
+        def extra_evaluated__vvg_plot(source, **_) -> str:
+            """
+            Generates and renders the vpec_vs_gamma plot for a given source if relevant data is present
+            """
+            try:
+                # Get the vpec_vs_gamma plot
+                figure = get_vvg_plot(source)
+                return plot(figure, output_type="div")
+            except ValueError:
+                # If plot could not be generated (if source has no Gaiainfo or there's no file to draw from), skip and return an empty fragment
+                return ""
