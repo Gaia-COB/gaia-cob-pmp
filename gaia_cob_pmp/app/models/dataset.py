@@ -46,10 +46,10 @@ class DataSet(Model):
     flux_err_col = CharField(
         max_length=32,
         default="flux_err",
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         verbose_name="Flux Error Column",
-        help_text="The name of the flux error column in the dataset.",
+        help_text="The name of the flux error column in the dataset (set blank if no errors present).",
     )
 
     flux_units = ForeignKey(
