@@ -82,6 +82,13 @@ class DataSet(Model):
         blank=True,
     )
 
+    radial_velocity_error = FloatField(
+        verbose_name="Radial Velocity Error (km/s)",
+        help_text="The error on the radial velocity of the source in km/s",
+        null=True,
+        blank=True,
+    )
+
     doi = CharField(
         max_length=64,
         null=True,

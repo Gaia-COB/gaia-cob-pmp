@@ -2,6 +2,7 @@ import numpy as np
 import plotly.graph_objects as go
 from core.settings import MEDIA_ROOT
 from numpy.lib.npyio import NpzFile
+from plotly.offline import plot
 
 from app.models import Source
 
@@ -82,6 +83,19 @@ def get_vvg_plot(source: Source):
         showgrid=True,
         title="Peculiar Velocity (km/s)",
     )
-    fig.update_layout(showlegend=False)
 
-    return fig
+    window = (gamma.max() - gamma.min()) * 0.25
+    x_left = x_min - window
+    x_right = x_min + window
+    x_idx = np.where((gamma >= x_left) & (gamma <= x_right))[0]
+    y_hi_window = vpec_hi[x_idx]
+
+    y_margin = (vpec_hi.max() - vpec_lo.min()) * 0.05
+    y_top = y_hi_window.max() + y_margin
+    y_bottom = vpec_lo.min() - y_margin
+
+    fig.update_layout(
+        showlegend=False, xaxis_range=[x_left, x_right], yaxis_range=[y_bottom, y_top]
+    )
+
+    return plot(fig, output_type="div")
