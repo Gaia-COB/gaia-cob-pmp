@@ -39,7 +39,7 @@ source_submenu: M = M(
             items=dict(
                 # Adds the source Gaia info, with the source defaulting to the current one
                 add_gaiainfo=M(
-                    display_name=lambda source, **_: f"Add {source} Gaia info",
+                    display_name="Add Gaia info",
                     icon="plus",
                     include=lambda user, source, **_: not hasattr(source, "gaiainfo")
                     and user.has_perm("app.add_sourcegaiainfo"),

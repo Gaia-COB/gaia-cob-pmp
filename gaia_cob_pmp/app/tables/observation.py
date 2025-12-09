@@ -15,10 +15,11 @@ class ObservationTable(Table):
 
         auto = dict(
             model=Observation,
-            include=["date", "source"],
+            include=["jd", "source"],
         )
         columns = dict(
-            date=Column(
+            jd=Column(
+                display_name='Date (JD)',
                 cell__url=lambda row, **_: row.get_absolute_url(),
             ),
             status=Column(
