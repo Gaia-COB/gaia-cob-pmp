@@ -1,9 +1,9 @@
 import pandas as pd
 import plotly.graph_objects as go
-from core.settings import MEDIA_ROOT
+from django.db.models import F
 from plotly.offline import plot
 
-from app.models import Source
+from app.models import DataSet, Observation, Source
 
 x_margin = 5
 
@@ -24,29 +24,26 @@ def load_gaia_rv_data(source: Source) -> pd.DataFrame:
 
 
 def load_rv_data(source: Source) -> pd.DataFrame:
-    try:
-        source_id = source.gaiainfo.gaia_id
-    except AttributeError:
-        raise ValueError("No Gaia info for source")
-    in_path = f"{MEDIA_ROOT}/demo_data/{source_id}/{source_id}_obs_info_and_rv.csv"
-    try:
-        data = pd.read_csv(in_path)
-        return data
-    except FileNotFoundError:
-        raise ValueError("No rv file provided for source_id")
+    qset = DataSet.objects.filter(observation__source=source)
+    qset = qset.annotate(jd=F("observation__jd"))
+
+    df = pd.DataFrame(list(qset.values()))
+
+    if df.empty:
+        raise ValueError("No valid vr readings")
+
+    return df
 
 
 def get_rv_plot(source: Source):
-    # Get data from hardcoded demo datafiles for now
     data = load_rv_data(source)
 
     x = data["jd"] - data["jd"].min()
-    y = data["rv"]
-    yerr = data["rv_err"]
+    y = data["radial_velocity"]
+    yerr = data["radial_velocity_error"]
 
     # Setup figure
     fig = go.Figure()
-
 
     # Plot Gaia RV bounds if available
     try:
@@ -103,6 +100,25 @@ def get_rv_plot(source: Source):
         )
     )
 
+    plotAnnotes = []
+
+    # A nasty and a bit hacky way to get hyperlinks onto the plot without needing Dash magic
+    # MAY NOT SCALE FOR VERY LARGE DATASETS due to multiple queries!!
+    for index, row in data.iterrows():
+        obs_obj = Observation.objects.get(pk=row["observation_id"])
+        url = obs_obj.get_absolute_url()
+
+        plotAnnotes.append(
+            dict(
+                x=row["jd"] - data["jd"].min(),
+                y=row["radial_velocity"],
+                text=f"<a href='{url}'>    </a>",
+                showarrow=False,
+                xanchor="center",
+                yanchor="middle",
+            )
+        )
+
     fig.update_xaxes(
         minor=dict(ticklen=4, tickmode="auto", nticks=10, showgrid=True),
         ticklen=7,
@@ -118,7 +134,9 @@ def get_rv_plot(source: Source):
         title="Radial Velocity (km/s)",
     )
     fig.update_layout(
-        showlegend=False, xaxis_range=[-x_margin, data["jd"].max() - data["jd"].min() + x_margin]
+        annotations=plotAnnotes,
+        showlegend=False,
+        xaxis_range=[-x_margin, data["jd"].max() - data["jd"].min() + x_margin],
     )
 
     return plot(fig, output_type="div")

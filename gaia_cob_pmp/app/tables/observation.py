@@ -19,7 +19,7 @@ class ObservationTable(Table):
         )
         columns = dict(
             jd=Column(
-                display_name='Date (JD)',
+                display_name="Date (JD)",
                 cell__url=lambda row, **_: row.get_absolute_url(),
             ),
             status=Column(

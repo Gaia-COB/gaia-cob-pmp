@@ -53,6 +53,6 @@ class SourceViewPage(Page):
                 # Get the vpec_vs_gamma plot
                 figure = get_rv_plot(source)
                 return figure
-            except ValueError:
+            except AssertionError:
                 # If plot could not be generated (if source has no Gaiainfo or there's no file to draw from), skip and return an empty fragment
                 return ""
