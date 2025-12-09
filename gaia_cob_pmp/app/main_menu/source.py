@@ -65,7 +65,7 @@ source_submenu: M = M(
                     ),
                 ),
                 change_gaiainfo=M(
-                    display_name=lambda user, source, **_: f"Change {source} Gaia info",
+                    display_name="Change Gaia info",
                     icon="pen-ruler",
                     include=lambda user, source, **_: hasattr(source, "gaiainfo")
                     and user.has_perm("app.change_sourcegaiainfo"),

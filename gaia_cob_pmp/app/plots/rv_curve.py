@@ -10,17 +10,17 @@ x_margin = 5
 
 def load_gaia_rv_data(source: Source) -> pd.DataFrame:
     try:
-        source_id = source.gaiainfo.gaia_id
-    except AttributeError:
-        raise ValueError("No Gaia info for source")
-    try:
-        df_source_info = pd.read_csv(f"{MEDIA_ROOT}/demo_data/source_gaia_info.csv")
-        row = df_source_info[df_source_info["source_id"] == source_id]
-        gaia_rv = row["radial_velocity"].values[0]
-        gaia_rv_err = row["radial_velocity_error"].values[0]
+        gaia_rv = source.gaiainfo.radial_velocity
+        gaia_rv_err = source.gaiainfo.radial_velocity_error
+
+        # Check both values actually exist
+        assert gaia_rv is not None
+        assert gaia_rv_err is not None
+
         return gaia_rv, gaia_rv_err
-    except FileNotFoundError:
-        raise ValueError("No source info file")
+
+    except (AttributeError, AssertionError):
+        raise ValueError("No rv given for source")
 
 
 def load_rv_data(source: Source) -> pd.DataFrame:
@@ -47,21 +47,6 @@ def get_rv_plot(source: Source):
     # Setup figure
     fig = go.Figure()
 
-    # Plot central line
-    fig.add_trace(
-        go.Scatter(
-            x=x,
-            y=y,
-            error_y=dict(type="data", array=yerr, visible=True),
-            name="V_rad",
-            marker={
-                "symbol": "circle",
-                "color": "green",
-                "size": 10,
-                "line": dict(width=2, color="black"),
-            },
-        )
-    )
 
     # Plot Gaia RV bounds if available
     try:
@@ -101,6 +86,22 @@ def get_rv_plot(source: Source):
             text="Gaia RV ± 1σ",
             xanchor="right",
         )
+
+    # Plot central line
+    fig.add_trace(
+        go.Scatter(
+            x=x,
+            y=y,
+            error_y=dict(type="data", array=yerr, visible=True),
+            name="V_rad",
+            marker={
+                "symbol": "circle",
+                "color": "green",
+                "size": 10,
+                "line": dict(width=2, color="black"),
+            },
+        )
+    )
 
     fig.update_xaxes(
         minor=dict(ticklen=4, tickmode="auto", nticks=10, showgrid=True),
