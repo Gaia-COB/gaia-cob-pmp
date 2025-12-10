@@ -1,4 +1,4 @@
-from iommi import Header, Page, Fragment
+from iommi import Fragment, Header, Page
 from iommi._web_compat import Template
 
 from app.forms.observation import DatasetForm, ObservationForm
@@ -22,9 +22,7 @@ class ObservationViewPage(Page):
     data_plot = Fragment(
         Template("{{ page.extra_evaluated.data_plot | safe }}"),
         include=lambda user, observation, **_: hasattr(observation, "dataset")
-        and (
-            observation.dataset.is_valid or user.is_staff
-        ),
+        and (observation.dataset.is_valid or user.is_staff),
     )
     dataset = DatasetForm(
         auto__exclude=[
