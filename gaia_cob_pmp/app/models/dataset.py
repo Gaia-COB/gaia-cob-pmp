@@ -127,6 +127,7 @@ class DataSet(Model):
     )
 
     def get_clean_arxiv_url(self):
+        # Attempt some basic auto-formatting to allow for different styles of user-entered arxiv links
         if not self.arxiv_url:
             return "#"
         if self.arxiv_url[:8] != "https://" and self.arxiv_url[:7] != "http://":
@@ -134,6 +135,7 @@ class DataSet(Model):
         return self.arxiv_url.replace("http://", "https://")
 
     def get_clean_ads_url(self):
+        # Attempt some basic auto-formatting to allow for different styles of user-entered ads links
         if not self.ads_url:
             return "#"
         if self.ads_url[:8] != "https://" and self.ads_url[:7] != "http://":
@@ -152,12 +154,17 @@ class DataSet(Model):
             df.rename(
                 {
                     self.flux_col: "flux",
-                    self.flux_err_col: "flux_err",
                     self.wavelength_col: "wavelength",
                 },
                 errors="raise",
                 inplace=True,
             )
+
+            # Fetch errors if an error column header is provided
+            if self.flux_err_col:
+                df.rename({self.flux_err_col: "flux_err"}, errors='raise', inplace=True)
+            else:
+                df['flux_err'] = None
 
             return df
 

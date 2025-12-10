@@ -77,12 +77,7 @@ def get_rv_plot(source: Source):
                 line={"color": "red", "width": 0},
             )
         )
-        fig.add_annotation(
-            x=0.5 * (x_range[0] + x_range[1]),
-            y=gaia_rv,
-            text="Gaia RV ± 1σ",
-            xanchor="right",
-        )
+
 
     # Plot central line
     fig.add_trace(
@@ -91,6 +86,7 @@ def get_rv_plot(source: Source):
             y=y,
             error_y=dict(type="data", array=yerr, visible=True),
             name="V_rad",
+            mode='markers',
             marker={
                 "symbol": "circle",
                 "color": "green",
@@ -116,6 +112,17 @@ def get_rv_plot(source: Source):
                 showarrow=False,
                 xanchor="center",
                 yanchor="middle",
+            )
+        )
+
+    # Add label to Gaia RV range if it was plotted earlier
+    if got_gaia_rv:
+        plotAnnotes.append(
+            dict(
+                x=0.5 * (x_range[0] + x_range[1]),
+                y=gaia_rv,
+                text="Gaia RV ± 1σ",
+                xanchor="right",
             )
         )
 
