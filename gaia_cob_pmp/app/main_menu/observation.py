@@ -43,9 +43,9 @@ observation_submenu = M(
             and user.has_perm("app.view_dataset", observation.dataset),
             # Slight hack to allow for usage of standard django URL/view config for downloads
             view=EXTERNAL,
-            url=lambda observation, **_: reverse(
-                "download-dataset", args=[observation.dataset.pk]
-            ),
+            url=lambda observation, **_: reverse("download-dataset", args=[observation.dataset.pk])
+            if hasattr(observation, "dataset")
+            else "",
         ),
         bibtex=M(
             display_name="BibTeX",
@@ -53,7 +53,9 @@ observation_submenu = M(
             include=lambda observation, **_: hasattr(observation, "dataset")
             and observation.dataset.bibtex,
             view=EXTERNAL,
-            url=lambda observation, **_: reverse("bibtex", args=[observation.dataset.pk]),
+            url=lambda observation, **_: reverse("bibtex", args=[observation.dataset.pk])
+            if hasattr(observation, "dataset")
+            else "",
         ),
         arxiv=M(
             display_name="arXiV",
@@ -61,7 +63,9 @@ observation_submenu = M(
             include=lambda observation, **_: hasattr(observation, "dataset")
             and observation.dataset.arxiv_url,
             view=EXTERNAL,
-            url=lambda observation, **_: observation.dataset.get_clean_arxiv_url(),
+            url=lambda observation, **_: observation.dataset.get_clean_arxiv_url()
+            if hasattr(observation, "dataset")
+            else "",
         ),
         ads=M(
             display_name="ADS",
@@ -69,7 +73,9 @@ observation_submenu = M(
             include=lambda observation, **_: hasattr(observation, "dataset")
             and observation.dataset.ads_url,
             view=EXTERNAL,
-            url=lambda observation, **_: observation.dataset.get_clean_ads_url(),
+            url=lambda observation, **_: observation.dataset.get_clean_ads_url()
+            if hasattr(observation, "dataset")
+            else "",
         ),
         change_dataset=M(
             display_name="Change Dataset",

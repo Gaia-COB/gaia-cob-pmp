@@ -3,7 +3,7 @@ from django.db.models import (
     CASCADE,
     RESTRICT,
     BooleanField,
-    DateTimeField,
+    FloatField,
     ForeignKey,
     Model,
     TextField,
@@ -31,9 +31,9 @@ class Observation(Model):
         default=False, help_text="Entries require approval by site staff before they are visible."
     )
 
-    date = DateTimeField(
-        verbose_name="Date and Time",
-        help_text="The date and time of the observation.",
+    jd = FloatField(
+        verbose_name="Observation date (JD)",
+        help_text="The date and time of the observation, given in JD.",
         null=True,
         blank=True,
     )

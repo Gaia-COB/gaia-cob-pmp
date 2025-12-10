@@ -46,10 +46,10 @@ class DataSet(Model):
     flux_err_col = CharField(
         max_length=32,
         default="flux_err",
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         verbose_name="Flux Error Column",
-        help_text="The name of the flux error column in the dataset.",
+        help_text="The name of the flux error column in the dataset (set blank if no errors present).",
     )
 
     flux_units = ForeignKey(
@@ -78,6 +78,13 @@ class DataSet(Model):
     radial_velocity = FloatField(
         verbose_name="Radial Velocity (km/s)",
         help_text="The radial velocity of the source in km/s",
+        null=True,
+        blank=True,
+    )
+
+    radial_velocity_error = FloatField(
+        verbose_name="Radial Velocity Error (km/s)",
+        help_text="The error on the radial velocity of the source in km/s",
         null=True,
         blank=True,
     )
@@ -113,13 +120,14 @@ class DataSet(Model):
         help_text="The formatted BibTeX used to cite this dataset.",
     )
 
-    comment = TextField(null=True, blank=True, help_text="Additional comments.")
+    comment = TextField(null=True, blank=True, help_text="Additional comments on the dataset.")
 
     is_valid = BooleanField(
         default=False, help_text="Entries require approval by site staff before they are visible."
     )
 
     def get_clean_arxiv_url(self):
+        # Attempt some basic auto-formatting to allow for different styles of user-entered arxiv links
         if not self.arxiv_url:
             return "#"
         if self.arxiv_url[:8] != "https://" and self.arxiv_url[:7] != "http://":
@@ -127,6 +135,7 @@ class DataSet(Model):
         return self.arxiv_url.replace("http://", "https://")
 
     def get_clean_ads_url(self):
+        # Attempt some basic auto-formatting to allow for different styles of user-entered ads links
         if not self.ads_url:
             return "#"
         if self.ads_url[:8] != "https://" and self.ads_url[:7] != "http://":
@@ -142,15 +151,19 @@ class DataSet(Model):
             else:
                 raise NotImplementedError("Unrecognised filetype")
 
+            print(df)
             df.rename(
-                {
+                columns={
                     self.flux_col: "flux",
-                    self.flux_err_col: "flux_err",
                     self.wavelength_col: "wavelength",
                 },
                 errors="raise",
                 inplace=True,
             )
+
+            # Fetch errors if an error column header is provided
+            if self.flux_err_col:
+                df.rename({self.flux_err_col: "flux_err"}, errors='raise', inplace=True)
 
             return df
 
