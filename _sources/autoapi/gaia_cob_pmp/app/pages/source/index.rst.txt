@@ -31,6 +31,31 @@ Module Contents
    .. py:attribute:: detail
 
 
+   .. py:attribute:: vvg_plot
+
+
+   .. py:attribute:: rv_plot
+
+
    .. py:attribute:: gaia_info
+
+
+   .. py:class:: Meta
+
+      .. py:method:: extra_evaluated__vvg_plot(source, **_) -> str
+         :staticmethod:
+
+
+         Generates and renders the vpec_vs_gamma plot for a given source if relevant data is present
+
+
+
+      .. py:method:: extra_evaluated__rv_plot(source, **_) -> str
+         :staticmethod:
+
+
+         Generates and renders the rv_curve plot for a given source if relevant data is present
+
+
 
 

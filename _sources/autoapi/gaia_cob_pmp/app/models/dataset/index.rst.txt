@@ -63,6 +63,9 @@ Module Contents
    .. py:attribute:: radial_velocity
 
 
+   .. py:attribute:: radial_velocity_error
+
+
    .. py:attribute:: doi
 
 

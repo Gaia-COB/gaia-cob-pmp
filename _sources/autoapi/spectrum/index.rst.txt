@@ -1,0 +1,34 @@
+spectrum
+========
+
+.. py:module:: spectrum
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   spectrum.x_margin
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   spectrum.load_spectrum_data
+   spectrum.get_spectrum_plot
+
+
+Module Contents
+---------------
+
+.. py:data:: x_margin
+   :value: 5
+
+
+.. py:function:: load_spectrum_data(observation: app.models.Observation) -> pandas.DataFrame
+
+.. py:function:: get_spectrum_plot(observation: app.models.Observation)
+

@@ -200,6 +200,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../docs/src/developer.html">Developer Documentation</a></li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../../../../index.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../../flux/index.html">flux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../rv_curve/index.html">rv_curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spectrum/index.html">spectrum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../test_all/index.html">test_all</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../wavelength/index.html">wavelength</a></li>
 <li class="toctree-l2 current has-children"><a class="reference internal" href="../../../index.html">gaia_cob_pmp</a><input aria-label="Toggle navigation of gaia_cob_pmp" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
@@ -281,6 +283,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../manage/index.html">gaia_cob_pmp.manage</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../vpec_vs_gamma/index.html">vpec_vs_gamma</a></li>
 </ul>
 </li>
 </ul>
@@ -353,9 +356,25 @@
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.pages.observation.ObservationViewPage.data_plot">
+<span class="sig-name descname"><span class="pre">data_plot</span></span><a class="headerlink" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage.data_plot" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.pages.observation.ObservationViewPage.dataset">
 <span class="sig-name descname"><span class="pre">dataset</span></span><a class="headerlink" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage.dataset" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.pages.observation.ObservationViewPage.Meta">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage.Meta" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.pages.observation.ObservationViewPage.Meta.extra_evaluated__data_plot">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra_evaluated__data_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observation</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage.Meta.extra_evaluated__data_plot" title="Link to this definition">¶</a></dt>
+<dd><p>Generates and renders the plot for a given spectrum dataset if relevant data is present</p>
+</dd></dl>
+
+</dd></dl>
 
 </dd></dl>
 
@@ -423,7 +442,12 @@
 <li><a class="reference internal" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage"><code class="docutils literal notranslate"><span class="pre">ObservationViewPage</span></code></a><ul>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage.header"><code class="docutils literal notranslate"><span class="pre">ObservationViewPage.header</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage.detail"><code class="docutils literal notranslate"><span class="pre">ObservationViewPage.detail</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage.data_plot"><code class="docutils literal notranslate"><span class="pre">ObservationViewPage.data_plot</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage.dataset"><code class="docutils literal notranslate"><span class="pre">ObservationViewPage.dataset</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage.Meta"><code class="docutils literal notranslate"><span class="pre">ObservationViewPage.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.pages.observation.ObservationViewPage.Meta.extra_evaluated__data_plot"><code class="docutils literal notranslate"><span class="pre">ObservationViewPage.Meta.extra_evaluated__data_plot()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

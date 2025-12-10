@@ -1,0 +1,37 @@
+rv_curve
+========
+
+.. py:module:: rv_curve
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   rv_curve.x_margin
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   rv_curve.load_gaia_rv_data
+   rv_curve.load_rv_data
+   rv_curve.get_rv_plot
+
+
+Module Contents
+---------------
+
+.. py:data:: x_margin
+   :value: 5
+
+
+.. py:function:: load_gaia_rv_data(source: app.models.Source) -> pandas.DataFrame
+
+.. py:function:: load_rv_data(source: app.models.Source) -> pandas.DataFrame
+
+.. py:function:: get_rv_plot(source: app.models.Source)
+

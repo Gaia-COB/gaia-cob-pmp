@@ -29,6 +29,9 @@ Module Contents
    .. py:attribute:: astropy
 
 
+   .. py:attribute:: symbol
+
+
    .. py:method:: __str__() -> str
 
 

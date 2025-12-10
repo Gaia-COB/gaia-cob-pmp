@@ -1,0 +1,22 @@
+vpec_vs_gamma
+=============
+
+.. py:module:: vpec_vs_gamma
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   vpec_vs_gamma.load_vpec_gamma_data
+   vpec_vs_gamma.get_vvg_plot
+
+
+Module Contents
+---------------
+
+.. py:function:: load_vpec_gamma_data(source: app.models.Source) -> numpy.lib.npyio.NpzFile
+
+.. py:function:: get_vvg_plot(source: app.models.Source)
+

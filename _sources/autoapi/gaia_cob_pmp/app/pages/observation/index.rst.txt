@@ -29,6 +29,20 @@ Module Contents
    .. py:attribute:: detail
 
 
+   .. py:attribute:: data_plot
+
+
    .. py:attribute:: dataset
+
+
+   .. py:class:: Meta
+
+      .. py:method:: extra_evaluated__data_plot(observation, **_) -> str
+         :staticmethod:
+
+
+         Generates and renders the plot for a given spectrum dataset if relevant data is present
+
+
 
 
