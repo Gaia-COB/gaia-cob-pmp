@@ -151,7 +151,6 @@ class DataSet(Model):
             else:
                 raise NotImplementedError("Unrecognised filetype")
 
-            print(df)
             df.rename(
                 columns={
                     self.flux_col: "flux",
