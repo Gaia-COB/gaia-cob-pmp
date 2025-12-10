@@ -344,60 +344,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="s2">&quot;Proposal Management Platform&quot;</span><span class="p">)</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="s2">&quot;Whatever intro text&quot;</span><span class="p">)</span></div>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="s2">&quot;Intro text.&quot;</span><span class="p">)</span></div>
 
-
-
-<span class="c1"># class RankingPage(Page):</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     Ranking of bird owners by number of birds</span>
-<span class="c1">#</span>
-<span class="c1">#     NOT USED: This is just left in so you can see how to add plotly plots through Iommi extras</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#</span>
-<span class="c1">#     h1 = html.h1(&quot;Most Birds Awards&quot;)</span>
-<span class="c1">#     p = html.p(&quot;This award is sponsored by the RSPB&quot;)</span>
-<span class="c1">#</span>
-<span class="c1">#     table = Table(</span>
-<span class="c1">#         auto=dict(model=Owner, include=[&quot;name&quot;, &quot;bird_set&quot;]),</span>
-<span class="c1">#         columns=dict(</span>
-<span class="c1">#             name__sortable=False,</span>
-<span class="c1">#             bird_set=dict(</span>
-<span class="c1">#                 render_column=False,  # We can still use the data from this column for searches, sorting e.t.c.</span>
-<span class="c1">#                 # For simple things like this, you can instead do bird_set__render_column=False</span>
-<span class="c1">#             ),</span>
-<span class="c1">#             bird_count=Column(</span>
-<span class="c1">#                 cell__value=lambda row, **_: row.bird_set.count(),</span>
-<span class="c1">#                 auto_rowspan=True,</span>
-<span class="c1">#                 sortable=False,</span>
-<span class="c1">#             ),</span>
-<span class="c1">#         ),</span>
-<span class="c1">#         default_sort_order=&quot;bird_count&quot;,</span>
-<span class="c1">#     )</span>
-<span class="c1">#     plotly = Template(&quot;{{ page.extra_evaluated.plotly | safe }}&quot;)</span>
-<span class="c1">#</span>
-<span class="c1">#     class Meta:</span>
-<span class="c1">#         @staticmethod</span>
-<span class="c1">#         def extra_evaluated__plotly(params: dict[str, Any], **_) -&gt; str:</span>
-<span class="c1">#             &quot;&quot;&quot;</span>
-<span class="c1">#             Loads data from the database, and renders it into a plot.</span>
-<span class="c1">#</span>
-<span class="c1">#             :param params: The page parameters, including the load function it&#39;s for.</span>
-<span class="c1">#             :return: A div containing the rendered plot (or an empty string if no plot is needed).</span>
-<span class="c1">#             &quot;&quot;&quot;</span>
-<span class="c1">#             load_figure_template(&quot;bootstrap_dark&quot;)</span>
-<span class="c1">#             queryset: QuerySet[Owner] = Owner.objects.annotate(bird_count=Count(&quot;bird_set&quot;))</span>
-<span class="c1">#             df: DataFrame = DataFrame(list(queryset.values(&quot;bird_count&quot;)))</span>
-<span class="c1">#</span>
-<span class="c1">#             figure: Figure = Figure(</span>
-<span class="c1">#                 data=[Histogram(x=df[&quot;bird_count&quot;])],</span>
-<span class="c1">#                 layout=Layout(</span>
-<span class="c1">#                     template=&quot;bootstrap_dark&quot;,</span>
-<span class="c1">#                     xaxis=XAxis(title=&quot;Number of birds&quot;),</span>
-<span class="c1">#                     yaxis=YAxis(title=&quot;Number of owners&quot;),</span>
-<span class="c1">#                 ),</span>
-<span class="c1">#             )</span>
-<span class="c1">#             return plot(figure, output_type=&quot;div&quot;)</span>
 
 
 <div class="viewcode-block" id="PrivacyPage">
@@ -422,8 +370,6 @@
         <span class="p">)</span>
     <span class="p">)</span></div>
 
-    <span class="c1"># Add at the top: `from django.template.base import Fragment`</span>
-    <span class="c1"># template = Fragment(template=&quot;path/to/template.html&quot;)</span>
 </pre></div>
         </article>
       </div>
