@@ -19,6 +19,8 @@ class SourceViewPage(Page):
         instance=lambda source, **_: source,
         editable=False,
     )
+    vvg_plot = Template("{{ page.extra_evaluated.vvg_plot | safe }}")
+    rv_plot = Template("{{ page.extra_evaluated.rv_plot | safe }}")
     gaia_info = SourceGaiaInfoForm(
         auto__exclude=["is_valid", "source"],
         include=lambda source, **_: hasattr(
@@ -27,8 +29,6 @@ class SourceViewPage(Page):
         instance=lambda source, **_: source.gaiainfo,
         editable=False,
     )
-    vvg_plot = Template("{{ page.extra_evaluated.vvg_plot | safe }}")
-    rv_plot = Template("{{ page.extra_evaluated.rv_plot | safe }}")
 
     class Meta:
         @staticmethod

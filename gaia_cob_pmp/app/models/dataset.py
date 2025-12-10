@@ -120,7 +120,7 @@ class DataSet(Model):
         help_text="The formatted BibTeX used to cite this dataset.",
     )
 
-    comment = TextField(null=True, blank=True, help_text="Additional comments.")
+    comment = TextField(null=True, blank=True, help_text="Additional comments on the dataset.")
 
     is_valid = BooleanField(
         default=False, help_text="Entries require approval by site staff before they are visible."
@@ -151,8 +151,9 @@ class DataSet(Model):
             else:
                 raise NotImplementedError("Unrecognised filetype")
 
+            print(df)
             df.rename(
-                {
+                columns={
                     self.flux_col: "flux",
                     self.wavelength_col: "wavelength",
                 },
@@ -163,8 +164,6 @@ class DataSet(Model):
             # Fetch errors if an error column header is provided
             if self.flux_err_col:
                 df.rename({self.flux_err_col: "flux_err"}, errors='raise', inplace=True)
-            else:
-                df['flux_err'] = None
 
             return df
 

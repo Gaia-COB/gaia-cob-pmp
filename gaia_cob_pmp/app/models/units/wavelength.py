@@ -18,6 +18,12 @@ class WavelengthUnit(Model):
         blank=False,
     )
 
+    symbol = CharField(
+        max_length=32,
+        null=False,
+        blank=False,
+    )
+
     def __str__(self) -> str:
         return self.name
 
