@@ -163,7 +163,7 @@ class DataSet(Model):
 
             # Fetch errors if an error column header is provided
             if self.flux_err_col:
-                df.rename({self.flux_err_col: "flux_err"}, errors='raise', inplace=True)
+                df.rename({self.flux_err_col: "flux_err"}, errors="raise", inplace=True)
 
             return df
 

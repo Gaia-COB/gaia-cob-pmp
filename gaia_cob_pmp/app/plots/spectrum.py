@@ -1,9 +1,8 @@
 import pandas as pd
 import plotly.graph_objects as go
-from django.db.models import F
 from plotly.offline import plot
 
-from app.models import DataSet, Observation, Source
+from app.models import Observation
 
 x_margin = 5
 
@@ -19,21 +18,21 @@ def load_spectrum_data(observation: Observation) -> pd.DataFrame:
 
 
 def get_spectrum_plot(observation: Observation):
-
     data = load_spectrum_data(observation)
 
     # Setup figure
     fig = go.Figure()
 
-
     # Plot central line
     fig.add_trace(
         go.Scatter(
-            x=data['wavelength'],
-            y=data['flux'],
-            error_y=dict(type="data", array=data['flux_err'], visible=data['flux_err']) if 'flux_err' in data.columns else None,
+            x=data["wavelength"],
+            y=data["flux"],
+            error_y=dict(type="data", array=data["flux_err"], visible=data["flux_err"])
+            if "flux_err" in data.columns
+            else None,
             name="Flux",
-            mode='lines',
+            mode="lines",
             line=dict(width=1, color="black"),
         )
     )

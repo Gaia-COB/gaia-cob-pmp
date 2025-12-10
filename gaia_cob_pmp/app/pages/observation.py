@@ -21,7 +21,19 @@ class ObservationViewPage(Page):
     )
     data_plot = Template("{{ page.extra_evaluated.data_plot | safe }}")
     dataset = DatasetForm(
-        auto__exclude=["observation", "upload", "arxiv_url", "ads_url", "bibtex", "flux_col", "flux_err_col", "flux_units", "wavelength_col", "wavelength_units", "is_valid",],
+        auto__exclude=[
+            "observation",
+            "upload",
+            "arxiv_url",
+            "ads_url",
+            "bibtex",
+            "flux_col",
+            "flux_err_col",
+            "flux_units",
+            "wavelength_col",
+            "wavelength_units",
+            "is_valid",
+        ],
         include=lambda user, observation, **_: hasattr(observation, "dataset")
         and (
             observation.dataset.is_valid or user.is_staff

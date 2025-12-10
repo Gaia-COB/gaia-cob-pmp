@@ -78,7 +78,6 @@ def get_rv_plot(source: Source):
             )
         )
 
-
     # Plot central line
     fig.add_trace(
         go.Scatter(
@@ -86,7 +85,7 @@ def get_rv_plot(source: Source):
             y=y,
             error_y=dict(type="data", array=yerr, visible=True),
             name="V_rad",
-            mode='markers',
+            mode="markers",
             marker={
                 "symbol": "circle",
                 "color": "green",
