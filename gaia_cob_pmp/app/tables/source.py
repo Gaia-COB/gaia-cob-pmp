@@ -1,4 +1,4 @@
-from iommi import Table
+from iommi import Column, Table
 
 from app.models import Source
 
@@ -15,12 +15,18 @@ class SourceTable(Table):
 
         auto = dict(
             model=Source,
-            include=["name", "other_names"],
+            include=["name", "gaiainfo__gaia_id", "other_names", "ra", "dec"],
         )
         columns = dict(
             name=dict(
                 cell__url=lambda row, **_: row.get_absolute_url(),
                 filter=dict(  # Enables free-text search on the column names
+                    include=True,
+                    freetext=True,
+                ),
+            ),
+            gaiainfo_gaia_id=dict(
+                filter=dict(
                     include=True,
                     freetext=True,
                 ),

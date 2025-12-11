@@ -16,5 +16,7 @@ class ProjectViewPage(Page):
         editable=False,
     )
     proposal_table = ProposalTable(
+        auto__exclude=['project'],
         rows=lambda project, **_: project.proposal_set.all(),
+        columns__proposal__after=-1,
     )

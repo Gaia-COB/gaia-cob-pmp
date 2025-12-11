@@ -43,7 +43,7 @@ class MainAppConfig(AppConfig):
         register_path_decoding(proposal=Proposal)
 
         register_search_fields(
-            model=Source, search_fields=["name", "other_names"], allow_non_unique=True
+            model=Source, search_fields=["name", "other_names", "gaiainfo__gaia_id"], allow_non_unique=True
         )
         register_path_decoding(source=Source)
 

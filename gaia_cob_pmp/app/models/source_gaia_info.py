@@ -1,5 +1,5 @@
 from django.core.validators import MinValueValidator
-from django.db.models import CASCADE, BooleanField, FloatField, IntegerField, Model, OneToOneField
+from django.db.models import CASCADE, BooleanField, FloatField, BigIntegerField, Model, OneToOneField, TextField
 from rules import add_perm, is_active, is_staff
 
 from app.models.source import Source
@@ -17,10 +17,12 @@ class SourceGaiaInfo(Model):
     is_valid = BooleanField(
         default=False, help_text="Entries require approval by site staff before they are visible."
     )
-    gaia_id = IntegerField(
-        validators=[MinValueValidator(0.0)],
+    gaia_id = TextField(
         verbose_name="Gaia ID",
         help_text="The Gaia Source ID of the object.",
+        null=False,
+        blank=False,
+        max_length=32,
     )
 
     parallax = FloatField(null=True, blank=True, help_text="Parallax in mas")
@@ -88,7 +90,7 @@ class SourceGaiaInfo(Model):
     )
 
     def __str__(self) -> str:
-        return f"{self.source} Gaia info"
+        return f"{self.gaia_id}"
 
     def __repr__(self) -> str:
         return str(self)
