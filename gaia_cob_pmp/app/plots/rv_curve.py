@@ -107,7 +107,7 @@ def get_rv_plot(source: Source):
             dict(
                 x=row["jd"] - data["jd"].min(),
                 y=row["radial_velocity"],
-                text=f"<a href='{url}'>    </a>",
+                text=f"<a href='{url}'>     </a>",
                 showarrow=False,
                 xanchor="center",
                 yanchor="middle",
@@ -126,16 +126,18 @@ def get_rv_plot(source: Source):
         )
 
     fig.update_xaxes(
-        minor=dict(ticklen=4, tickmode="auto", nticks=10, showgrid=True),
+        minor=dict(ticks="inside", ticklen=4, tickmode="auto", nticks=10, showgrid=True),
         ticklen=7,
         tickmode="auto",
+        ticks="inside",
         showgrid=True,
         title=f"Time since JD {data['jd'].min():.1f} (days)",
     )
     fig.update_yaxes(
-        minor=dict(ticklen=4, tickmode="auto", nticks=10, showgrid=True),
+        minor=dict(ticks="inside", ticklen=4, tickmode="auto", nticks=10, showgrid=True),
         ticklen=7,
         tickmode="auto",
+        ticks="inside",
         showgrid=True,
         title="Radial Velocity (km/s)",
     )

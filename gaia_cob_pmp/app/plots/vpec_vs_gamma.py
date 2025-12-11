@@ -70,14 +70,16 @@ def get_vvg_plot(source: Source):
     )
 
     fig.update_xaxes(
-        minor=dict(ticklen=4, tickmode="auto", nticks=10, showgrid=True),
+        minor=dict(ticks="inside", ticklen=4, tickmode="auto", nticks=10, showgrid=True),
+        ticks="inside",
         ticklen=7,
         tickmode="auto",
         showgrid=True,
         title="Systemic Velocity (km/s)",
     )
     fig.update_yaxes(
-        minor=dict(ticklen=4, tickmode="auto", nticks=10, showgrid=True),
+        minor=dict(ticks="inside", ticklen=4, tickmode="auto", nticks=10, showgrid=True),
+        ticks="inside",
         ticklen=7,
         tickmode="auto",
         showgrid=True,

@@ -38,14 +38,16 @@ def get_spectrum_plot(observation: Observation):
     )
 
     fig.update_xaxes(
-        minor=dict(ticklen=4, tickmode="auto", nticks=10, showgrid=True),
+        minor=dict(ticks="inside", ticklen=4, tickmode="auto", nticks=10, showgrid=True),
+        ticks="inside",
         ticklen=7,
         tickmode="auto",
         showgrid=True,
         title=f"Wavelength ({observation.dataset.wavelength_units.symbol})",
     )
     fig.update_yaxes(
-        minor=dict(ticklen=4, tickmode="auto", nticks=10, showgrid=True),
+        minor=dict(ticks="inside", ticklen=4, tickmode="auto", nticks=10, showgrid=True),
+        ticks="inside",
         ticklen=7,
         tickmode="auto",
         showgrid=True,
