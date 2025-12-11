@@ -1,5 +1,12 @@
 from django.core.validators import MinValueValidator
-from django.db.models import CASCADE, BooleanField, FloatField, BigIntegerField, Model, OneToOneField, TextField
+from django.db.models import (
+    CASCADE,
+    BooleanField,
+    FloatField,
+    Model,
+    OneToOneField,
+    TextField,
+)
 from rules import add_perm, is_active, is_staff
 
 from app.models.source import Source

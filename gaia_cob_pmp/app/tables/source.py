@@ -1,4 +1,4 @@
-from iommi import Column, Table
+from iommi import Table
 
 from app.models import Source
 
