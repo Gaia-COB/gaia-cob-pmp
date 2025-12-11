@@ -109,6 +109,7 @@ setup:  ## Purge the existing DB and migrations, and create and apply new ones, 
 	-rm gaia_cob_pmp/app/migrations/0*.py
 	djmanage makemigrations
 	djmanage migrate
+	djmanage collectstatic
 	djmanage loaddata gaia_cob_pmp/app/fixtures/*.json
 
 server:  ## Run the server

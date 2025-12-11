@@ -99,6 +99,7 @@ MIDDLEWARE: list[str] = [
     "iommi.sql_trace.Middleware",
     "iommi.profiling.Middleware",
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -166,7 +167,7 @@ LOGGING: dict[str, Any] = {
 MEDIA_ROOT: Path = BASE_DIR / "media"
 MEDIA_URL: str = "/media/"
 
-STATIC_ROOT: Path = Path(__file__).parent.joinpath("static")
+STATIC_ROOT: Path = BASE_DIR / "static"
 STATIC_URL: str = "/static/"
 STATICFILES_FINDERS: list[str] = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -196,7 +197,7 @@ from iommi.style_bootstrap5 import bootstrap5, select2_enhanced_forms  # noqa: E
 # Uses font-awesome icons: https://fontawesome.com/search?ic=free&o=r
 from iommi.style_font_awesome_6 import font_awesome_6  # noqa: E402
 
-IOMMI_DEBUG: bool = config("DEBUG", False)
+IOMMI_DEBUG: bool = config("DEBUG", default=False, cast=bool)
 IOMMI_DEFAULT_STYLE: Style = Style(
     bootstrap5,
     select2_enhanced_forms,
