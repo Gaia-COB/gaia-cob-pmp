@@ -80,7 +80,7 @@ validation_submenu: M = M(
             view=ObservationTable(
                 rows=Observation.objects.filter(dataset__is_valid=False),
                 columns__select__include=True,
-                auto__include=["date", "proposal__instrument", "source"],
+                auto__include=["jd", "proposal__instrument", "source"],
                 bulk__title="Actions",
                 bulk__actions__validate=Action.submit(
                     display_name="Bulk Validate", post_handler=validate_dataset_by_observation
