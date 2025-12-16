@@ -56,6 +56,6 @@ class ObservationViewPage(Page):
                 # Get the vpec_vs_gamma plot
                 figure = get_spectrum_plot(observation)
                 return figure
-            except AssertionError:
+            except ValueError:
                 # If plot could not be generated (if source has no DataSet or there's no file to draw from), skip and return an empty fragment
                 return ""
