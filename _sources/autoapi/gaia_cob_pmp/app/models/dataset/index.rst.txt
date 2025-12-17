@@ -98,9 +98,10 @@ Module Contents
 .. py:function:: is_linked_project_member(user: User, dataset: DataSet) -> bool
 
    Does this user account correspond to a researcher who is a member of the project linked to this dataset?
+   If not, does the dataset have an ArXiV link (i.e. the data is public)?
 
    :param user: User to check.
    :param proposal: The Proposal to check.
-   :return: True if the user is a Researcher who is a member of this proposal's linked project, else False.
+   :return: True if the user is a Researcher who is a member of this proposal's linked project, else True if the user is active and the dataset has an arXiV link, else False.
 
 
