@@ -178,15 +178,19 @@ User = get_user_model()
 def is_linked_project_member(user: User, dataset: DataSet) -> bool:
     """
     Does this user account correspond to a researcher who is a member of the project linked to this dataset?
+    If not, does the dataset have an ArXiV link (i.e. the data is public)?
 
     :param user: User to check.
     :param proposal: The Proposal to check.
-    :return: True if the user is a Researcher who is a member of this proposal's linked project, else False.
+    :return: True if the user is a Researcher who is a member of this proposal's linked project, else True if the user is active and the dataset has an arXiV link, else False.
     """
+    if dataset.arxiv_url:
+        return user and user.is_active
+
     return (
         user
-        and (user.researcher == dataset.proposal.project.principal_investigator)
-        or (user.researcher in dataset.proposal.project.members.all())
+        and (user.researcher == dataset.observation.proposal.project.principal_investigator)
+        or (user.researcher in dataset.observation.proposal.project.members.all())
     )
 
 

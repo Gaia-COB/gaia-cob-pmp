@@ -22,7 +22,8 @@ class ObservationViewPage(Page):
     data_plot = Fragment(
         Template("{{ page.extra_evaluated.data_plot | safe }}"),
         include=lambda user, observation, **_: hasattr(observation, "dataset")
-        and (observation.dataset.is_valid or user.is_staff),
+        and (observation.dataset.is_valid or user.is_staff)
+        and (user.has_perm("app.view_dataset", observation.dataset)),
     )
     dataset = DatasetForm(
         auto__exclude=[
@@ -39,9 +40,8 @@ class ObservationViewPage(Page):
             "is_valid",
         ],
         include=lambda user, observation, **_: hasattr(observation, "dataset")
-        and (
-            observation.dataset.is_valid or user.is_staff
-        ),  # Skip this block if there's no dataset uploaded, or if its invalid (unless user is staff)
+        and (observation.dataset.is_valid or user.is_staff)
+        and (user.has_perm("app.view_dataset", observation.dataset)),
         instance=lambda observation, **_: observation.dataset,
         editable=False,
     )
