@@ -47,8 +47,7 @@ class Source(Model):
         """
         return f"{self.ra}{self.dec:+g}"
 
-
-    def aladin_link(self, survey: str|None = None, fov: float|None = None) -> str:
+    def aladin_link(self, survey: str | None = None, fov: float | None = None) -> str:
         """
         Gets the link to the source on Aladin
 

@@ -34,15 +34,19 @@ class SourceViewPage(Page):
                     aladin_target=Asset.js(
                         lambda source, **_: mark_safe(
                             f'let aladin_target = "{source.get_aladin_coordinates()}";'
-                            f'let aladin_fov = {settings.ALADIN_DEFAULT_FOV:.1f};'
-                            f'let aladin_survey = {settings.ALADIN_DEFAULT_SURVEY};'
+                            f"let aladin_fov = {settings.ALADIN_DEFAULT_FOV:.1f};"
+                            f"let aladin_survey = {settings.ALADIN_DEFAULT_SURVEY};"
                         )
                     ),
-                    aladin_library=Asset.js(attrs__src="https://aladin.cds.unistra.fr/AladinLite/api/v3/latest/aladin.js"),
-                    aladin=Asset.js(attrs__src="/static/js/source_aladin.js", in_body=True),  # The code that finds the div and renders it
-                )
+                    aladin_library=Asset.js(
+                        attrs__src="https://aladin.cds.unistra.fr/AladinLite/api/v3/latest/aladin.js"
+                    ),
+                    aladin=Asset.js(
+                        attrs__src="/static/js/source_aladin.js", in_body=True
+                    ),  # The code that finds the div and renders it
+                ),
             ),
-        )
+        ),
     )
     vvg_plot = Template("{{ page.extra_evaluated.vvg_plot | safe }}")
     rv_plot = Template("{{ page.extra_evaluated.rv_plot | safe }}")
