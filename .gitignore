@@ -255,3 +255,4 @@ target
 # Uploaded file storage
 gaia_cob_pmp/media/
 gaia_cob_pmp/static/
+gaia_cob_pmp/logs/
