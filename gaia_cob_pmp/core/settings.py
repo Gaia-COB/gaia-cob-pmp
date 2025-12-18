@@ -146,17 +146,50 @@ SITE_ID: int = 1
 # django: Logging
 # https://docs.djangoproject.com/en/5.2/topics/logging/
 ################################################################################
+LOGS_ROOT: Path = BASE_DIR / "logs"
 LOGGING: dict[str, Any] = {
-    "version": 1,
-    "disable_existing_loggers": False,
+    "version": 1,  # the dictConfig format version
+    "disable_existing_loggers": False,  # retain the default loggers
     "handlers": {
+        "file_django": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": LOGS_ROOT / "django.log",
+            "maxBytes": 1024 * 1024 * 1,
+            "backupCount": 2,
+            "formatter": "verbose",
+        },
+        "file_app": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": LOGS_ROOT / "django.app.log",
+            "maxBytes": 1024 * 1024 * 1,
+            "backupCount": 2,
+            "formatter": "verbose",
+        },
         "console": {
             "class": "logging.StreamHandler",
         },
     },
-    "root": {
-        "handlers": ["console"],
-        "level": "DEBUG",
+    "loggers": {
+        "": {
+            "level": "DEBUG",
+            "handlers": ["file_django"],
+            "propagate": False,
+        },
+        "app": {
+            "level": "DEBUG",
+            "handlers": ["file_app"],
+            "propagate": False,
+        },
+    },
+    "formatters": {
+        "verbose": {
+            "format": "{name} {levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
     },
 }
 
@@ -260,8 +293,18 @@ CORS_ALLOWED_ORIGINS: list[str] = [
     "http://localhost:8000",
     "https://accounts.google.com",
     "http://accounts.google.com",
+    "https://aladin.cds.unistra.fr",
+    "https://code.jquery.com",
+    "https://irsa.ipac.caltech.edu",
 ]
-
 SECURE_REFERRER_POLICY: str = (
     "no-referrer-when-downgrade"  # Or CORS blocks javascript by passing unnecessary details
 )
+
+################################################################################
+# App settings: Loads these from the .env file
+################################################################################
+ALADIN_DEFAULT_FOV: float = config("ALADIN_DEFAULT_FOV", cast=float, default=0.2)
+ALADIN_DEFAULT_SURVEY: str = config("ALADIN_DEFAULT_SURVEY", cast=str, default="'P/DSS2/color'")
+if ALADIN_DEFAULT_SURVEY[0] != "'":
+    ALADIN_DEFAULT_SURVEY = "'" + ALADIN_DEFAULT_SURVEY + "'"

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import BooleanField, CharField, FloatField, Model
 from rules import add_perm, is_active, is_staff
@@ -38,15 +39,25 @@ class Source(Model):
         help_text="Declination (Dec) in decimal degrees",
     )
 
-    def aladin_link(self, survey: str = "P/DSS2/color", fov: float = 0.2) -> str:
+    def get_aladin_coordinates(self) -> str:
+        """
+        Gets the 'target' coordinates for this source on Aladin.
+
+        :returns: The Aladin-format RA & Dec.
+        """
+        return f"{self.ra}{self.dec:+g}"
+
+    def aladin_link(self, survey: str | None = None, fov: float | None = None) -> str:
         """
         Gets the link to the source on Aladin
 
         :param survey: Selection of survey image.
-        :param fov: Initial field of view.
+        :param fov: Initial field of view. If none, defaults to value from settings.
         :returns: The link to a view of the source's sky location.
         """
-        return f"https://aladin.u-strasbg.fr/AladinLite/?target={self.ra}{self.dec:+g}&fov={fov:.1f}&survey={survey}"
+        fov = fov or settings.ALADIN_DEFAULT_FOV
+        survey = survey or settings.ALADIN_DEFAULT_SURVEY
+        return f"https://aladin.u-strasbg.fr/AladinLite/?target={self.get_aladin_coordinates()}&fov={fov:.1f}&survey={survey}"
 
     def get_absolute_url(self) -> str:
         return f"/source/{self.pk}/"
