@@ -41,6 +41,7 @@ Attributes
    gaia_cob_pmp.core.settings.USE_I18N
    gaia_cob_pmp.core.settings.USE_TZ
    gaia_cob_pmp.core.settings.SITE_ID
+   gaia_cob_pmp.core.settings.LOGS_ROOT
    gaia_cob_pmp.core.settings.LOGGING
    gaia_cob_pmp.core.settings.MEDIA_ROOT
    gaia_cob_pmp.core.settings.MEDIA_URL
@@ -68,6 +69,9 @@ Attributes
    gaia_cob_pmp.core.settings.CORS_ALLOW_HEADERS
    gaia_cob_pmp.core.settings.CORS_ALLOWED_ORIGINS
    gaia_cob_pmp.core.settings.SECURE_REFERRER_POLICY
+   gaia_cob_pmp.core.settings.ALADIN_DEFAULT_FOV
+   gaia_cob_pmp.core.settings.ALADIN_DEFAULT_SURVEY
+   gaia_cob_pmp.core.settings.ALADIN_DEFAULT_SURVEY
 
 
 Module Contents
@@ -155,6 +159,9 @@ Module Contents
    :type:  int
    :value: 1
 
+
+.. py:data:: LOGS_ROOT
+   :type:  pathlib.Path
 
 .. py:data:: LOGGING
    :type:  dict[str, Any]
@@ -269,4 +276,12 @@ Module Contents
    :type:  str
    :value: 'no-referrer-when-downgrade'
 
+
+.. py:data:: ALADIN_DEFAULT_FOV
+   :type:  float
+
+.. py:data:: ALADIN_DEFAULT_SURVEY
+   :type:  str
+
+.. py:data:: ALADIN_DEFAULT_SURVEY
 

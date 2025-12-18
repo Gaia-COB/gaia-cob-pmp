@@ -371,14 +371,25 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.models.source.Source.get_aladin_coordinates">
+<span class="sig-name descname"><span class="pre">get_aladin_coordinates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.source.Source.get_aladin_coordinates" title="Link to this definition">¶</a></dt>
+<dd><p>Gets the ‘target’ coordinates for this source on Aladin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Aladin-format RA &amp; Dec.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.models.source.Source.aladin_link">
-<span class="sig-name descname"><span class="pre">aladin_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'P/DSS2/color'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fov</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.source.Source.aladin_link" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">aladin_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fov</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gaia_cob_pmp.app.models.source.Source.aladin_link" title="Link to this definition">¶</a></dt>
 <dd><p>Gets the link to the source on Aladin</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>survey</strong> – Selection of survey image.</p></li>
-<li><p><strong>fov</strong> – Initial field of view.</p></li>
+<li><p><strong>fov</strong> – Initial field of view. If none, defaults to value from settings.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -471,6 +482,7 @@
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.source.Source.other_names"><code class="docutils literal notranslate"><span class="pre">Source.other_names</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.source.Source.ra"><code class="docutils literal notranslate"><span class="pre">Source.ra</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.source.Source.dec"><code class="docutils literal notranslate"><span class="pre">Source.dec</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.models.source.Source.get_aladin_coordinates"><code class="docutils literal notranslate"><span class="pre">Source.get_aladin_coordinates()</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.source.Source.aladin_link"><code class="docutils literal notranslate"><span class="pre">Source.aladin_link()</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.source.Source.get_absolute_url"><code class="docutils literal notranslate"><span class="pre">Source.get_absolute_url()</span></code></a></li>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.models.source.Source.__str__"><code class="docutils literal notranslate"><span class="pre">Source.__str__()</span></code></a></li>

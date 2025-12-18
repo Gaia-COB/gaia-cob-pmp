@@ -38,12 +38,20 @@ Module Contents
    .. py:attribute:: dec
 
 
-   .. py:method:: aladin_link(survey: str = 'P/DSS2/color', fov: float = 0.2) -> str
+   .. py:method:: get_aladin_coordinates() -> str
+
+      Gets the 'target' coordinates for this source on Aladin.
+
+      :returns: The Aladin-format RA & Dec.
+
+
+
+   .. py:method:: aladin_link(survey: str | None = None, fov: float | None = None) -> str
 
       Gets the link to the source on Aladin
 
       :param survey: Selection of survey image.
-      :param fov: Initial field of view.
+      :param fov: Initial field of view. If none, defaults to value from settings.
       :returns: The link to a view of the source's sky location.
 
 
