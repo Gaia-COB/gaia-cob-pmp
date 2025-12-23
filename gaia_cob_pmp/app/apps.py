@@ -17,12 +17,14 @@ class MainAppConfig(AppConfig):
         logger.info("Main app is ready.")
 
         from app.models import (
+            FluxUnit,
             Instrument,
             Observation,
             Project,
             Proposal,
             Researcher,
             Source,
+            WavelengthUnit,
         )
 
         # Iommi path decoding and settings for model searches
@@ -53,3 +55,5 @@ class MainAppConfig(AppConfig):
             model=Researcher, search_fields=["user", "affiliations"], allow_non_unique=True
         )
         register_path_decoding(researcher=Researcher)
+        register_search_fields(model=WavelengthUnit, search_fields=["name"], allow_non_unique=True)
+        register_search_fields(model=FluxUnit, search_fields=["name"], allow_non_unique=True)

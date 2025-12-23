@@ -54,10 +54,6 @@ class BulkObservationForm(Form):
     wavelength_units = Field.choice_queryset(choices=WavelengthUnit.objects.all())
 
     class Meta:
-        # Remove default 'on create' behaviour
-        def extra__new_instance(**_):
-            return None
-
         # Define custom logic for handling bulk uploads
         def actions__submit__post_handler(form, user, **_):
             if not form.is_valid():

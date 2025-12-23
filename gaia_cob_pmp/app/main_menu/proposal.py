@@ -59,8 +59,9 @@ proposal_submenu = M(
         bulk_add_observations=M(
             icon="plus",
             include=lambda user, proposal, **_: user.has_perm("app.change_proposal", proposal),
-            view=BulkObservationForm.create(
-                fields__proposal__initial=lambda proposal, **_: proposal
+            view=BulkObservationForm(
+                fields__proposal__initial=lambda proposal, **_: proposal,
+                title="Bulk Upload Observations",
             ),
         ),
         view=observation_submenu,
