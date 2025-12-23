@@ -2,12 +2,10 @@
 Submenu for items relating to projects.
 """
 
-from django.forms.widgets import HiddenInput
-
 from iommi import LAST
 from iommi.main_menu import M
 
-from app.forms.observation import ObservationForm, BulkObservationForm
+from app.forms.observation import BulkObservationForm, ObservationForm
 from app.forms.proposal import ProposalForm
 from app.main_menu.observation import observation_submenu
 from app.pages.proposal import ProposalViewPage

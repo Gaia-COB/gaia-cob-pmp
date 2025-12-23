@@ -1,8 +1,11 @@
-from iommi import Form, Field
-from app.models import DataSet, Observation, Proposal, Source, FluxUnit, WavelengthUnit
 from zipfile import BadZipFile, ZipFile
+
 import pandas as pd
 from django.core.files import File as DjangoFile
+from iommi import Field, Form
+
+from app.models import DataSet, FluxUnit, Observation, Proposal, Source, WavelengthUnit
+
 
 class DatasetForm(Form):
     """
@@ -24,8 +27,13 @@ class ObservationForm(Form):
 
 class BulkObservationForm(Form):
     proposal = Field.choice_queryset(choices=Proposal.objects.all(), editable=False)
-    source = Field.choice_queryset(choices=Source.objects.filter(is_valid=True), help_text="The source which was observed in this batch of observations.")
-    upload_archive = Field.file(help_text='Upload a .zip or a .tar file containing a number of .csv or .fits spectra, along with a csv titled \'index.csv\' which contains auxilliary information on each spectrum.')
+    source = Field.choice_queryset(
+        choices=Source.objects.filter(is_valid=True),
+        help_text="The source which was observed in this batch of observations.",
+    )
+    upload_archive = Field.file(
+        help_text="Upload a .zip or a .tar file containing a number of .csv or .fits spectra, along with a csv titled 'index.csv' which contains auxilliary information on each spectrum."
+    )
     flux_col = Field(
         initial="flux",
         display_name="Flux Column",
@@ -46,9 +54,9 @@ class BulkObservationForm(Form):
     wavelength_units = Field.choice_queryset(choices=WavelengthUnit.objects.all())
 
     class Meta:
-
         # Remove default 'on create' behaviour
-        extra__new_instance = lambda **_ : None
+        def extra__new_instance(**_):
+            return None
 
         # Define custom logic for handling bulk uploads
         def actions__submit__post_handler(form, user, **_):
@@ -60,24 +68,24 @@ class BulkObservationForm(Form):
 
             # Attempt to unzip the archive in memory
             try:
-                zipf=ZipFile(fields.upload_archive.value)
+                zipf = ZipFile(fields.upload_archive.value)
             except BadZipFile:
                 # Bad Zip error handling here
-                print('Bad zip file!')
+                print("Bad zip file!")
                 return
 
             # Attempt to load the index file from the archive and parse it
             try:
-                indexfile = zipf.open('index.csv')
+                indexfile = zipf.open("index.csv")
                 indexdf = pd.read_csv(indexfile)
 
                 # Check mandatory columns are present in the index df
-                for key_column in ('file_name', 'jd'):
+                for key_column in ("file_name", "jd"):
                     assert key_column in indexdf.columns.values
 
-            except (KeyError, AsserttionError):
+            except (KeyError, AssertionError):
                 # No Index File error handling here
-                print('Bad index file!')
+                print("Bad index file!")
                 return
 
             succesful_observations = 0
@@ -89,26 +97,28 @@ class BulkObservationForm(Form):
                     obs_object = Observation(
                         source=fields.source.value,
                         proposal=fields.proposal.value,
-                        jd=row['jd'],
+                        jd=row["jd"],
                     )
 
                 except ValueError:
                     # If the row data in the index csv is malformed, skip it
                     continue
 
-                if 'comment' in indexdf.columns.values:
-                    obs_object.comment = row['comment']
+                if "comment" in indexdf.columns.values:
+                    obs_object.comment = row["comment"]
 
                 obs_object.save()
-                succesful_observations+=1
+                succesful_observations += 1
 
                 # Now try and handle the linked Datafile
                 try:
-                    datafile_upload=DjangoFile(zipf.open(row['file_name'], 'r'), name=row['file_name'])
+                    datafile_upload = DjangoFile(
+                        zipf.open(row["file_name"], "r"), name=row["file_name"]
+                    )
 
                 except KeyError:
                     # If the file isnt present in the zip, skip it
-                    print('bad filename')
+                    print("bad filename")
                     continue
 
                 try:
@@ -120,28 +130,28 @@ class BulkObservationForm(Form):
                         flux_units=fields.flux_units.value,
                         wavelength_col=fields.wavelength_col.value,
                         wavelength_units=fields.wavelength_units.value,
-                        is_valid=user.is_staff
+                        is_valid=user.is_staff,
                     )
                 except AssertionError:
                     # If the metadata for the value object is bad, skip it
                     continue
 
-                if 'rv' in indexdf.columns.values:
-                    data_object.radial_velocity = row['rv']
-                elif 'radial_velocity' in indexdf.columns.values:
-                    data_object.radial_velocity = row['radial_velocity']
+                if "rv" in indexdf.columns.values:
+                    data_object.radial_velocity = row["rv"]
+                elif "radial_velocity" in indexdf.columns.values:
+                    data_object.radial_velocity = row["radial_velocity"]
 
-                if 'rv_err' in indexdf.columns.values:
-                    data_object.radial_velocity_error = row['rv_err']
-                elif 'radial_velocity_error' in indexdf.columns.values:
-                    data_object.radial_velocity_error = row['radial_velocity_error']
+                if "rv_err" in indexdf.columns.values:
+                    data_object.radial_velocity_error = row["rv_err"]
+                elif "radial_velocity_error" in indexdf.columns.values:
+                    data_object.radial_velocity_error = row["radial_velocity_error"]
 
-                for attr in ('doi', 'arxiv_url', 'ads_url', 'bibtex', 'comment'):
+                for attr in ("doi", "arxiv_url", "ads_url", "bibtex", "comment"):
                     if attr in indexdf.columns.values:
                         setattr(data_object, attr, row[attr])
 
                 data_object.save()
-                succesful_datafiles+=1
+                succesful_datafiles += 1
 
-            print(f'Observations parsed: {succesful_observations}')
-            print(f'Datafiles parsed: {succesful_datafiles}')
+            print(f"Observations parsed: {succesful_observations}")
+            print(f"Datafiles parsed: {succesful_datafiles}")
