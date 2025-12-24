@@ -1,8 +1,8 @@
 from zipfile import BadZipFile, ZipFile
 
 import pandas as pd
-from django.core.files import File as DjangoFile
 from django.contrib import messages
+from django.core.files import File as DjangoFile
 from iommi import Field, Form
 
 from app.models import DataSet, FluxUnit, Observation, Proposal, Source, WavelengthUnit
