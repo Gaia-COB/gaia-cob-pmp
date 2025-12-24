@@ -27,6 +27,10 @@ class ObservationForm(Form):
 
 
 class BulkObservationForm(Form):
+    """
+    Form to deal with bulk observation upload, int he form of zipped csv files with an accompanying index.csv
+    """
+
     proposal = Field.choice_queryset(choices=Proposal.objects.all(), editable=False)
     source = Field.choice_queryset(
         choices=Source.objects.filter(is_valid=True),
