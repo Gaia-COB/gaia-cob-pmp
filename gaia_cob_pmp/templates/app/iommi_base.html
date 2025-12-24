@@ -2,3 +2,19 @@
 {# Blocks above and below the main are: iommi_top, iommi_bottom #}
 
 {% extends "iommi/base.html" %}
+
+{% block iommi_top %}
+
+{% if messages %}
+{% for message in messages %}
+
+<div class="col col-md-auto" style="padding-top:10px;padding-bottom:0px">
+    <div class="alert {{message.tags}} d-flex align-items-center mb-5 alert-dismissible fade show" role="alert">
+        <div class=d-flex flex-column me-8><span>{{message}}</span></div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+</div>
+
+{% endfor %}
+{% endif %}
+{% endblock iommi_top %}

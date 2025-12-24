@@ -2,6 +2,7 @@ from zipfile import BadZipFile, ZipFile
 
 import pandas as pd
 from django.core.files import File as DjangoFile
+from django.contrib import messages
 from iommi import Field, Form
 
 from app.models import DataSet, FluxUnit, Observation, Proposal, Source, WavelengthUnit
@@ -55,7 +56,7 @@ class BulkObservationForm(Form):
 
     class Meta:
         # Define custom logic for handling bulk uploads
-        def actions__submit__post_handler(form, user, **_):
+        def actions__submit__post_handler(form, request, user, **_):
             if not form.is_valid():
                 return
 
@@ -66,8 +67,7 @@ class BulkObservationForm(Form):
             try:
                 zipf = ZipFile(fields.upload_archive.value)
             except BadZipFile:
-                # Bad Zip error handling here
-                print("Bad zip file!")
+                messages.warning(request, "Could not open zip archive: no observations uploaded!")
                 return
 
             # Attempt to load the index file from the archive and parse it
@@ -79,9 +79,13 @@ class BulkObservationForm(Form):
                 for key_column in ("file_name", "jd"):
                     assert key_column in indexdf.columns.values
 
-            except (KeyError, AssertionError):
+            except KeyError:
                 # No Index File error handling here
-                print("Bad index file!")
+                messages.warning(request, "Could not find index.csv: no observations uploaded!")
+                return
+
+            except AssertionError:
+                messages.warning(request, "Could not parse index.csv: no observations uploaded!")
                 return
 
             succesful_observations = 0
@@ -149,5 +153,5 @@ class BulkObservationForm(Form):
                 data_object.save()
                 succesful_datafiles += 1
 
-            print(f"Observations parsed: {succesful_observations}")
-            print(f"Datafiles parsed: {succesful_datafiles}")
+            messages.success(request, f"Uploaded {succesful_observations} Observations")
+            messages.success(request, f"Uploaded {succesful_datafiles} Datasets")
