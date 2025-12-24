@@ -5,10 +5,10 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../../../../genindex.html"><link rel="search" title="Search" href="../../../../../search.html"><link rel="next" title="gaia_cob_pmp.app.forms.project" href="../project/index.html"><link rel="prev" title="gaia_cob_pmp.app.forms.instrument" href="../instrument/index.html">
 
-    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
         <title>gaia_cob_pmp.app.forms.observation - Gaia COB Proposal Management Platform v0.1.0</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
@@ -332,10 +332,13 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.DatasetForm" title="gaia_cob_pmp.app.forms.observation.DatasetForm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatasetForm</span></code></a></p></td>
-<td><p>Describe a Form. Example:</p></td>
+<td><p>Form to add/view/edit a Dataset instance</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.ObservationForm" title="gaia_cob_pmp.app.forms.observation.ObservationForm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ObservationForm</span></code></a></p></td>
-<td><p>Handles the common setup for project-based forms.</p></td>
+<td><p>Form to add/view/edit an Observation instance</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm" title="gaia_cob_pmp.app.forms.observation.BulkObservationForm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BulkObservationForm</span></code></a></p></td>
+<td><p>Form to deal with bulk observation upload, int he form of zipped csv files with an accompanying index.csv</p></td>
 </tr>
 </tbody>
 </table>
@@ -347,59 +350,7 @@
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.DatasetForm">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gaia_cob_pmp.app.forms.observation.</span></span><span class="sig-name descname"><span class="pre">DatasetForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.DatasetForm" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">iommi.Form</span></code></p>
-<p>Describe a Form. Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">Field</span><span class="o">.</span><span class="n">email</span><span class="p">()</span>
-
-<span class="n">form</span> <span class="o">=</span> <span class="n">MyForm</span><span class="p">()</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>You can also create an instance of a form with this syntax if it’s more convenient:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span>
-    <span class="n">fields</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-        <span class="n">a</span><span class="o">=</span><span class="n">Field</span><span class="p">(),</span>
-        <span class="n">b</span><span class="o">=</span><span class="n">Field</span><span class="o">.</span><span class="n">email</span><span class="p">(),</span>
-    <span class="p">),</span>
-<span class="p">)</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>In the common case the fields namespace will contain only instances of <cite>Field</cite>, but
-iommi actually supports arbitrary <cite>Part</cite> objects. For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span>
-    <span class="n">fields</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-        <span class="c1"># Display a and b inside a box</span>
-        <span class="n">box</span><span class="o">=</span><span class="n">html</span><span class="o">.</span><span class="n">div</span><span class="p">(</span>
-            <span class="n">attrs__class__box</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">children__a</span><span class="o">=</span><span class="n">Field</span><span class="p">(),</span>
-            <span class="n">children__b</span><span class="o">=</span><span class="n">Field</span><span class="o">.</span><span class="n">email</span><span class="p">(),</span>
-        <span class="p">),</span>
-        <span class="c1"># And c regularly</span>
-        <span class="n">c</span><span class="o">=</span><span class="n">Field</span><span class="p">(),</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>So that writing the application logic (e.g. validation and post handlers) is independent
-of minor changes to the layout, after bind the <cite>fields</cite> namespace of the form will contain
-only instances of <cite>Field</cite> keyed by their <cite>_name</cite> independently of how deep they are in the
-hierarchy. Given the above, an appropriate post_handler would be:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">post_handler</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
-        <span class="k">return</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">form</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">form</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-    <span class="c1"># And not:</span>
-    <span class="c1"># print(form.fields.box.a.value, form.fields.box.b.value, form.fields.c.value)</span>
-
-<span class="c1"># @test</span>
-<span class="k">assert</span> <span class="n">post_handler</span><span class="p">(</span><span class="n">form</span><span class="o">=</span><span class="n">Struct</span><span class="p">(</span><span class="n">is_valid</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">False</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span>
-
-<span class="n">post_handler</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">req</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">)))</span>
-<span class="c1"># @end</span>
-</pre></div>
-</div>
-<p>Use of Form.layout:</p>
+<p>Form to add/view/edit a Dataset instance</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.DatasetForm.Meta">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.DatasetForm.Meta" title="Link to this definition">¶</a></dt>
@@ -416,13 +367,70 @@ hierarchy. Given the above, an appropriate post_handler would be:</p>
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.ObservationForm">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gaia_cob_pmp.app.forms.observation.</span></span><span class="sig-name descname"><span class="pre">ObservationForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.ObservationForm" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">iommi.Form</span></code></p>
-<p>Handles the common setup for project-based forms.</p>
+<p>Form to add/view/edit an Observation instance</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.ObservationForm.Meta">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.ObservationForm.Meta" title="Link to this definition">¶</a></dt>
 <dd><dl class="py attribute">
 <dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.ObservationForm.Meta.auto__model">
 <span class="sig-name descname"><span class="pre">auto__model</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.ObservationForm.Meta.auto__model" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gaia_cob_pmp.app.forms.observation.</span></span><span class="sig-name descname"><span class="pre">BulkObservationForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">iommi.Form</span></code></p>
+<p>Form to deal with bulk observation upload, int he form of zipped csv files with an accompanying index.csv</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm.proposal">
+<span class="sig-name descname"><span class="pre">proposal</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.proposal" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm.source">
+<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm.upload_archive">
+<span class="sig-name descname"><span class="pre">upload_archive</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.upload_archive" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm.flux_col">
+<span class="sig-name descname"><span class="pre">flux_col</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.flux_col" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm.flux_err_col">
+<span class="sig-name descname"><span class="pre">flux_err_col</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.flux_err_col" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm.flux_units">
+<span class="sig-name descname"><span class="pre">flux_units</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.flux_units" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm.wavelength_col">
+<span class="sig-name descname"><span class="pre">wavelength_col</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.wavelength_col" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm.wavelength_units">
+<span class="sig-name descname"><span class="pre">wavelength_units</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.wavelength_units" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm.Meta">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.Meta" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="gaia_cob_pmp.app.forms.observation.BulkObservationForm.Meta.actions__submit__post_handler">
+<span class="sig-name descname"><span class="pre">actions__submit__post_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.Meta.actions__submit__post_handler" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -500,6 +508,21 @@ hierarchy. Given the above, an appropriate post_handler would be:</p>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.ObservationForm"><code class="docutils literal notranslate"><span class="pre">ObservationForm</span></code></a><ul>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.ObservationForm.Meta"><code class="docutils literal notranslate"><span class="pre">ObservationForm.Meta</span></code></a><ul>
 <li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.ObservationForm.Meta.auto__model"><code class="docutils literal notranslate"><span class="pre">ObservationForm.Meta.auto__model</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm</span></code></a><ul>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.proposal"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm.proposal</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.source"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm.source</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.upload_archive"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm.upload_archive</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.flux_col"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm.flux_col</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.flux_err_col"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm.flux_err_col</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.flux_units"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm.flux_units</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.wavelength_col"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm.wavelength_col</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.wavelength_units"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm.wavelength_units</span></code></a></li>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.Meta"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm.Meta</span></code></a><ul>
+<li><a class="reference internal" href="#gaia_cob_pmp.app.forms.observation.BulkObservationForm.Meta.actions__submit__post_handler"><code class="docutils literal notranslate"><span class="pre">BulkObservationForm.Meta.actions__submit__post_handler()</span></code></a></li>
 </ul>
 </li>
 </ul>

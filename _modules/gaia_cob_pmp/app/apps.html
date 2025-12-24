@@ -4,10 +4,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html"><link rel="search" title="Search" href="../../../search.html">
 
-    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
         <title>gaia_cob_pmp.app.apps - Gaia COB Proposal Management Platform v0.1.0</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
@@ -341,12 +341,14 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Main app is ready.&quot;</span><span class="p">)</span>
 
         <span class="kn">from</span><span class="w"> </span><span class="nn">app.models</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+            <span class="n">FluxUnit</span><span class="p">,</span>
             <span class="n">Instrument</span><span class="p">,</span>
             <span class="n">Observation</span><span class="p">,</span>
             <span class="n">Project</span><span class="p">,</span>
             <span class="n">Proposal</span><span class="p">,</span>
             <span class="n">Researcher</span><span class="p">,</span>
             <span class="n">Source</span><span class="p">,</span>
+            <span class="n">WavelengthUnit</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="c1"># Iommi path decoding and settings for model searches</span>
@@ -376,7 +378,9 @@
         <span class="n">register_search_fields</span><span class="p">(</span>
             <span class="n">model</span><span class="o">=</span><span class="n">Researcher</span><span class="p">,</span> <span class="n">search_fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;affiliations&quot;</span><span class="p">],</span> <span class="n">allow_non_unique</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
-        <span class="n">register_path_decoding</span><span class="p">(</span><span class="n">researcher</span><span class="o">=</span><span class="n">Researcher</span><span class="p">)</span></div>
+        <span class="n">register_path_decoding</span><span class="p">(</span><span class="n">researcher</span><span class="o">=</span><span class="n">Researcher</span><span class="p">)</span>
+        <span class="n">register_search_fields</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">WavelengthUnit</span><span class="p">,</span> <span class="n">search_fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">allow_non_unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">register_search_fields</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">FluxUnit</span><span class="p">,</span> <span class="n">search_fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">allow_non_unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 </div>
 
 </pre></div>
