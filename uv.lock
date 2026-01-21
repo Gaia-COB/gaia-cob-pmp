@@ -622,6 +622,7 @@ dependencies = [
     { name = "requests" },
     { name = "rules" },
     { name = "setuptools" },
+    { name = "uwsgi" },
     { name = "whitenoise" },
 ]
 
@@ -677,6 +678,7 @@ requires-dist = [
     { name = "setuptools", specifier = ">=80.9.0" },
     { name = "twine", marker = "extra == 'develop'" },
     { name = "uv", marker = "extra == 'develop'" },
+    { name = "uwsgi", specifier = ">=2.0.31" },
     { name = "wheel", marker = "extra == 'develop'" },
     { name = "whitenoise", specifier = ">=6.11.0" },
 ]
@@ -1998,6 +2000,12 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/2c/2f/d51c02627de68a7ca5b82f0a5d61d753beee3fe696366d1a1c5d5e40cd58/uv-0.9.11-py3-none-win_amd64.whl", hash = "sha256:c65a024ad98547e32168f3a52360fe73ff39cd609a8fb9dd2509aac91483cfc8", size = 21626822, upload-time = "2025-11-20T23:19:54.424Z" },
     { url = "https://files.pythonhosted.org/packages/af/d8/e07e866ee328d3c9f27a6d57a018d8330f47be95ef4654a178779c968a66/uv-0.9.11-py3-none-win_arm64.whl", hash = "sha256:4907a696c745703542ed2559bdf5380b92c8b1d4bf290ebfed45bf9a2a2c6690", size = 20046856, upload-time = "2025-11-20T23:19:58.517Z" },
 ]
+
+[[package]]
+name = "uwsgi"
+version = "2.0.31"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/9f/49/2f57640e889ba509fd1fae10cccec1b58972a07c2724486efba94c5ea448/uwsgi-2.0.31.tar.gz", hash = "sha256:e8f8b350ccc106ff93a65247b9136f529c14bf96b936ac5b264c6ff9d0c76257", size = 822796, upload-time = "2025-10-11T19:17:28.794Z" }
 
 [[package]]
 name = "wcmatch"

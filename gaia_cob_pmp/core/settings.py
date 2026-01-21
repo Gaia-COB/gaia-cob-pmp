@@ -26,7 +26,7 @@ BASE_DIR: Path = Path(__file__).parent.parent  # gaia_cob_pmp/
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY: str = config("SECRET_KEY", default="None")
+SECRET_KEY: str = config("SECRET_KEY", default=None)
 if not SECRET_KEY:
     SECRET_KEY = "".join(random.choice(string.ascii_lowercase) for i in range(32))
 
@@ -58,6 +58,7 @@ TEMPLATES: list[dict[str, Any]] = [
 ALLOWED_HOSTS: list[str] = [
     "localhost",
     "127.0.0.1",
+    config("URL", default="gaia-cob.rsgsoton.net"),
 ]
 
 ################################################################################
@@ -257,7 +258,7 @@ SOCIALACCOUNT_ADAPTER: str = "app.adapter.UsernameAdapter"
 SOCIALACCOUNT_PROVIDERS: dict[str, Any] = {
     "google": {
         "APP": {
-            "client_id": config("GOOGLE_OAUTH2_CLIENT_ID"),
+            "client_id": config("GOOGLE_OUATH2_CLIENT_ID"),
             "secret": config("GOOGLE_OAUTH2_SECRET"),
         },
         "SCOPE": ["profile", "email"],
@@ -289,6 +290,11 @@ CORS_ALLOW_HEADERS: list[str] = ["*"]
 CORS_ALLOWED_ORIGINS: list[str] = [
     "https://localhost",
     "http://localhost",
+    "http://"+config("URL", default="gaia-cob.rsgsoton.net"),
+    "https://"+config("URL", default="gaia-cob.rsgsoton.net"),
+    "http://www."+config("URL", default="gaia-cob.rsgsoton.net"),
+    "https://www."+config("URL", default="gaia-cob.rsgsoton.net"),
+    "http://gaia-cob.rsgsoton.net",
     "https://localhost:8000",
     "http://localhost:8000",
     "https://accounts.google.com",
