@@ -1,0 +1,45 @@
+services:
+  # Not secured, as certificates are handled on Pandora.
+  nginx:
+    container_name: gaia-cob-pmp-nginx
+    image: nginx:latest
+    ports:
+      - "8888:8000"
+    volumes:
+      - type: bind
+        source: "./deploy/nginx/pandora.conf"
+        target: "/etc/nginx/conf.d/default.conf"
+      - type: bind
+        source: "./gaia_cob_pmp/logs/"
+        target: "/var/www/gaia-cob-pmp/gaia_cob_pmp/logs/"
+      - type: bind
+        source: "./gaia_cob_pmp/staticfiles/"
+        target: "/var/www/gaia-cob-pmp/gaia_cob_pmp/staticfiles/"
+    restart: unless-stopped
+    depends_on:
+      - web
+
+  web:
+    container_name: gaia-cob-pmp-web
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - "./.env.default"
+      - "./.env"
+    volumes:
+      - type: bind
+        source: "./gaia_cob_pmp/media/uploads/"
+        target: "/var/www/gaia-cob-pmp/gaia_cob_pmp/media/uploads/"
+      - type: bind
+        source: "./gaia_cob_pmp/staticfiles/"
+        target: "/var/www/gaia-cob-pmp/gaia_cob_pmp/staticfiles/"
+      - type: bind
+        source: "./gaia_cob_pmp/logs/"
+        target: "/var/www/gaia-cob-pmp/gaia_cob_pmp/logs/"
+    command:
+      - "bash"
+      - "docker-entrypoint.sh"
+    restart: unless-stopped
