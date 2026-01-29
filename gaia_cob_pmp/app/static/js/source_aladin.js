@@ -9,7 +9,7 @@ A.init.then(() => {
             survey: aladin_survey,
             fov: aladin_fov,
             target: aladin_target,
-            cooFrame: "galactic",
+            cooFrame: "icrsd",
             showCooLocation: false,
             showFrame: false,
             showProjectionControl: false,
