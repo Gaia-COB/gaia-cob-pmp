@@ -103,8 +103,6 @@ Module Contents
 
 .. py:data:: ALLOWED_HOSTS
    :type:  list[str]
-   :value: ['localhost', '127.0.0.1']
-
 
 .. py:data:: INSTALLED_APPS
    :type:  list[str]
@@ -269,8 +267,6 @@ Module Contents
 
 .. py:data:: CORS_ALLOWED_ORIGINS
    :type:  list[str]
-   :value: ['https://localhost', 'http://localhost', 'https://localhost:8000', 'http://localhost:8000',...
-
 
 .. py:data:: SECURE_REFERRER_POLICY
    :type:  str

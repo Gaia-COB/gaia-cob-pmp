@@ -178,7 +178,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -319,14 +319,123 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="developer-documentation">
 <h1>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Link to this heading">¶</a></h1>
-<p>FILL IN</p>
+<p>The template I’ve used has linting/code style fixing built in. Check out <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>;
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">fix-py</span></code> will run the <code class="docutils literal notranslate"><span class="pre">ruff</span></code> code formatter over your code.
+Run it before committing and fix/flag as ignored anything it can’t fix itself.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>This uses Iommi, a very powerful and flexible framework for building websites in Python.
+<a class="reference external" href="https://docs.iommi.rocks/">The documentation is here</a>, but it can be a bit hard to get your head around.
+<a class="reference external" href="https://docs.iommi.rocks/cookbook.html">The cookbook pages</a> are a good thing to refer to.</p>
+<p>Examples are good as well, so I’ll just outline a few key concepts to understand the code:</p>
+<section id="two-ways-of-doing-anything">
+<h3>Two Ways of Doing Anything<a class="headerlink" href="#two-ways-of-doing-anything" title="Link to this heading">¶</a></h3>
+<p>There’s basically two ways of doing anything - <strong>procedural</strong> and <strong>declarative</strong>.
+Example - building a form to edit a specific instance of a model, <strong>procedurally</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">view</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span>
+    <span class="n">auto__model</span><span class="o">=</span><span class="n">MyDjangoModel</span><span class="p">,</span>
+    <span class="n">instance</span><span class="o">=</span><span class="k">lambda</span> <span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">my_django_model</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>and <strong>declaratively</strong>, where the <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Meta</span></code> is basically just what you’d give as arguments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">auto__model</span><span class="o">=</span><span class="n">MyDjangoModel</span>
+        <span class="n">instance</span><span class="o">=</span><span class="k">lambda</span> <span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">:</span> <span class="n">params</span><span class="o">.</span><span class="n">my_django_model</span>
+        
+<span class="n">view</span> <span class="o">=</span> <span class="n">MyForm</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In this example, the stuff in <code class="docutils literal notranslate"><span class="pre">app.main_menu.py</span></code> is mostly <strong>procedural</strong>,
+and there’s an example of a more complicated view in <code class="docutils literal notranslate"><span class="pre">app.pages.py</span></code> (that gets included into <code class="docutils literal notranslate"><span class="pre">main_menu</span></code>).</p>
+</section>
+<section id="refinables">
+<h3>Refinables<a class="headerlink" href="#refinables" title="Link to this heading">¶</a></h3>
+<p>Everything is built out of ‘refinables’. For example, <code class="docutils literal notranslate"><span class="pre">Form</span></code> has some settings for automatically generating it from a model.
+Example - Building a form to edit <em>only</em> the name and height of `MyDjangoModel:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Form</span><span class="p">(</span>
+    <span class="n">auto</span><span class="o">=</span><span class="nb">dict</span><span class="p">{</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">MyDjangoModel</span>
+        <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>But you can also skip providing the dict of options with just double underscores:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Form</span><span class="p">(</span>
+    <span class="n">auto__model</span><span class="o">=</span><span class="n">MyDjangoModel</span><span class="p">,</span>
+    <span class="n">auto__include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Anything not specified will have its default value.</p>
+</section>
+<section id="function-arguments">
+<h3>Function Arguments<a class="headerlink" href="#function-arguments" title="Link to this heading">¶</a></h3>
+<p>A lot of arguments can be provided as functions that evaluate at runtime.
+Example - Building a form that’s only editable if you’re staff:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Form</span><span class="p">(</span>
+    <span class="n">editable</span><span class="o">=</span><span class="k">lambda</span> <span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">is_staff</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">editable</span><span class="o">=</span><span class="k">lambda</span> <span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">is_staff</span>
+</pre></div>
+</div>
+<p>If you need the functions to be more complicated, then in the <strong>procedural</strong> frame you can declare them elsewhere.
+Example - Making a form editable only by Steve. Needs to make sure the user is signed in, so they <em>have</em> a name to check.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">staff_and_steve</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_staff</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">first_name</span> <span class="o">==</span> <span class="s1">&#39;Steve&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span> 
+    <span class="k">return</span> <span class="kc">False</span>
+
+<span class="n">view</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span>
+    <span class="n">editable</span><span class="o">=</span><span class="k">lambda</span> <span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">:</span> <span class="n">staff_and_steve</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Or declaratively:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="nd">@staticmethod</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">editable</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="o">**</span><span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_staff</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">first_name</span> <span class="o">==</span> <span class="s1">&#39;Steve&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span> 
+            <span class="k">return</span> <span class="kc">False</span>
+
+<span class="n">view</span> <span class="o">=</span> <span class="n">MyForm</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="function-argument-parameters">
+<h3>Function Argument Parameters<a class="headerlink" href="#function-argument-parameters" title="Link to this heading">¶</a></h3>
+<p>The functions are passed a set of parameters. The values available vary, but it’s generally <code class="docutils literal notranslate"><span class="pre">request</span></code>,
+<code class="docutils literal notranslate"><span class="pre">params</span></code> (which contains any view parameters), <code class="docutils literal notranslate"><span class="pre">user</span></code> (a shortcut to <code class="docutils literal notranslate"><span class="pre">request.user</span></code>) and any you’ve specified using
+<strong>path decoding</strong> (where you register a model, and then paths containing it put it in the context).
+See <code class="docutils literal notranslate"><span class="pre">app.apps.AppConfig</span></code> and <code class="docutils literal notranslate"><span class="pre">app.main_menu</span> <span class="pre">-&gt;</span> <span class="pre">cats.items.detail</span></code>.</p>
+</section>
+</section>
+<section id="rules">
+<h2>Rules<a class="headerlink" href="#rules" title="Link to this heading">¶</a></h2>
+<p>The app has object-level permissions, applied using <a class="reference external" href="https://github.com/dfunckt/django-rules">django-rules</a>.
+These are defined for each model in the model files, after the model itself.</p>
+<p>They fit pretty well into Iommi’s structure, so it’s easy to check when setting up a URL or whatever
+if you’re allowed to view/edit/whatever the object.</p>
+</section>
 </section>
 
         </article>
@@ -372,8 +481,34 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Developer Documentation</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#two-ways-of-doing-anything">Two Ways of Doing Anything</a></li>
+<li><a class="reference internal" href="#refinables">Refinables</a></li>
+<li><a class="reference internal" href="#function-arguments">Function Arguments</a></li>
+<li><a class="reference internal" href="#function-argument-parameters">Function Argument Parameters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rules">Rules</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
