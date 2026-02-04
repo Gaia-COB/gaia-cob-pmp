@@ -63,7 +63,7 @@ class Observation(Model):
     def get_jd_or_placeholder(self) -> str:
         if self.jd:
             return str(self.jd)
-        return '[No date provided]'
+        return "[No date provided]"
 
 
 User = get_user_model()

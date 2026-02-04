@@ -43,3 +43,28 @@ services:
       - "bash"
       - "docker-entrypoint.sh"
     restart: unless-stopped
+
+  web-dev:
+    container_name: gaia-cob-pmp-web
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "8001:8000"
+    env_file:
+      - "./.env.default"
+      - "./.env"
+    volumes:
+      - type: bind
+        source: "./gaia_cob_pmp/media/uploads/"
+        target: "/var/www/gaia-cob-pmp/gaia_cob_pmp/media/uploads/"
+      - type: bind
+        source: "./gaia_cob_pmp/staticfiles/"
+        target: "/var/www/gaia-cob-pmp/gaia_cob_pmp/staticfiles/"
+      - type: bind
+        source: "./gaia_cob_pmp/logs/"
+        target: "/var/www/gaia-cob-pmp/gaia_cob_pmp/logs/"
+    command:
+      - "bash"
+      - "docker-entrypoint.sh"
+    restart: unless-stopped

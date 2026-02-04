@@ -140,6 +140,11 @@ section-order = ["future", "standard-library", "third-party", "first-party", "lo
 title = "Gaia COB Proposal Management Platform"
 root = "docs/src/index.md"
 pages = [
-    "docs/src/developer.md"
 ]
 use-autoapi = true
+
+[dependency-groups]
+develop = [
+    "yardang>=0.4.1",
+]
+
