@@ -95,12 +95,12 @@ sudo docker compose up
 ```
 
 You can't run a deployment in debug mode! It will fail (if you *want* to, you can change the Dockerfile to allow it).
-View the logs for a running deployment with `docker compose logs web` or `nginx` as appropriate.
+View the logs for a running deployment with `docker compose logs server` or `nginx` as appropriate.
 
 Finally, install the fixtures as a one-off command:
 
 ```
-sudo docker exec -it gaia-cob-pmp-web /bin/bash
+sudo docker exec -it gaia-server /bin/bash
 uv run manage.py loaddata app/fixtures/*.json
 exit
 ```

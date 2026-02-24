@@ -57,13 +57,13 @@ To deploy this app to a Red Hat VM using `docker compose`:
      ```shell
      cd /var/www/gaia-cob-pmp
      screen
-     sudo docker compose up web
+     sudo docker compose up server
      [ctrl-a, ctrl-d] 
      ```
      
    * Enter the container, and import the fixtures:
      ```shell
-     sudo docker exec -it gaia-cob-pmp-web /bin/bash
+     sudo docker exec -it gaia-server /bin/bash
      uv run manage.py loaddata app/fixtures/*.json
      exit
      ```
@@ -73,13 +73,13 @@ To deploy this app to a Red Hat VM using `docker compose`:
      ```shell
      cd /var/www/gaia-cob-pmp-dev
      screen
-     sudo docker compose up web-dev
+     sudo docker compose up server-dev
      [ctrl-a, ctrl-d]
      ```
      
    * Enter the development container, and import the fixtures:
      ```shell
-     sudo docker exec -it gaia-cob-pmp-web-dev /bin/bash
+     sudo docker exec -it gaia-server-dev /bin/bash
      uv run manage.py loaddata app/fixtures/*.json
      exit
      ```

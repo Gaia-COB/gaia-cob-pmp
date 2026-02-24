@@ -55,11 +55,7 @@ TEMPLATES: list[dict[str, Any]] = [
     },
 ]
 
-ALLOWED_HOSTS: list[str] = [
-    "localhost",
-    "127.0.0.1",
-    config("URL", default="gaia-cob.rsgsoton.net"),
-]
+ALLOWED_HOSTS: list[str] = ["*"]
 
 ################################################################################
 # django: Apps & middleware
