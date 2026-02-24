@@ -55,11 +55,7 @@ TEMPLATES: list[dict[str, Any]] = [
     },
 ]
 
-ALLOWED_HOSTS: list[str] = [
-    "localhost",
-    "127.0.0.1",
-    config("URL", default="gaia-cob.rsgsoton.net"),
-]
+ALLOWED_HOSTS: list[str] = ["*"]
 
 ################################################################################
 # django: Apps & middleware
@@ -290,10 +286,10 @@ CORS_ALLOW_HEADERS: list[str] = ["*"]
 CORS_ALLOWED_ORIGINS: list[str] = [
     "https://localhost",
     "http://localhost",
-    "http://"+config("URL", default="gaia-cob.rsgsoton.net"),
-    "https://"+config("URL", default="gaia-cob.rsgsoton.net"),
-    "http://www."+config("URL", default="gaia-cob.rsgsoton.net"),
-    "https://www."+config("URL", default="gaia-cob.rsgsoton.net"),
+    "http://" + config("URL", default="gaia-cob.rsgsoton.net"),
+    "https://" + config("URL", default="gaia-cob.rsgsoton.net"),
+    "http://www." + config("URL", default="gaia-cob.rsgsoton.net"),
+    "https://www." + config("URL", default="gaia-cob.rsgsoton.net"),
     "http://gaia-cob.rsgsoton.net",
     "https://localhost:8000",
     "http://localhost:8000",
