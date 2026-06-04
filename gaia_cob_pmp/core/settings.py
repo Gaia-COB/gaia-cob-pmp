@@ -225,20 +225,23 @@ MESSAGE_TAGS = {
 # django-iommi: Set the default style, and the main menu location.
 ################################################################################
 # Django convention sprinkles imports through the file, so we skip 'import out of place' format warnings.
-from iommi.style import Style  # noqa: E402
+from iommi.style import Style, register_style  # noqa: E402
 from iommi.style_bootstrap5 import bootstrap5, select2_enhanced_forms  # noqa: E402
 
 # Uses font-awesome icons: https://fontawesome.com/search?ic=free&o=r
 from iommi.style_font_awesome_6 import font_awesome_6  # noqa: E402
 
 IOMMI_DEBUG: bool = config("DEBUG", default=False, cast=bool)
-IOMMI_DEFAULT_STYLE: Style = Style(
+custom_style = Style(
     bootstrap5,
     select2_enhanced_forms,
     font_awesome_6,
     base_template="app/iommi_base.html",
 )
+register_style("custom_style", custom_style)
+IOMMI_DEFAULT_STYLE: str = "custom_style"
 IOMMI_MAIN_MENU: str = "app.main_menu.main_menu"
+
 
 ################################################################################
 # django-allauth: Set up social accounts for Google
@@ -253,7 +256,7 @@ AUTHENTICATION_BACKENDS: list[str] = [
 # We *only* allow logins via social accounts to minimise local account management.
 # We only use google as it has the one-click login box so we can skip lots of templates.
 # https://docs.allauth.org/en/latest/socialaccount/providers/google.html
-SOCIALACCOUNT_ONLY: bool = True
+SOCIALACCOUNT_ONLY: bool = config("SOCIALACCOUNT_ONLY", default=True, cast=bool)
 SOCIALACCOUNT_ADAPTER: str = "app.adapter.UsernameAdapter"
 SOCIALACCOUNT_PROVIDERS: dict[str, Any] = {
     "google": {

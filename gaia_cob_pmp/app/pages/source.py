@@ -8,6 +8,204 @@ from app.plots.rv_curve import get_rv_plot
 from app.plots.vpec_vs_gamma import get_vvg_plot
 
 
+def source_has_rv_data(source) -> bool:
+    try:
+        from app.plots.rv_curve import load_rv_data
+        df = load_rv_data(source)
+        return df.shape[0] >= 3
+    except ValueError:
+        return False
+
+
+def render_fit_parameters_table(parameters) -> str:
+    rows = ""
+    for p in parameters:
+        unit_str = f" ({p['unit']})" if p['unit'] else ""
+        rows += f"""
+        <tr>
+            <td><strong>{p['name']}</strong>{unit_str}</td>
+            <td><code>{p['val']}</code></td>
+            <td><code>± {p['err']}</code></td>
+            <td><code>{p['ci']}</code></td>
+        </tr>
+        """
+    return f"""
+    <div class="table-responsive">
+        <table class="table table-hover table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Fitted Value (MAP)</th>
+                    <th>Standard Deviation (σ)</th>
+                    <th>68% Credible Interval</th>
+                </tr>
+            </thead>
+            <tbody>
+                {rows}
+            </tbody>
+        </table>
+    </div>
+    """
+
+
+def render_fit_results_html(source, fit_run=False, p_guess=None, k_guess=None, v0_guess=None, e_guess=None) -> str:
+    from app.models.keplerian_fit import KeplerianFit
+    from app.fitting import get_fit_results, get_rv_data_hash, load_rv_data
+
+    # 1. Fetch saved fit if any
+    saved_fit = KeplerianFit.objects.filter(source=source).order_by("-created_at").first()
+
+    # Check data hash mismatch
+    has_mismatch = False
+    saved_date_str = ""
+    if saved_fit:
+        try:
+            df = load_rv_data(source)
+            current_hash = get_rv_data_hash(df)
+            has_mismatch = (saved_fit.observation_hash != current_hash)
+            saved_date_str = saved_fit.created_at.strftime("%Y-%m-%d %H:%M")
+        except ValueError:
+            pass
+
+    # Determine if we should display a fit (either newly run, or loaded from DB)
+    display_samples = None
+    display_parameters = None
+    status_alert = ""
+
+    if fit_run:
+        # User requested a new fit
+        samples, parameters = get_fit_results(
+            source,
+            force_run=True,
+            p_guess=p_guess,
+            k_guess=k_guess,
+            v0_guess=v0_guess,
+            e_guess=e_guess
+        )
+        if samples is not None:
+            display_samples = samples
+            display_parameters = parameters
+            status_alert = f"""
+            <div class="alert alert-success d-flex align-items-center mb-4" role="alert">
+                <div class="me-3">
+                    <span class="fs-4">🚀</span>
+                </div>
+                <div>
+                    <h5 class="alert-heading mb-1 fw-bold">Keplerian Fit Successful!</h5>
+                    <p class="mb-0">The Joker completed rejection sampling successfully and returned {len(samples)} posterior orbits. The results have been saved to the database.</p>
+                </div>
+            </div>
+            """
+        else:
+            status_alert = """
+            <div class="alert alert-warning d-flex align-items-center mb-4" role="alert">
+                <div class="me-3">
+                    <span class="fs-4">⚠️</span>
+                </div>
+                <div>
+                    <h5 class="alert-heading mb-1 fw-bold">Fit Converged to 0 Orbits</h5>
+                    <p class="mb-0">The Joker rejection sampler did not find any accepted orbits. This can happen if observations have large errors or if the prior is too narrow. Try adjusting your guesses.</p>
+                </div>
+            </div>
+            """
+    elif saved_fit:
+        # Load from database automatically
+        from app.fitting import deserialize_samples
+        display_samples = deserialize_samples(saved_fit.sample_bundle)
+        display_parameters = saved_fit.fit_parameters
+
+        if has_mismatch:
+            status_alert = f"""
+            <div class="alert alert-warning d-flex align-items-center mb-4" role="alert">
+                <div class="me-3">
+                    <span class="fs-4">⚠️</span>
+                </div>
+                <div>
+                    <h5 class="alert-heading mb-1 fw-bold">Observation Data Changed</h5>
+                    <p class="mb-0">Loaded saved fit from <strong>{saved_date_str}</strong>, but the radial velocity observations have changed since then. Consider re-running the fit below.</p>
+                </div>
+            </div>
+            """
+        else:
+            status_alert = f"""
+            <div class="alert alert-info d-flex align-items-center mb-4" role="alert">
+                <div class="me-3">
+                    <span class="fs-4">💾</span>
+                </div>
+                <div>
+                    <h5 class="alert-heading mb-1 fw-bold">Loaded Saved Fit</h5>
+                    <p class="mb-0">Displaying saved fitting solution from <strong>{saved_date_str}</strong>.</p>
+                </div>
+            </div>
+            """
+
+    # Generate guesses form
+    p_val = f'value="{p_guess}"' if p_guess is not None else ''
+    k_val = f'value="{k_guess}"' if k_guess is not None else ''
+    v0_val = f'value="{v0_guess}"' if v0_guess is not None else ''
+    e_val = f'value="{e_guess}"' if e_guess is not None else ''
+
+    form_html = f"""
+    <div class="bg-light p-3 rounded mb-4 border">
+        <h6 class="fw-bold mb-3"><i class="fa-solid fa-sliders me-2"></i>Configure Fitting Priors / Initial Guesses</h6>
+        <form method="get">
+            <input type="hidden" name="fit" value="true">
+            <div class="row g-3 mb-3">
+                <div class="col-md-3">
+                    <label class="form-label fw-bold small text-muted mb-1">Period Guess (days)</label>
+                    <input type="number" step="any" min="0.1" name="p_guess" class="form-control form-control-sm" placeholder="e.g. 10.5" {p_val}>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold small text-muted mb-1">Amplitude K Guess (km/s)</label>
+                    <input type="number" step="any" min="0.1" name="k_guess" class="form-control form-control-sm" placeholder="e.g. 20.0" {k_val}>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold small text-muted mb-1">Systemic Velocity v0 (km/s)</label>
+                    <input type="number" step="any" name="v0_guess" class="form-control form-control-sm" placeholder="e.g. 5.0" {v0_val}>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold small text-muted mb-1">Eccentricity Guess e</label>
+                    <input type="number" step="any" min="0" max="0.99" name="e_guess" class="form-control form-control-sm" placeholder="e.g. 0.20" {e_val}>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa-solid fa-play me-2"></i>Run Fit with Guesses
+                    </button>
+                    <a href="?fit=true" class="btn btn-outline-secondary btn-sm ms-2">
+                        <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Run Auto Fit (Wide Prior)
+                    </a>
+                </div>
+                {"<a href='?' class='btn btn-link btn-sm text-decoration-none text-muted'><i class='fa-solid fa-rotate-left me-1'></i>Clear Parameters</a>" if (fit_run or p_guess or k_guess or v0_guess or e_guess) else ""}
+            </div>
+        </form>
+    </div>
+    """
+
+    if not display_parameters:
+        if fit_run:
+            # Fit was run but failed (0 orbits)
+            return form_html + status_alert
+        else:
+            # No fit has ever been run/saved
+            no_fit_msg = """
+            <div class="text-center p-4">
+                <p class="text-muted mb-0">Keplerian orbit fit has not been run for this source yet. Configure starting values above or run auto fit to start fitting.</p>
+            </div>
+            """
+            return form_html + no_fit_msg
+
+    table_html = render_fit_parameters_table(display_parameters)
+
+    return f"""
+    {form_html}
+    {status_alert}
+    <h5 class="fw-bold mb-3"><i class="fa-solid fa-list-check me-2"></i>Fitted Orbital Parameters</h5>
+    {table_html}
+    """
+
+
 class SourceViewPage(Page):
     """
     The basic view for a source.
@@ -50,6 +248,23 @@ class SourceViewPage(Page):
     )
     vvg_plot = Template("{{ page.extra_evaluated.vvg_plot | safe }}")
     rv_plot = Template("{{ page.extra_evaluated.rv_plot | safe }}")
+
+    fit_panel = html.div(
+        attrs__class={"card my-4": True},
+        children=dict(
+            header=html.div(
+                html.h4("Keplerian Orbit Fitting", attrs__class={"card-title mb-0": True}),
+                attrs__class={"card-header bg-dark text-white d-flex justify-content-between align-items-center": True},
+            ),
+            body=html.div(
+                Template("{{ page.extra_evaluated.fit_results_html | safe }}"),
+                attrs__class={"card-body": True},
+                include=lambda source, **_: source_has_rv_data(source)
+            )
+        ),
+        include=lambda source, **_: source_has_rv_data(source)
+    )
+
     gaia_info = SourceGaiaInfoForm(
         auto__exclude=["is_valid", "source"],
         include=lambda source, **_: hasattr(
@@ -74,14 +289,86 @@ class SourceViewPage(Page):
                 return ""
 
         @staticmethod
-        def extra_evaluated__rv_plot(source, **_) -> str:
+        def extra_evaluated__rv_plot(source, request, **_) -> str:
             """
             Generates and renders the rv_curve plot for a given source if relevant data is present
             """
             try:
-                # Get the vpec_vs_gamma plot
-                figure = get_rv_plot(source)
+                p_guess = request.GET.get("p_guess")
+                k_guess = request.GET.get("k_guess")
+                v0_guess = request.GET.get("v0_guess")
+                e_guess = request.GET.get("e_guess")
+
+                p_guess = float(p_guess) if p_guess else None
+                k_guess = float(k_guess) if k_guess else None
+                v0_guess = float(v0_guess) if v0_guess else None
+                e_guess = float(e_guess) if e_guess else None
+
+                fit_run = (request and request.GET.get("fit") == "true") or any(v is not None for v in [p_guess, k_guess, v0_guess, e_guess])
+
+                from app.models.keplerian_fit import KeplerianFit
+                from app.fitting import get_rv_data_hash, load_rv_data
+
+                saved_fit = KeplerianFit.objects.filter(source=source).order_by("-created_at").first()
+                has_mismatch = False
+                if saved_fit:
+                    try:
+                        df = load_rv_data(source)
+                        current_hash = get_rv_data_hash(df)
+                        has_mismatch = (saved_fit.observation_hash != current_hash)
+                    except ValueError:
+                        pass
+
+                # If a saved fit exists, there's no data mismatch, we are not forcing a fit run,
+                # and we have a cached plot_html, return it instantly to speed up page loads.
+                if saved_fit and not fit_run and not has_mismatch and saved_fit.plot_html:
+                    return saved_fit.plot_html
+
+                from app.fitting import get_fit_results
+                fit_samples, _ = get_fit_results(
+                    source,
+                    force_run=fit_run,
+                    p_guess=p_guess,
+                    k_guess=k_guess,
+                    v0_guess=v0_guess,
+                    e_guess=e_guess
+                )
+                figure = get_rv_plot(source, fit_samples=fit_samples)
+
+                # Save/cache the generated figure html in the database
+                if fit_samples is not None:
+                    latest_fit = KeplerianFit.objects.filter(source=source).order_by("-created_at").first()
+                    if latest_fit and not latest_fit.plot_html:
+                        latest_fit.plot_html = figure
+                        latest_fit.save(update_fields=["plot_html"])
+
                 return figure
             except ValueError:
-                # If plot could not be generated (if source has no Gaiainfo or there's no file to draw from), skip and return an empty fragment
                 return ""
+
+
+        @staticmethod
+        def extra_evaluated__fit_results_html(source, request, **_) -> str:
+            """
+            Generates fit results parameter table and status alerts
+            """
+            p_guess = request.GET.get("p_guess")
+            k_guess = request.GET.get("k_guess")
+            v0_guess = request.GET.get("v0_guess")
+            e_guess = request.GET.get("e_guess")
+
+            p_guess = float(p_guess) if p_guess else None
+            k_guess = float(k_guess) if k_guess else None
+            v0_guess = float(v0_guess) if v0_guess else None
+            e_guess = float(e_guess) if e_guess else None
+
+            fit_run = (request and request.GET.get("fit") == "true") or any(v is not None for v in [p_guess, k_guess, v0_guess, e_guess])
+            return render_fit_results_html(
+                source,
+                fit_run=fit_run,
+                p_guess=p_guess,
+                k_guess=k_guess,
+                v0_guess=v0_guess,
+                e_guess=e_guess
+            )
+

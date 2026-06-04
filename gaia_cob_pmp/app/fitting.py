@@ -140,6 +140,21 @@ def run_joker_fit(source, prior_samples=100000, p_guess=None, k_guess=None, v0_g
     if len(samples) == 0:
         return None, []
 
+    sample_arrays = {}
+    for k in ['P', 'e', 'omega', 'K', 'v0']:
+        v = samples[k]
+        if hasattr(v, 'value'):
+            v = v.value
+        if np.isscalar(v) or v.ndim == 0:
+            v = np.array([v])
+        sample_arrays[k] = v
+
+    # Compute mass function for all samples in Solar Masses
+    # f(m) = 1.03606e-7 * P * |K|^3 * (1 - e^2)^1.5
+    f_m_vals = 1.03606e-7 * sample_arrays['P'] * (np.abs(sample_arrays['K']) ** 3) * ((1.0 - sample_arrays['e'] ** 2) ** 1.5)
+    sample_arrays['f_m'] = f_m_vals
+
+
     parameters = []
     names = {
         'P': ('Orbital Period (P)', 'days'),
@@ -147,15 +162,11 @@ def run_joker_fit(source, prior_samples=100000, p_guess=None, k_guess=None, v0_g
         'omega': ('Argument of Periastron (ω)', 'rad'),
         'K': ('Velocity Amplitude (K)', 'km/s'),
         'v0': ('Systemic Velocity (v0)', 'km/s'),
+        'f_m': ('Binary Mass Function f(m)', 'M_☉'),
     }
 
     for key, (label, unit) in names.items():
-        vals = samples[key]
-        if hasattr(vals, 'value'):
-            vals = vals.value
-
-        if np.isscalar(vals) or vals.ndim == 0:
-            vals = np.array([vals])
+        vals = sample_arrays[key]
 
         map_val = vals[0]  # The first sample is the best-fit MAP orbit
         median = np.median(vals)
@@ -167,16 +178,19 @@ def run_joker_fit(source, prior_samples=100000, p_guess=None, k_guess=None, v0_g
             err_str = "N/A"
             ci_str = "N/A"
         else:
-            err_str = f"{std:.2f}"
-            ci_str = f"{ci_low:.2f} – {ci_high:.2f}"
+            fmt = ".4f" if key == 'f_m' else ".2f"
+            err_str = f"{std:{fmt}}"
+            ci_str = f"{ci_low:{fmt}} – {ci_high:{fmt}}"
 
+        fmt = ".4f" if key == 'f_m' else ".2f"
         parameters.append({
             "name": label,
             "unit": unit,
-            "val": f"{map_val:.2f}",
+            "val": f"{map_val:{fmt}}",
             "err": err_str,
             "ci": ci_str
         })
+
 
     # Persist the fit results directly to the database
     data_hash = get_rv_data_hash(df)

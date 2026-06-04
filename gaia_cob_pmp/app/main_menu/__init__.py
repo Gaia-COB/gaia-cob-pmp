@@ -19,6 +19,7 @@ main_menu = MainMenu(
         index=M(
             render=False,
             path="",
+            url="/",
             view=IndexPage().as_view(),
         ),
         source=source_submenu,

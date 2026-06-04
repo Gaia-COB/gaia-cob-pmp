@@ -6,5 +6,6 @@ from app.models.proposal import Proposal
 from app.models.researcher import Researcher
 from app.models.source import Source
 from app.models.source_gaia_info import SourceGaiaInfo
+from app.models.keplerian_fit import KeplerianFit
 from app.models.units.flux import FluxUnit
 from app.models.units.wavelength import WavelengthUnit
