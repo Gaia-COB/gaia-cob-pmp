@@ -440,6 +440,53 @@ These are defined for each model in the model files, after the model itself.</p>
 <p>They fit pretty well into Iommi’s structure, so it’s easy to check when setting up a URL or whatever
 if you’re allowed to view/edit/whatever the object.</p>
 </section>
+<section id="local-testing-setup-quickstart">
+<h2>Local Testing Setup &amp; Quickstart<a class="headerlink" href="#local-testing-setup-quickstart" title="Link to this heading">¶</a></h2>
+<p>For a new developer setting up the platform locally for debugging and development:</p>
+<ol class="arabic">
+<li><p><strong>System Dependencies &amp; Environment</strong>:
+Install Miniforge or Miniconda, and create the conda environment with the required astronomical packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>-n<span class="w"> </span>astro<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.14<span class="w"> </span>astropy<span class="w"> </span>pymc<span class="w"> </span>pytensor<span class="w"> </span>thejoker<span class="w"> </span>numpy<span class="w"> </span>scipy<span class="w"> </span>matplotlib<span class="w"> </span>-c<span class="w"> </span>conda-forge
+conda<span class="w"> </span>activate<span class="w"> </span>astro
+</pre></div>
+</div>
+</li>
+<li><p><strong>Repository Setup</strong>:
+Clone the repository and copy the default environment file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:Gaia-COB/gaia-cob-pmp.git
+<span class="nb">cd</span><span class="w"> </span>gaia-cob-pmp
+cp<span class="w"> </span>.env.default<span class="w"> </span>.env
+</pre></div>
+</div>
+<p>Set <code class="docutils literal notranslate"><span class="pre">DEBUG=True</span></code> and <code class="docutils literal notranslate"><span class="pre">SOCIALACCOUNT_ONLY=false</span></code> in <code class="docutils literal notranslate"><span class="pre">.env</span></code> to enable local email/password authentication.</p>
+</li>
+<li><p><strong>Database Initialization</strong>:
+Apply migrations and load the pre-computed Keplerian fits and database fixtures:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>gaia_cob_pmp/manage.py<span class="w"> </span>migrate
+python<span class="w"> </span>gaia_cob_pmp/manage.py<span class="w"> </span>loaddata<span class="w"> </span>gaia_cob_pmp/app/fixtures/*.json
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create a Local Test Superuser</strong>:
+Run the following python script via Django’s shell to register a local administrator:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>gaia_cob_pmp/manage.py<span class="w"> </span>shell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from django.contrib.auth.models import User; User.objects.filter(username=&#39;testuser&#39;).exists() or User.objects.create_superuser(&#39;testuser&#39;, &#39;test@example.com&#39;, &#39;password123&#39;)&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Run Automated Tests</strong>:
+To run tests and verify the rejection sampler:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONPATH</span><span class="o">=</span>gaia_cob_pmp<span class="w"> </span>python<span class="w"> </span>gaia_cob_pmp/manage.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>tests
+</pre></div>
+</div>
+</li>
+<li><p><strong>Start Local Development Server</strong>:
+Start the server and visit <code class="docutils literal notranslate"><span class="pre">http://localhost:8000/accounts/login/</span></code> (log in with <code class="docutils literal notranslate"><span class="pre">testuser</span></code> / <code class="docutils literal notranslate"><span class="pre">password123</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONPATH</span><span class="o">=</span>gaia_cob_pmp<span class="w"> </span>python<span class="w"> </span>gaia_cob_pmp/manage.py<span class="w"> </span>runserver
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
 </section>
 
         </article>
@@ -506,6 +553,7 @@ if you’re allowed to view/edit/whatever the object.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#rules">Rules</a></li>
+<li><a class="reference internal" href="#local-testing-setup-quickstart">Local Testing Setup &amp; Quickstart</a></li>
 </ul>
 </li>
 </ul>

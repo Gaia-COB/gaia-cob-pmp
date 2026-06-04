@@ -12,8 +12,24 @@ Classes
    gaia_cob_pmp.app.pages.source.SourceViewPage
 
 
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.pages.source.source_has_rv_data
+   gaia_cob_pmp.app.pages.source.render_fit_parameters_table
+   gaia_cob_pmp.app.pages.source.render_fit_results_html
+
+
 Module Contents
 ---------------
+
+.. py:function:: source_has_rv_data(source) -> bool
+
+.. py:function:: render_fit_parameters_table(parameters) -> str
+
+.. py:function:: render_fit_results_html(source, fit_run=False, p_guess=None, k_guess=None, v0_guess=None, e_guess=None) -> str
 
 .. py:class:: SourceViewPage(**kwargs)
 
@@ -37,6 +53,9 @@ Module Contents
    .. py:attribute:: rv_plot
 
 
+   .. py:attribute:: fit_panel
+
+
    .. py:attribute:: gaia_info
 
 
@@ -50,11 +69,19 @@ Module Contents
 
 
 
-      .. py:method:: extra_evaluated__rv_plot(source, **_) -> str
+      .. py:method:: extra_evaluated__rv_plot(source, request, **_) -> str
          :staticmethod:
 
 
          Generates and renders the rv_curve plot for a given source if relevant data is present
+
+
+
+      .. py:method:: extra_evaluated__fit_results_html(source, request, **_) -> str
+         :staticmethod:
+
+
+         Generates fit results parameter table and status alerts
 
 
 

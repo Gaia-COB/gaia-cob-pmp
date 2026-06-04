@@ -33,5 +33,5 @@ Module Contents
 
 .. py:function:: load_rv_data(source: app.models.Source) -> pandas.DataFrame
 
-.. py:function:: get_rv_plot(source: app.models.Source)
+.. py:function:: get_rv_plot(source: app.models.Source, fit_samples=None)
 
