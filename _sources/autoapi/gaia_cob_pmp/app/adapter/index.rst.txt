@@ -25,7 +25,7 @@ Module Contents
 
 .. py:data:: User
 
-.. py:class:: UsernameAdapter(request=None)
+.. py:class:: UsernameAdapter(request: django.http.HttpRequest | None = None)
 
    Bases: :py:obj:`allauth.socialaccount.adapter.DefaultSocialAccountAdapter`
 

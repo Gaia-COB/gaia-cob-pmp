@@ -1,0 +1,59 @@
+gaia_cob_pmp.app.fitting
+========================
+
+.. py:module:: gaia_cob_pmp.app.fitting
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.fitting._samples_cache
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.fitting.get_rv_data_hash
+   gaia_cob_pmp.app.fitting.serialize_samples
+   gaia_cob_pmp.app.fitting.deserialize_samples
+   gaia_cob_pmp.app.fitting.run_joker_fit
+   gaia_cob_pmp.app.fitting.get_fit_results
+
+
+Module Contents
+---------------
+
+.. py:data:: _samples_cache
+
+.. py:function:: get_rv_data_hash(df) -> str
+
+   Computes a deterministic SHA256 hash of the RV observations.
+
+
+.. py:function:: serialize_samples(samples, max_samples=50) -> dict | None
+
+   Serializes a subset of JokerSamples (always including the MAP orbit at index 0)
+   to a JSON-serializable dictionary.
+
+
+.. py:function:: deserialize_samples(serialized) -> thejoker.TheJoker | None
+
+   Reconstructs a JokerSamples object from a serialized dictionary.
+
+
+.. py:function:: run_joker_fit(source, prior_samples=100000, p_guess=None, k_guess=None, v0_guess=None, e_guess=None)
+
+   Runs The Joker rejection sampler, dynamically tuning priors based on guesses,
+   and saves the fit to the database.
+
+
+.. py:function:: get_fit_results(source, force_run=False, p_guess=None, k_guess=None, v0_guess=None, e_guess=None)
+
+   Retrieves the fit results. First checks Django database. If force_run is True or
+   no saved fit matches the current observation data hash, it executes a new fit.
+
+

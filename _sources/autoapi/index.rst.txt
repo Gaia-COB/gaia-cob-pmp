@@ -7,11 +7,13 @@ This page contains auto-generated API reference documentation [#f1]_.
    :titlesonly:
 
    /autoapi/flux/index
+   /autoapi/test_all/index
    /autoapi/rv_curve/index
    /autoapi/spectrum/index
-   /autoapi/test_all/index
+   /autoapi/import_bh1/index
    /autoapi/wavelength/index
    /autoapi/gaia_cob_pmp/index
+   /autoapi/test_fitting/index
    /autoapi/vpec_vs_gamma/index
 
 .. [#f1] Created with `sphinx-autoapi <https://github.com/readthedocs/sphinx-autoapi>`_

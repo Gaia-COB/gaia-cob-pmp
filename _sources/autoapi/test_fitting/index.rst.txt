@@ -1,0 +1,61 @@
+test_fitting
+============
+
+.. py:module:: test_fitting
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   test_fitting.FittingTestCase
+
+
+Module Contents
+---------------
+
+.. py:class:: FittingTestCase(methodName='runTest')
+
+   Bases: :py:obj:`django.test.TestCase`
+
+
+   Similar to TransactionTestCase, but use `transaction.atomic()` to achieve
+   test isolation.
+
+   In most situations, TestCase should be preferred to TransactionTestCase as
+   it allows faster execution. However, there are some situations where using
+   TransactionTestCase might be necessary (e.g. testing some transactional
+   behavior).
+
+   On database backends with no transaction support, TestCase behaves as
+   TransactionTestCase.
+
+   Create an instance of the class that will use the named test
+   method when executed. Raises a ValueError if the instance does
+   not have a method with the specified name.
+
+
+   .. py:attribute:: fixtures
+      :value: ['units.json', 'zz_demo_data.json']
+
+
+
+   .. py:method:: setUp()
+
+      Hook method for setting up the test fixture before exercising it.
+
+
+
+   .. py:method:: test_run_joker_fit()
+
+
+   .. py:method:: test_database_persistence_and_loading()
+
+
+   .. py:method:: test_run_fit_with_guesses()
+
+
+   .. py:method:: test_get_rv_plot_with_fit()
+
+

@@ -1,0 +1,62 @@
+gaia_cob_pmp.app.models.keplerian_fit
+=====================================
+
+.. py:module:: gaia_cob_pmp.app.models.keplerian_fit
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gaia_cob_pmp.app.models.keplerian_fit.KeplerianFit
+
+
+Module Contents
+---------------
+
+.. py:class:: KeplerianFit(*args, **kwargs)
+
+   Bases: :py:obj:`django.db.models.Model`
+
+
+   Model to store a saved Keplerian fit for a given source.
+
+
+   .. py:attribute:: source
+
+
+   .. py:attribute:: created_at
+
+
+   .. py:attribute:: updated_at
+
+
+   .. py:attribute:: fit_parameters
+
+
+   .. py:attribute:: sample_bundle
+
+
+   .. py:attribute:: observation_hash
+
+
+   .. py:attribute:: plot_html
+
+
+   .. py:class:: Meta
+
+      .. py:attribute:: get_latest_by
+         :value: 'created_at'
+
+
+
+      .. py:attribute:: ordering
+         :value: ['-created_at']
+
+
+
+
+   .. py:method:: __str__() -> str
+
+
