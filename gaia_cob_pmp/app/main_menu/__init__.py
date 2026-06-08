@@ -13,6 +13,7 @@ from app.main_menu.researcher import researcher_submenu
 from app.main_menu.source import source_submenu
 from app.main_menu.validation import validation_submenu
 from app.pages import IndexPage, PrivacyPage
+from app.pages.upload import UploadPage
 
 main_menu = MainMenu(
     items=dict(
@@ -23,6 +24,13 @@ main_menu = MainMenu(
             view=IndexPage().as_view(),
         ),
         source=source_submenu,
+        upload=M(
+            display_name="Upload Data",
+            icon="upload",
+            include=lambda user, **_: user.is_authenticated,
+            url="/upload/",
+            view=UploadPage().as_view(),
+        ),
         instrument=instrument_submenu,
         researcher=researcher_submenu,
         # ---------------- This just adds a bar into the menu ----------------

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db.models import BooleanField, CharField, FloatField, Model
+from django.db.models import BooleanField, CharField, FloatField, Model, ForeignKey, CASCADE
 from rules import add_perm, is_active, is_staff
 
 
@@ -11,6 +11,15 @@ class Source(Model):
 
     is_valid = BooleanField(
         default=False, help_text="Entries require approval by site staff before they are visible."
+    )
+
+    created_by = ForeignKey(
+        "Researcher",
+        on_delete=CASCADE,
+        null=True,
+        blank=True,
+        related_name="created_sources",
+        help_text="The researcher who registered/created this source."
     )
 
     name = CharField(

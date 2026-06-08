@@ -120,7 +120,7 @@ WSGI_APPLICATION: str = "core.wsgi.application"
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 #################################################################################
 DEFAULT_AUTO_FIELD: str = "django.db.models.AutoField"
-DATABASE_PATH: Path = BASE_DIR / "db.sqlite3"
+DATABASE_PATH: Path = Path(config("DATABASE_PATH", default=str(BASE_DIR / "db.sqlite3")))
 DATABASES: dict[str, dict[str, str]] = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",  # We're using a SQLite one as it's easy for dev

@@ -1,3 +1,4 @@
+from django.db.models import Q
 from iommi import Table
 
 from app.models import Source
@@ -39,4 +40,10 @@ class SourceTable(Table):
             ),
         )
         query__advanced__include = False  # We don't want the advanced filter
-        rows = Source.objects.filter(is_valid=True)
+        rows = lambda request, **_: (
+            Source.objects.all() if request.user.is_staff else (
+                Source.objects.filter(
+                    Q(is_valid=True) | Q(created_by=request.user.researcher)
+                ).distinct() if request.user.is_authenticated and hasattr(request.user, "researcher") else Source.objects.filter(is_valid=True)
+            )
+        )

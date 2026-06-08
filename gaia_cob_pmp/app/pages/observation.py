@@ -12,7 +12,7 @@ class ObservationViewPage(Page):
 
     header = Header(
         lambda observation,
-        **_: f"{observation.proposal.instrument} observation of {observation.source}"
+        **_: f"{observation.get_instrument} observation of {observation.source}"
     )
     detail = ObservationForm(
         auto__exclude=["is_valid"],

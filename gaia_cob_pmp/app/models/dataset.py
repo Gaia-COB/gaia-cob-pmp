@@ -181,17 +181,36 @@ def is_linked_project_member(user: User, dataset: DataSet) -> bool:
     If not, does the dataset have an ArXiV link (i.e. the data is public)?
 
     :param user: User to check.
-    :param proposal: The Proposal to check.
-    :return: True if the user is a Researcher who is a member of this proposal's linked project, else True if the user is active and the dataset has an arXiV link, else False.
+    :param dataset: The DataSet to check.
+    :return: True if authorized, else False.
     """
     if dataset.arxiv_url:
         return user and user.is_active
 
-    return (
-        user
-        and (user.researcher == dataset.observation.proposal.project.principal_investigator)
-        or (user.researcher in dataset.observation.proposal.project.members.all())
-    )
+    if not user or not hasattr(user, "researcher"):
+        return False
+
+    researcher = user.researcher
+    obs = dataset.observation
+
+    # 1. Direct observer check
+    if obs.observer and obs.observer == researcher:
+        return True
+
+    # 2. Check via proposal's project
+    if obs.proposal:
+        project = obs.proposal.project
+        if project.principal_investigator == researcher or researcher in project.members.all():
+            return True
+
+    # 3. Check direct project link
+    if obs.project:
+        project = obs.project
+        if project.principal_investigator == researcher or researcher in project.members.all():
+            return True
+
+    return False
+
 
 
 # Rules for database interactions with this source

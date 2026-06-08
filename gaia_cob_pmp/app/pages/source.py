@@ -8,10 +8,10 @@ from app.plots.rv_curve import get_rv_plot
 from app.plots.vpec_vs_gamma import get_vvg_plot
 
 
-def source_has_rv_data(source) -> bool:
+def source_has_rv_data(source, user=None) -> bool:
     try:
         from app.plots.rv_curve import load_rv_data
-        df = load_rv_data(source)
+        df = load_rv_data(source, user=user)
         return df.shape[0] >= 3
     except ValueError:
         return False
@@ -48,9 +48,17 @@ def render_fit_parameters_table(parameters) -> str:
     """
 
 
-def render_fit_results_html(source, fit_run=False, p_guess=None, k_guess=None, v0_guess=None, e_guess=None) -> str:
+def render_fit_results_html(source, fit_run=False, p_guess=None, k_guess=None, v0_guess=None, e_guess=None, user=None) -> str:
     from app.models.keplerian_fit import KeplerianFit
     from app.fitting import get_fit_results, get_rv_data_hash, load_rv_data
+
+    # Check minimum observation requirement
+    try:
+        df = load_rv_data(source, user=user)
+        if df.shape[0] < 3:
+            return ""
+    except ValueError:
+        return ""
 
     # 1. Fetch saved fit if any
     saved_fit = KeplerianFit.objects.filter(source=source).order_by("-created_at").first()
@@ -60,7 +68,6 @@ def render_fit_results_html(source, fit_run=False, p_guess=None, k_guess=None, v
     saved_date_str = ""
     if saved_fit:
         try:
-            df = load_rv_data(source)
             current_hash = get_rv_data_hash(df)
             has_mismatch = (saved_fit.observation_hash != current_hash)
             saved_date_str = saved_fit.created_at.strftime("%Y-%m-%d %H:%M")
@@ -80,7 +87,8 @@ def render_fit_results_html(source, fit_run=False, p_guess=None, k_guess=None, v
             p_guess=p_guess,
             k_guess=k_guess,
             v0_guess=v0_guess,
-            e_guess=e_guess
+            e_guess=e_guess,
+            user=user
         )
         if samples is not None:
             display_samples = samples
@@ -259,10 +267,10 @@ class SourceViewPage(Page):
             body=html.div(
                 Template("{{ page.extra_evaluated.fit_results_html | safe }}"),
                 attrs__class={"card-body": True},
-                include=lambda source, **_: source_has_rv_data(source)
+                include=lambda source, request, **_: source_has_rv_data(source, user=request.user)
             )
         ),
-        include=lambda source, **_: source_has_rv_data(source)
+        include=lambda source, request, **_: source_has_rv_data(source, user=request.user)
     )
 
     gaia_info = SourceGaiaInfoForm(
@@ -313,7 +321,7 @@ class SourceViewPage(Page):
                 has_mismatch = False
                 if saved_fit:
                     try:
-                        df = load_rv_data(source)
+                        df = load_rv_data(source, user=request.user)
                         current_hash = get_rv_data_hash(df)
                         has_mismatch = (saved_fit.observation_hash != current_hash)
                     except ValueError:
@@ -331,9 +339,10 @@ class SourceViewPage(Page):
                     p_guess=p_guess,
                     k_guess=k_guess,
                     v0_guess=v0_guess,
-                    e_guess=e_guess
+                    e_guess=e_guess,
+                    user=request.user
                 )
-                figure = get_rv_plot(source, fit_samples=fit_samples)
+                figure = get_rv_plot(source, fit_samples=fit_samples, user=request.user)
 
                 # Save/cache the generated figure html in the database
                 if fit_samples is not None:
@@ -369,6 +378,96 @@ class SourceViewPage(Page):
                 p_guess=p_guess,
                 k_guess=k_guess,
                 v0_guess=v0_guess,
-                e_guess=e_guess
+                e_guess=e_guess,
+                user=request.user
             )
+
+
+def add_gaiainfo_view(request, source, **kwargs):
+    from django.middleware.csrf import get_token
+    from django.shortcuts import redirect
+    from django.contrib import messages
+    from app.gaia_lookup import query_gaia_info_for_source
+    from app.models import Source, SourceGaiaInfo
+
+    if not isinstance(source, Source):
+        if str(source).isdigit():
+            source = Source.objects.get(id=int(source))
+        else:
+            source = Source.objects.get(name=source)
+
+    # Perform the query
+    try:
+        info_data, resolved_ra, resolved_dec, resolved_name = query_gaia_info_for_source(
+            source.name, source.ra, source.dec
+        )
+    except Exception as e:
+        info_data, resolved_ra, resolved_dec, resolved_name = None, None, None, None
+        messages.error(request, f"Failed to query Gaia/Simbad databases: {e}")
+        return redirect(source.get_absolute_url())
+
+    if request.method == "POST":
+        if info_data:
+            SourceGaiaInfo.objects.create(
+                source=source,
+                is_valid=source.is_valid,
+                **info_data
+            )
+            # Update source coordinates if they are 0.0 or not set
+            if resolved_ra is not None and resolved_dec is not None:
+                if source.ra == 0.0 and source.dec == 0.0:
+                    source.ra = resolved_ra
+                    source.dec = resolved_dec
+                    source.save()
+            messages.success(request, f"Gaia Info successfully added to source '{source.name}'.")
+        else:
+            messages.error(request, "No Gaia Info was found to save.")
+        return redirect(source.get_absolute_url())
+
+    # GET request: Render retrieved data
+    rows_html = []
+    if info_data:
+        for k, v in info_data.items():
+            val_display = f"<code>{v}</code>" if v is not None else '<span class="text-muted">N/A</span>'
+            rows_html.append(f"<tr><td><strong>{k.replace('_', ' ').title()}</strong></td><td>{val_display}</td></tr>")
+        
+        rows_html.append(f"<tr><td><strong>Resolved RA</strong></td><td><code>{resolved_ra}</code> (Current: {source.ra})</td></tr>")
+        rows_html.append(f"<tr><td><strong>Resolved Dec</strong></td><td><code>{resolved_dec}</code> (Current: {source.dec})</td></tr>")
+        rows_html.append(f"<tr><td><strong>Resolved Name</strong></td><td><code>{resolved_name}</code> (Current: {source.name})</td></tr>")
+    
+    table_content = "\n".join(rows_html)
+    csrf_token = get_token(request)
+
+    content_html = f"""
+    <div class="container py-4">
+        <div class="card shadow border-0 rounded-3 overflow-hidden" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);">
+            <div class="card-header bg-dark text-white p-4 d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="mb-1 font-monospace">Gaia Database Query Results</h3>
+                    <p class="mb-0 text-white-50 small">Properties retrieved automatically from Simbad and Gaia DR3</p>
+                </div>
+                <div class="badge bg-success p-2 fs-6">Succeeded</div>
+            </div>
+            <div class="card-body p-4">
+                {"<div class='table-responsive'><table class='table table-hover align-middle'>" + table_content + "</table></div>" if info_data else "<div class='alert alert-warning'>No matching Gaia info found for this source name or coordinates.</div>"}
+                
+                <form method="POST" class="mt-4 d-flex gap-3">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
+                    <button type="submit" class="btn btn-primary btn-lg shadow-sm" {"" if info_data else "disabled"}>
+                        <i class="fa-solid fa-cloud-arrow-down me-2"></i>Save Gaia Info
+                    </button>
+                    <a href="{source.get_absolute_url()}" class="btn btn-outline-secondary btn-lg">
+                        Cancel
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+    """
+
+    class CustomPage(Page):
+        header = Header(f"Add Gaia info: {source.name}")
+        body = html.div(mark_safe(content_html))
+
+    return CustomPage().bind(request=request)
 

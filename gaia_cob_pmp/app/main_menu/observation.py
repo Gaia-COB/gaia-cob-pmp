@@ -110,9 +110,13 @@ observation_submenu = M(
             ),
             view=ObservationForm.delete(
                 instance=lambda observation, **_: observation,
-                extra__redirect_to=lambda observation,
-                auto__exclude=["upload"],
-                **_: observation.proposal.get_absolute_url(),
+                extra__redirect_to=lambda observation, **_: observation.proposal.get_absolute_url()
+                if observation.proposal
+                else (
+                    observation.project.get_absolute_url()
+                    if observation.project
+                    else f"/source/{observation.source.pk}/"
+                ),
             ),
         ),
     ),

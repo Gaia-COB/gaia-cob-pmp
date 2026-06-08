@@ -21,8 +21,16 @@ class IndexPage(Page):
     Simple index page.
     """
 
-    header = Header("Proposal Management Platform")
-    p = html.p("Intro text.")
+    header = Header("Compact Object BBinary Live Experiments Database")
+    p1 = html.p("Binaries are notoriously stubborn to pin down and extract robust solutions for, especially for compact object binaries. Very long period binaries will need monitoring over years to decades. Faint binaries require intensive monitoring to remove contaminants.")
+
+    p2 = html.p("This platform has been cobbled together to tackle these issues *collaboratively*. Upload your RV measurements, combine them with data from others, and fit for orbital solutions.")
+
+    p3 = html.p("The hope, and expectation, is that collaboratively the whole can be more than the individual parts.")
+
+    p4 = html.p("Please use in the right spirit."
+    )
+
 
 
 class PrivacyPage(Page):

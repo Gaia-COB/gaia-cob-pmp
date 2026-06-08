@@ -79,14 +79,17 @@ def deserialize_samples(serialized) -> TheJoker | None:
     return samples
 
 
-def run_joker_fit(source, prior_samples=100000, p_guess=None, k_guess=None, v0_guess=None, e_guess=None):
+def run_joker_fit(source, prior_samples=100000, p_guess=None, k_guess=None, v0_guess=None, e_guess=None, user=None):
     """
     Runs The Joker rejection sampler, dynamically tuning priors based on guesses,
     and saves the fit to the database.
     """
     try:
-        df = load_rv_data(source)
+        df = load_rv_data(source, user=user)
     except ValueError:
+        return None, None
+
+    if df.shape[0] < 3:
         return None, None
 
     t = Time(df["jd"].values, format="jd")
@@ -206,14 +209,17 @@ def run_joker_fit(source, prior_samples=100000, p_guess=None, k_guess=None, v0_g
     return samples, parameters
 
 
-def get_fit_results(source, force_run=False, p_guess=None, k_guess=None, v0_guess=None, e_guess=None):
+def get_fit_results(source, force_run=False, p_guess=None, k_guess=None, v0_guess=None, e_guess=None, user=None):
     """
     Retrieves the fit results. First checks Django database. If force_run is True or
     no saved fit matches the current observation data hash, it executes a new fit.
     """
     try:
-        df = load_rv_data(source)
+        df = load_rv_data(source, user=user)
     except ValueError:
+        return None, None
+
+    if df.shape[0] < 3:
         return None, None
 
     num_points = df.shape[0]
@@ -241,7 +247,8 @@ def get_fit_results(source, force_run=False, p_guess=None, k_guess=None, v0_gues
         p_guess=p_guess,
         k_guess=k_guess,
         v0_guess=v0_guess,
-        e_guess=e_guess
+        e_guess=e_guess,
+        user=user
     )
     
     if samples is not None:

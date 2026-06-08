@@ -1,15 +1,52 @@
-"""
-Submenu for items relating to sources.
-"""
-
+from django.db.models import Q
 from iommi import LAST, Field
 from iommi.main_menu import EXTERNAL, M
 
 from app.forms.source import SourceForm, SourceGaiaInfoForm
-from app.pages.source import SourceViewPage
+from app.pages.source import SourceViewPage, add_gaiainfo_view
 from app.tables.source import SourceTable
 
-source_submenu: M = M(
+
+class DynamicSourcesMenu(M):
+    def bind(self, request, root):
+        import copy
+        from app.models import Source
+
+        obj = copy.copy(self)
+        base_items = {}
+        for k in ['add', 'view']:
+            if k in self.items:
+                base_items[k] = self.items[k]
+        obj.items = base_items
+
+        user = request.user
+        if user.is_authenticated:
+            if user.is_staff:
+                sources = Source.objects.all().order_by('name')
+            elif hasattr(user, "researcher"):
+                sources = Source.objects.filter(
+                    Q(is_valid=True) | Q(created_by=user.researcher)
+                ).distinct().order_by('name')
+            else:
+                sources = Source.objects.filter(is_valid=True).order_by('name')
+        else:
+            sources = Source.objects.filter(is_valid=True).order_by('name')
+
+        for source in sources:
+            source_item = M(
+                display_name=source.name,
+                url=source.get_absolute_url(),
+                view=EXTERNAL,
+                icon="minus",
+            )
+            source_item.parent = obj
+            source_item._set_name(f"source_{source.pk}")
+            obj.items[source_item.name] = source_item
+
+        return super(DynamicSourcesMenu, obj).bind(request, root)
+
+
+source_submenu: M = DynamicSourcesMenu(
     display_name="Sources",
     icon="sun",
     include=lambda user, **_: user.is_authenticated and user.is_active,
@@ -43,10 +80,7 @@ source_submenu: M = M(
                     icon="plus",
                     include=lambda user, source, **_: not hasattr(source, "gaiainfo")
                     and user.has_perm("app.add_sourcegaiainfo"),
-                    view=SourceGaiaInfoForm.create(
-                        fields__source=Field.non_rendered(initial=lambda source, **_: source),
-                        extra__redirect_to=lambda source, **_: source.get_absolute_url(),
-                    ),
+                    view=add_gaiainfo_view,
                 ),
                 view_on_aladin=M(
                     display_name="View on Aladin",

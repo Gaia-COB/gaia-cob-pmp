@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import (
     CASCADE,
     RESTRICT,
+    SET_NULL,
     BooleanField,
     FloatField,
     ForeignKey,
@@ -10,7 +11,6 @@ from django.db.models import (
 )
 from rules import add_perm, is_active, is_staff, predicate
 
-from app.models.proposal import Proposal
 from app.models.source import Source
 
 
@@ -22,9 +22,35 @@ class Observation(Model):
     source = ForeignKey(Source, on_delete=RESTRICT, help_text="The source which was observed.")
 
     proposal = ForeignKey(
-        Proposal,
+        "app.Proposal",
         on_delete=CASCADE,
+        null=True,
+        blank=True,
         help_text="The proposal to which this observation is affiliated.",
+    )
+
+    instrument = ForeignKey(
+        "app.Instrument",
+        on_delete=RESTRICT,
+        null=True,
+        blank=True,
+        help_text="The instrument used for the observation (required if no proposal is linked).",
+    )
+
+    project = ForeignKey(
+        "app.Project",
+        on_delete=SET_NULL,
+        null=True,
+        blank=True,
+        help_text="The project/collection to which this observation belongs.",
+    )
+
+    observer = ForeignKey(
+        "app.Researcher",
+        on_delete=SET_NULL,
+        null=True,
+        blank=True,
+        help_text="The researcher who made the observation.",
     )
 
     is_valid = BooleanField(
@@ -45,8 +71,19 @@ class Observation(Model):
         help_text="Additional comment(s) on the observation",
     )
 
+    @property
+    def get_instrument(self):
+        if self.proposal:
+            return self.proposal.instrument
+        return self.instrument
+
     def get_absolute_url(self) -> str:
-        return f"/project/{self.proposal.project.pk}/proposal/{self.proposal.pk}/obs/{self.pk}/"
+        if self.proposal:
+            return f"/project/{self.proposal.project.pk}/proposal/{self.proposal.pk}/obs/{self.pk}/"
+        elif self.project:
+            return f"/project/{self.project.pk}/obs/{self.pk}/"
+        else:
+            return f"/obs/{self.pk}/"
 
     def get_data_status(self) -> str:
         if not hasattr(self, "dataset"):
@@ -73,16 +110,34 @@ User = get_user_model()
 def is_linked_project_member(user: User, observation: Observation) -> bool:
     """
     Does this user account correspond to a researcher who is a member of the project linked to this observation?
+    Or is the user the direct observer of this observation?
 
     :param user: User to check.
     :param observation: The Observation to check.
-    :return: True if the user is a Researcher who is a member of this observation's linked project, else False.
+    :return: True if the user is authorized, else False.
     """
-    return (
-        user
-        and (user.researcher == observation.proposal.project.principal_investigator)
-        or (user.researcher in observation.proposal.project.members.all())
-    )
+    if not user or not hasattr(user, "researcher"):
+        return False
+        
+    researcher = user.researcher
+    
+    # 1. Direct observer check
+    if observation.observer and observation.observer == researcher:
+        return True
+        
+    # 2. Check via proposal's project
+    if observation.proposal:
+        project = observation.proposal.project
+        if project.principal_investigator == researcher or researcher in project.members.all():
+            return True
+            
+    # 3. Check direct project link
+    if observation.project:
+        project = observation.project
+        if project.principal_investigator == researcher or researcher in project.members.all():
+            return True
+            
+    return False
 
 
 # Rules for database interactions with this source
@@ -91,3 +146,4 @@ add_perm("app.add_observation", is_active)
 add_perm("app.change_observation", is_linked_project_member | is_staff)
 add_perm("app.delete_observation", is_staff)
 add_perm("app.view_observation", is_active)
+

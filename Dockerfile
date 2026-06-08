@@ -18,3 +18,5 @@ RUN uv run sync  # --extra develop; If you want to install the debug mode requir
 # uWSGI wants to be run from inside the project directory, so we have to copy the env files there.
 COPY .env* gaia_cob_pmp/.
 WORKDIR gaia_cob_pmp
+
+ENTRYPOINT ["bash", "docker-entrypoint.sh"]

@@ -24,8 +24,28 @@ def load_gaia_rv_data(source: Source) -> pd.DataFrame:
         raise ValueError("No rv given for source")
 
 
-def load_rv_data(source: Source) -> pd.DataFrame:
+def load_rv_data(source: Source, user=None) -> pd.DataFrame:
+    from django.db.models import Q
+
     qset = DataSet.objects.filter(observation__source=source)
+
+    if user and user.is_authenticated:
+        if not user.is_staff:
+            researcher = getattr(user, "researcher", None)
+            if researcher:
+                qset = qset.filter(
+                    Q(is_valid=True) |
+                    Q(observation__observer=researcher) |
+                    Q(observation__project__principal_investigator=researcher) |
+                    Q(observation__project__members=researcher) |
+                    Q(observation__proposal__project__principal_investigator=researcher) |
+                    Q(observation__proposal__project__members=researcher)
+                ).distinct()
+            else:
+                qset = qset.filter(is_valid=True)
+    else:
+        qset = qset.filter(is_valid=True)
+
     qset = qset.annotate(jd=F("observation__jd"))
 
     df = pd.DataFrame(list(qset.values()))
@@ -36,8 +56,8 @@ def load_rv_data(source: Source) -> pd.DataFrame:
     return df
 
 
-def get_rv_plot(source: Source, fit_samples=None):
-    data = load_rv_data(source)
+def get_rv_plot(source: Source, fit_samples=None, user=None):
+    data = load_rv_data(source, user=user)
 
     jd_min = data["jd"].min()
     x = data["jd"] - jd_min
@@ -172,7 +192,7 @@ def get_rv_plot(source: Source, fit_samples=None):
     obs_dict = {
         obs.pk: obs
         for obs in Observation.objects.filter(source=source).select_related(
-            "proposal", "proposal__project"
+            "proposal", "proposal__project", "project"
         )
     }
 
